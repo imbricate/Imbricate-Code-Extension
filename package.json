@@ -1,15 +1,14 @@
 {
   "name": "imbricate",
-  "packageManager": "yarn@4.1.1",
   "displayName": "imbricate",
   "description": "Code extension for Imbricate",
   "version": "0.0.1",
-  "type": "commonjs",
   "engines": {
-    "vscode": "^1"
+    "vscode": "^1.76.0"
   },
+  "license": "MIT",
   "categories": [
-    "Other"
+    "Notebooks"
   ],
   "activationEvents": [],
   "main": "./out/extension.js",
