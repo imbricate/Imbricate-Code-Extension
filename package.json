@@ -13,6 +13,25 @@
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "imbricate",
+          "title": "Imbricate",
+          "icon": "$(primitive-square)"
+        }
+      ]
+    },
+    "views": {
+      "imbricate": [
+        {
+          "id": "imbricate",
+          "name": "Imbricate",
+          "icon": "$(primitive-square)",
+          "contextualTitle": "Imbricate"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "imbricate.helloWorld",

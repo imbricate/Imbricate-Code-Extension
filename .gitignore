@@ -3,6 +3,8 @@ out
 test/**/*.js
 test/**/*.js.map
 
+.DS_Store
+
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
