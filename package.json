@@ -57,5 +57,10 @@
     "@vscode/test-electron": "^2",
     "eslint": "^8",
     "typescript": "^5"
+  },
+  "dependencies": {
+    "@imbricate/core": "^1.9.0",
+    "@imbricate/markdown-render": "^1.1.2",
+    "@imbricate/origin-file-system": "^1.7.3"
   }
 }
