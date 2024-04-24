@@ -47,6 +47,13 @@
     "lint": "eslint src --ext ts",
     "test": "vscode-test"
   },
+  "dependencies": {
+    "@imbricate/core": "^1.10.0",
+    "@imbricate/local-fundamental": "^1.1.0",
+    "@imbricate/markdown-render": "^1.1.2",
+    "@imbricate/origin-file-system": "^1.8.0",
+    "@sudoo/io": "^1.8.0"
+  },
   "devDependencies": {
     "@types/mocha": "^10",
     "@types/node": "20",
@@ -57,11 +64,5 @@
     "@vscode/test-electron": "^2",
     "eslint": "^8",
     "typescript": "^5"
-  },
-  "dependencies": {
-    "@imbricate/core": "^1.9.0",
-    "@imbricate/markdown-render": "^1.1.2",
-    "@imbricate/origin-file-system": "^1.7.3",
-    "@sudoo/io": "^1.8.0"
   }
 }
