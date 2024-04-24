@@ -1704,6 +1704,7 @@ __metadata:
     "@imbricate/core": "npm:^1.9.0"
     "@imbricate/markdown-render": "npm:^1.1.2"
     "@imbricate/origin-file-system": "npm:^1.7.3"
+    "@sudoo/io": "npm:^1.8.0"
     "@types/mocha": "npm:^10"
     "@types/node": "npm:20"
     "@types/vscode": "npm:^1"

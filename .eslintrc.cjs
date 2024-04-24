@@ -54,4 +54,9 @@ module.exports = {
             "always",
         ],
     },
+    ignores: [
+        "node_modules",
+        "dist",
+        "coverage",
+    ],
 };

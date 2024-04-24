@@ -3,8 +3,9 @@
  * @namespace ActivityBar
  * @description Sidebar
  */
-
 import * as vscode from "vscode";
+import { readCLIConfiguration } from "../configuration/io";
+import { resolveImbricateHomeDirectory } from "../util/directory-resolve";
 import { CollectionItem } from "./collection-item";
 
 export class ImbricateActivityDataProvider implements vscode.TreeDataProvider<CollectionItem> {
@@ -18,6 +19,10 @@ export class ImbricateActivityDataProvider implements vscode.TreeDataProvider<Co
         this._onDidChangeTreeData.event;
 
     constructor() {
+
+        const configurationPath: string = resolveImbricateHomeDirectory();
+
+        readCLIConfiguration(configurationPath);
     }
 
     refresh(): void {
