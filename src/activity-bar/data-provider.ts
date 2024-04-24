@@ -6,6 +6,7 @@
 import * as vscode from "vscode";
 import { IImbricateConfiguration } from "../configuration/definition";
 import { readCLIConfiguration } from "../configuration/io";
+import { IImbricateConfigurationOrigin } from "../configuration/raw-definition";
 import { resolveImbricateHomeDirectory } from "../util/directory-resolve";
 import { CollectionItem } from "./collection-item";
 import { OriginItem } from "./origin-item";
@@ -48,11 +49,14 @@ export class ImbricateActivityDataProvider implements vscode.TreeDataProvider<vs
     getChildren(element?: vscode.TreeItem): Thenable<vscode.TreeItem[]> {
 
         if (typeof element === "undefined") {
-            return Promise.resolve(
-                this._configuration.origins.map((origin: any) => {
-                    return new OriginItem();
-                }),
-            );
+
+            const items: OriginItem[] = this._configuration.origins.map((
+                origin: IImbricateConfigurationOrigin,
+            ) => {
+                return OriginItem.withOriginConfig(origin);
+            });
+
+            return Promise.resolve(items);
         }
 
         return Promise.resolve([
