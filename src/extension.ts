@@ -6,11 +6,12 @@
 import * as vscode from "vscode";
 import { ImbricateActivityDataProvider } from "./activity-bar/data-provider";
 
-export function activate(context: vscode.ExtensionContext) {
+export const activate = async (context: vscode.ExtensionContext) => {
 
 	console.log('Congratulations, your extension "imbricate" is now active!');
 
-	const activityDataProvider = new ImbricateActivityDataProvider();
+	const activityDataProvider = await ImbricateActivityDataProvider.fromHomeConfig();
+
 	vscode.window.registerTreeDataProvider("imbricate", activityDataProvider);
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
@@ -27,4 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // This method is called when your extension is deactivated
-export function deactivate() { }
+export const deactivate = () => {
+
+	console.log('Your extension "imbricate" is now deactivated!');
+};

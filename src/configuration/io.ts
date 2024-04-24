@@ -31,7 +31,9 @@ const createOrGetFile = async (
     return defaultValue;
 };
 
-export const readCLIConfiguration = async (configurationPath: string): Promise<any> => {
+export const readCLIConfiguration = async (
+    configurationPath: string,
+): Promise<IImbricateConfiguration> => {
 
     const configurationFilePath: string = concatConfigurationPath(
         configurationPath,
@@ -46,5 +48,5 @@ export const readCLIConfiguration = async (configurationPath: string): Promise<a
     const parsedConfiguration: IImbricateConfiguration =
         parseRawImbricateConfiguration(configuration);
 
-    console.log(parsedConfiguration);
+    return parsedConfiguration;
 };
