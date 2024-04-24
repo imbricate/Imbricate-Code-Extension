@@ -5,11 +5,17 @@
  */
 
 import * as vscode from "vscode";
+import { CollectionItem } from "./collection-item";
 
-export class ImbricateActivityDataProvider implements vscode.TreeDataProvider<Dependency> {
+export class ImbricateActivityDataProvider implements vscode.TreeDataProvider<CollectionItem> {
 
-    private _onDidChangeTreeData: vscode.EventEmitter<Dependency | undefined | void> = new vscode.EventEmitter<Dependency | undefined | void>();
-    readonly onDidChangeTreeData: vscode.Event<Dependency | undefined | void> = this._onDidChangeTreeData.event;
+    private _onDidChangeTreeData:
+        vscode.EventEmitter<CollectionItem | undefined | void> =
+        new vscode.EventEmitter<CollectionItem | undefined | void>();
+
+    readonly onDidChangeTreeData:
+        vscode.Event<CollectionItem | undefined | void> =
+        this._onDidChangeTreeData.event;
 
     constructor() {
     }
@@ -18,28 +24,17 @@ export class ImbricateActivityDataProvider implements vscode.TreeDataProvider<De
         this._onDidChangeTreeData.fire();
     }
 
-    getTreeItem(element: Dependency): vscode.TreeItem {
+    getTreeItem(element: CollectionItem): vscode.TreeItem {
         return element;
     }
 
-    getChildren(element?: Dependency): Thenable<Dependency[]> {
+    getChildren(element?: CollectionItem): Thenable<CollectionItem[]> {
 
         console.log("getChildren", element);
-        return Promise.resolve([]);
-    }
-}
-
-export class Dependency extends vscode.TreeItem {
-
-    constructor(
-        public readonly label: string,
-        private readonly version: string,
-        public readonly collapsibleState: vscode.TreeItemCollapsibleState,
-        public readonly command?: vscode.Command,
-    ) {
-        super(label, collapsibleState);
-
-        this.tooltip = `${this.label}-${this.version}`;
-        this.description = this.version;
+        return Promise.resolve([
+            new CollectionItem(),
+            new CollectionItem(),
+            new CollectionItem(),
+        ]);
     }
 }
