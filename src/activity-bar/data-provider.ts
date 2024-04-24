@@ -3,7 +3,7 @@
  * @namespace ActivityBar
  * @description Sidebar
  */
-import { IImbricateOrigin, IImbricateOriginCollection } from "@imbricate/core";
+import { IImbricateOrigin, IImbricateOriginCollection, ImbricatePageSnapshot } from "@imbricate/core";
 import { ImbricateOriginInitializer, ImbricateOriginManager } from "@imbricate/local-fundamental";
 import { FileSystemImbricateOrigin, FileSystemOriginPayload } from "@imbricate/origin-file-system";
 import * as vscode from "vscode";
@@ -101,6 +101,16 @@ export class ImbricateActivityDataProvider implements vscode.TreeDataProvider<vs
                 collection: IImbricateOriginCollection,
             ) => {
                 return CollectionItem.withCollection(collection);
+            });
+        }
+
+        if (element instanceof CollectionItem) {
+
+            const pages: ImbricatePageSnapshot[] =
+                await element.collection.listPages();
+
+            return pages.map((page: ImbricatePageSnapshot) => {
+                return new vscode.TreeItem(page.title);
             });
         }
 

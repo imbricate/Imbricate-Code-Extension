@@ -23,4 +23,8 @@ export class CollectionItem extends vscode.TreeItem {
 
         this._collection = collection;
     }
+
+    public get collection(): IImbricateOriginCollection {
+        return this._collection;
+    }
 }
