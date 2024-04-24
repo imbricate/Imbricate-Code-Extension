@@ -4,26 +4,34 @@
  * @description Origin Item
  */
 
+import { IImbricateOrigin } from "@imbricate/core";
 import * as vscode from "vscode";
-import { IImbricateConfigurationOrigin } from "../configuration/raw-definition";
 
 export class OriginItem extends vscode.TreeItem {
 
-    public static withOriginConfig(
-        originConfig: IImbricateConfigurationOrigin,
+    public static withOrigin(
+        originName: string,
+        origin: IImbricateOrigin,
     ) {
 
-        return new OriginItem(originConfig);
+        return new OriginItem(originName, origin);
     }
 
-    private readonly _originConfig: IImbricateConfigurationOrigin;
+    private readonly _originName: string;
+    private readonly _origin: IImbricateOrigin;
 
     private constructor(
-        originConfig: IImbricateConfigurationOrigin,
+        originName: string,
+        origin: IImbricateOrigin,
     ) {
 
-        super(originConfig.originName, 1);
+        super(originName, 1);
 
-        this._originConfig = originConfig;
+        this._originName = originName;
+        this._origin = origin;
+    }
+
+    public get origin(): IImbricateOrigin {
+        return this._origin;
     }
 }
