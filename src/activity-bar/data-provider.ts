@@ -8,8 +8,9 @@ import { IImbricateConfiguration } from "../configuration/definition";
 import { readCLIConfiguration } from "../configuration/io";
 import { resolveImbricateHomeDirectory } from "../util/directory-resolve";
 import { CollectionItem } from "./collection-item";
+import { OriginItem } from "./origin-item";
 
-export class ImbricateActivityDataProvider implements vscode.TreeDataProvider<CollectionItem> {
+export class ImbricateActivityDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
 
     public static async fromHomeConfig(): Promise<ImbricateActivityDataProvider> {
 
@@ -22,11 +23,11 @@ export class ImbricateActivityDataProvider implements vscode.TreeDataProvider<Co
     private readonly _configuration: IImbricateConfiguration;
 
     private _onDidChangeTreeData:
-        vscode.EventEmitter<CollectionItem | undefined | void> =
-        new vscode.EventEmitter<CollectionItem | undefined | void>();
+        vscode.EventEmitter<vscode.TreeItem | undefined | void> =
+        new vscode.EventEmitter<vscode.TreeItem | undefined | void>();
 
     public readonly onDidChangeTreeData:
-        vscode.Event<CollectionItem | undefined | void> =
+        vscode.Event<vscode.TreeItem | undefined | void> =
         this._onDidChangeTreeData.event;
 
     private constructor(
@@ -40,16 +41,21 @@ export class ImbricateActivityDataProvider implements vscode.TreeDataProvider<Co
         this._onDidChangeTreeData.fire();
     }
 
-    getTreeItem(element: CollectionItem): vscode.TreeItem {
+    getTreeItem(element: vscode.TreeItem): vscode.TreeItem {
         return element;
     }
 
-    getChildren(element?: CollectionItem): Thenable<CollectionItem[]> {
+    getChildren(element?: vscode.TreeItem): Thenable<vscode.TreeItem[]> {
 
-        console.log("getChildren", element);
+        if (typeof element === "undefined") {
+            return Promise.resolve(
+                this._configuration.origins.map((origin: any) => {
+                    return new OriginItem();
+                }),
+            );
+        }
+
         return Promise.resolve([
-            new CollectionItem(),
-            new CollectionItem(),
             new CollectionItem(),
         ]);
     }
