@@ -19,6 +19,9 @@ test/**/*.js.map
 #!.yarn/cache
 .pnp.*
 
+# Npm
+package-lock.json
+
 # Node
 node_modules
 

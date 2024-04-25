@@ -7,3 +7,9 @@
 │ A T E │
 └───────┘
 ```
+
+Yes to accountable notes, no to external hosting. Free, for everyone.
+
+## Documentation
+
+Visit [imbricate.io](https://imbricate.io/).

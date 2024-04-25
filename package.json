@@ -1,6 +1,7 @@
 {
   "name": "imbricate",
   "displayName": "imbricate",
+  "publisher": "imbricate",
   "description": "Code extension for Imbricate",
   "version": "0.1.0",
   "engines": {
