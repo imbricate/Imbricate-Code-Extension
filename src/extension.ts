@@ -8,6 +8,7 @@ import { FileSystemImbricateOrigin, FileSystemOriginPayload } from "@imbricate/o
 import * as vscode from "vscode";
 import { readCLIConfiguration } from "./configuration/io";
 import { PagesTreeViewDataProvider } from "./pages-tree-view/data-provider";
+import { ScriptsTreeViewDataProvider } from "./scripts-tree-view/data-provider";
 
 export const activate = async (context: vscode.ExtensionContext) => {
 
@@ -29,19 +30,19 @@ export const activate = async (context: vscode.ExtensionContext) => {
 
 	console.log('Congratulations, your extension "imbricate" is now active!');
 
-	const activityDataProvider = await PagesTreeViewDataProvider.create(
+	const pagesDataProvider = await PagesTreeViewDataProvider.create(
 		configuration,
 		originManager,
 	);
 
-	vscode.window.registerTreeDataProvider("imbricate-pages", activityDataProvider);
+	vscode.window.registerTreeDataProvider("imbricate-pages", pagesDataProvider);
 
-	const activityDataProvider2 = await PagesTreeViewDataProvider.create(
+	const scriptsDataProvider = await ScriptsTreeViewDataProvider.create(
 		configuration,
 		originManager,
 	);
 
-	vscode.window.registerTreeDataProvider("imbricate-scripts", activityDataProvider2);
+	vscode.window.registerTreeDataProvider("imbricate-scripts", scriptsDataProvider);
 
 	const disposable = vscode.commands.registerCommand("imbricate.helloWorld", () => {
 		vscode.window.showInformationMessage("Hello World from imbricate!");
