@@ -5,8 +5,10 @@
     "search.exclude": {
         "out": true
     },
+    "npm.packageManager": "yarn",
     "cSpell.words": [
         "Editings",
+        "outfile",
         "splited",
         "sudoo",
         "WMXPY"
