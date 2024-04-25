@@ -7,6 +7,7 @@
 import { IImbricateOrigin, IImbricateOriginCollection, IImbricatePage } from "@imbricate/core";
 import { ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
+import { onChangeEmitter } from "../on-change-emitter";
 
 export class PageMarkdownContentProvider implements vscode.TextDocumentContentProvider {
 
@@ -28,8 +29,8 @@ export class PageMarkdownContentProvider implements vscode.TextDocumentContentPr
 
         this._originManager = originManager;
 
-        this.onDidChangeEmitter = new vscode.EventEmitter<vscode.Uri>();
-        this.onDidChange = this.onDidChangeEmitter.event;
+        this.onDidChangeEmitter = onChangeEmitter;
+        this.onDidChange = onChangeEmitter.event;
     }
 
     public async provideTextDocumentContent(uri: vscode.Uri): Promise<string> {

@@ -7,12 +7,17 @@
 import * as vscode from "vscode";
 import { PagePageItem } from "../pages-tree-view/page-item";
 import { showInformationMessage } from "../util/show-message";
+import { concatPageMarkdownUrl } from "../virtual-document/page-markdown/concat";
 
 export const registerPagePreviewCommand = (): vscode.Disposable => {
 
     const disposable = vscode.commands.registerCommand("imbricate.page.preview", async (item: PagePageItem) => {
 
-        const uri = vscode.Uri.parse(`imbricate-page-markdown:${item.originName}/${item.collection.collectionName}/${item.pageSnapshot.identifier}/[READONLY] ${item.pageSnapshot.title}.md`);
+        const uri = concatPageMarkdownUrl(
+            item.originName,
+            item.collection.collectionName,
+            item.pageSnapshot.identifier,
+        );
 
         const textDocument: vscode.TextDocument =
             await vscode.workspace.openTextDocument(uri);
