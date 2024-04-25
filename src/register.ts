@@ -6,6 +6,7 @@
 
 import { IImbricateConfiguration, ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
+import { registerEditingPerformCommand } from "./command/editing-perform";
 import { registerEditingsRefreshCommand } from "./command/editing-refresh";
 import { registerEditingResumeCommand } from "./command/editing-resume";
 import { registerPageEditCommand } from "./command/page-edit";
@@ -38,6 +39,12 @@ export const registerOperations = async (
 
     registerPageMarkdownContentProvider(originManager, context);
     registerScriptJavascriptContentProvider(originManager, context);
+
+    const editingPerformCommand = registerEditingPerformCommand(
+        originManager,
+        editingsDataProvider,
+    );
+    context.subscriptions.push(editingPerformCommand);
 
     const editingsRefreshCommand = registerEditingsRefreshCommand(editingsDataProvider);
     context.subscriptions.push(editingsRefreshCommand);
