@@ -11,6 +11,7 @@ import { registerRefreshCommand } from "./command/refresh";
 import { registerScriptEditCommand } from "./command/script-edit";
 import { initializeOriginManager } from "./configuration/initialize";
 import { readCLIConfiguration } from "./configuration/io";
+import { registerEditingTreeView } from "./editing-tree-view/register";
 import { registerPagesTreeView } from "./pages-tree-view/register";
 import { registerScriptsTreeView } from "./scripts-tree-view/register";
 
@@ -23,6 +24,7 @@ export const activate = async (context: vscode.ExtensionContext) => {
 
 	const originManager = initializeOriginManager(configuration);
 
+	registerEditingTreeView(configuration);
 	registerPagesTreeView(configuration, originManager);
 	registerScriptsTreeView(configuration, originManager);
 

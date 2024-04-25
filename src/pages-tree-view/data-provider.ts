@@ -1,7 +1,7 @@
 /**
  * @author WMXPY
  * @namespace PagesTreeView
- * @description Tree View Data Provider
+ * @description Data Provider
  */
 
 import { IImbricateOrigin, IImbricateOriginCollection, ImbricatePageSnapshot } from "@imbricate/core";
@@ -44,11 +44,11 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
         this._originManager = originManager;
     }
 
-    refresh(): void {
+    public refresh(): void {
         this._onDidChangeTreeData.fire();
     }
 
-    getTreeItem(element: vscode.TreeItem): vscode.TreeItem {
+    public getTreeItem(element: vscode.TreeItem): vscode.TreeItem {
         return element;
     }
 

@@ -30,6 +30,8 @@ export class PagesCollectionItem extends vscode.TreeItem {
     ) {
         super(collection.collectionName, 1);
 
+        this.iconPath = new vscode.ThemeIcon('default-view-icon');
+
         this._originName = originName;
 
         this._collection = collection;

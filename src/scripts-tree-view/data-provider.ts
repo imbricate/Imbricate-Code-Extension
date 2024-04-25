@@ -1,7 +1,7 @@
 /**
  * @author WMXPY
  * @namespace ScriptsTreeView
- * @description Tree View Data Provider
+ * @description Data Provider
  */
 
 import { IImbricateOrigin, ImbricateScriptSnapshot } from "@imbricate/core";
@@ -43,11 +43,11 @@ export class ScriptsTreeViewDataProvider implements vscode.TreeDataProvider<vsco
         this._originManager = originManager;
     }
 
-    refresh(): void {
+    public refresh(): void {
         this._onDidChangeTreeData.fire();
     }
 
-    getTreeItem(element: vscode.TreeItem): vscode.TreeItem {
+    public getTreeItem(element: vscode.TreeItem): vscode.TreeItem {
         return element;
     }
 

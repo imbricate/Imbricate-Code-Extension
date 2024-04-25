@@ -27,6 +27,8 @@ export class PagesOriginItem extends vscode.TreeItem {
 
         super(originName, 1);
 
+        this.iconPath = new vscode.ThemeIcon('ports-open-browser-icon');
+
         this._originName = originName;
         this._origin = origin;
     }

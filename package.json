@@ -25,6 +25,12 @@
     "views": {
       "imbricate": [
         {
+          "id": "imbricate-editings",
+          "name": "Imbricate Editings",
+          "icon": "$(settings-edit)",
+          "contextualTitle": "Imbricate Editings"
+        },
+        {
           "id": "imbricate-pages",
           "name": "Imbricate Pages",
           "icon": "$(remote-explorer-documentation)",
