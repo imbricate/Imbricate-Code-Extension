@@ -6,12 +6,13 @@
 
 import { IImbricateConfiguration, ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
-import { registerEditingRefreshCommand } from "./command/editing-refresh";
+import { registerEditingsRefreshCommand } from "./command/editing-refresh";
 import { registerEditingResumeCommand } from "./command/editing-resume";
 import { registerPageEditCommand } from "./command/page-edit";
 import { registerPagePreviewCommand } from "./command/page-preview";
-import { registerRefreshCommand } from "./command/refresh";
+import { registerPagesRefreshCommand } from "./command/page-refresh";
 import { registerScriptEditCommand } from "./command/script-edit";
+import { registerScriptsRefreshCommand } from "./command/script-refresh";
 import { EditingTreeViewDataProvider } from "./editing-tree-view/data-provider";
 import { registerEditingTreeView } from "./editing-tree-view/register";
 import { PagesTreeViewDataProvider } from "./pages-tree-view/data-provider";
@@ -35,8 +36,8 @@ export const registerOperations = async (
 
     registerPageMarkdownContentProvider(originManager, context);
 
-    const editingRefreshCommand = registerEditingRefreshCommand(editingsDataProvider);
-    context.subscriptions.push(editingRefreshCommand);
+    const editingsRefreshCommand = registerEditingsRefreshCommand(editingsDataProvider);
+    context.subscriptions.push(editingsRefreshCommand);
 
     const editingResumeDisposable = registerEditingResumeCommand();
     context.subscriptions.push(editingResumeDisposable);
@@ -47,9 +48,12 @@ export const registerOperations = async (
     const pagePreviewDisposable = registerPagePreviewCommand();
     context.subscriptions.push(pagePreviewDisposable);
 
-    const refreshDisposable = registerRefreshCommand();
-    context.subscriptions.push(refreshDisposable);
+    const pagesRefreshDisposable = registerPagesRefreshCommand(pagesDataProvider);
+    context.subscriptions.push(pagesRefreshDisposable);
 
     const scriptEditDisposable = registerScriptEditCommand();
     context.subscriptions.push(scriptEditDisposable);
+
+    const scriptsRefreshDisposable = registerScriptsRefreshCommand(scriptsDataProvide);
+    context.subscriptions.push(scriptsRefreshDisposable);
 };

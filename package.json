@@ -46,13 +46,8 @@
     },
     "commands": [
       {
-        "command": "imbricate.refresh",
-        "title": "Imbricate Refresh",
-        "icon": "$(timeline-refresh)"
-      },
-      {
-        "command": "imbricate.editing.refresh",
-        "title": "Imbricate Editing Refresh",
+        "command": "imbricate.editings.refresh",
+        "title": "Imbricate Editings Refresh",
         "icon": "$(timeline-refresh)"
       },
       {
@@ -66,6 +61,11 @@
         "icon": "$(notebook-render-output)"
       },
       {
+        "command": "imbricate.pages.refresh",
+        "title": "Imbricate Pages Refresh",
+        "icon": "$(timeline-refresh)"
+      },
+      {
         "command": "imbricate.page.edit",
         "title": "Imbricate Page Edit",
         "icon": "$(settings-edit)"
@@ -74,6 +74,11 @@
         "command": "imbricate.script.edit",
         "title": "Imbricate Script Edit",
         "icon": "$(settings-edit)"
+      },
+      {
+        "command": "imbricate.scripts.refresh",
+        "title": "Imbricate Scripts Refresh",
+        "icon": "$(timeline-refresh)"
       }
     ],
     "menus": {
@@ -85,17 +90,17 @@
       ],
       "view/title": [
         {
-          "command": "imbricate.editing.refresh",
+          "command": "imbricate.editings.refresh",
           "when": "view == imbricate-editings",
           "group": "navigation"
         },
         {
-          "command": "imbricate.refresh",
+          "command": "imbricate.pages.refresh",
           "when": "view == imbricate-pages",
           "group": "navigation"
         },
         {
-          "command": "imbricate.refresh",
+          "command": "imbricate.scripts.refresh",
           "when": "view == imbricate-scripts",
           "group": "navigation"
         }
