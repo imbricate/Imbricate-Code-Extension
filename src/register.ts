@@ -18,6 +18,7 @@ import { PagesTreeViewDataProvider } from "./pages-tree-view/data-provider";
 import { registerPagesTreeView } from "./pages-tree-view/register";
 import { ScriptsTreeViewDataProvider } from "./scripts-tree-view/data-provider";
 import { registerScriptsTreeView } from "./scripts-tree-view/register";
+import { registerPageMarkdownContentProvider } from "./virtual-document/page-markdown/page-markdown";
 
 export const registerOperations = async (
     configuration: IImbricateConfiguration,
@@ -31,6 +32,8 @@ export const registerOperations = async (
         await registerPagesTreeView(configuration, originManager);
     const scriptsDataProvide: ScriptsTreeViewDataProvider =
         await registerScriptsTreeView(configuration, originManager);
+
+    registerPageMarkdownContentProvider(originManager, context);
 
     const editingRefreshCommand = registerEditingRefreshCommand(editingsDataProvider);
     context.subscriptions.push(editingRefreshCommand);
