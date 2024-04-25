@@ -11,7 +11,7 @@ import { ScriptsTreeViewDataProvider } from "./data-provider";
 export const registerScriptsTreeView = async (
     configuration: IImbricateConfiguration,
     originManager: ImbricateOriginManager,
-): Promise<void> => {
+): Promise<ScriptsTreeViewDataProvider> => {
 
     const scriptsDataProvider = await ScriptsTreeViewDataProvider.create(
         configuration,
@@ -19,4 +19,6 @@ export const registerScriptsTreeView = async (
     );
 
     vscode.window.registerTreeDataProvider("imbricate-scripts", scriptsDataProvider);
+
+    return scriptsDataProvider;
 };

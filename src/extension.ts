@@ -5,15 +5,9 @@
 
 import { resolveImbricateHomeDirectory } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
-import { registerPageEditCommand } from "./command/page-edit";
-import { registerPagePreviewCommand } from "./command/page-preview";
-import { registerRefreshCommand } from "./command/refresh";
-import { registerScriptEditCommand } from "./command/script-edit";
 import { initializeOriginManager } from "./configuration/initialize";
 import { readCLIConfiguration } from "./configuration/io";
-import { registerEditingTreeView } from "./editing-tree-view/register";
-import { registerPagesTreeView } from "./pages-tree-view/register";
-import { registerScriptsTreeView } from "./scripts-tree-view/register";
+import { registerOperations } from "./register";
 
 export const activate = async (context: vscode.ExtensionContext) => {
 
@@ -24,21 +18,11 @@ export const activate = async (context: vscode.ExtensionContext) => {
 
 	const originManager = initializeOriginManager(configuration);
 
-	registerEditingTreeView(configuration);
-	registerPagesTreeView(configuration, originManager);
-	registerScriptsTreeView(configuration, originManager);
-
-	const pageEditDisposable = registerPageEditCommand();
-	context.subscriptions.push(pageEditDisposable);
-
-	const pagePreviewDisposable = registerPagePreviewCommand();
-	context.subscriptions.push(pagePreviewDisposable);
-
-	const refreshDisposable = registerRefreshCommand();
-	context.subscriptions.push(refreshDisposable);
-
-	const scriptEditDisposable = registerScriptEditCommand();
-	context.subscriptions.push(scriptEditDisposable);
+	await registerOperations(
+		configuration,
+		originManager,
+		context,
+	);
 }
 
 export const deactivate = () => {

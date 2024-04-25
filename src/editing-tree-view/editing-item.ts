@@ -27,6 +27,11 @@ export class EditingEditingItem extends vscode.TreeItem {
         super(reference, 0);
 
         this.iconPath = new vscode.ThemeIcon('settings-edit');
+        this.command = {
+            command: 'imbricate.editing.resume',
+            title: 'Resume Editing',
+            arguments: [activeEditing],
+        };
 
         this._activeEditing = activeEditing;
     }

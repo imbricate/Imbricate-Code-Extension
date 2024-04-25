@@ -11,7 +11,7 @@ import { PagesTreeViewDataProvider } from "./data-provider";
 export const registerPagesTreeView = async (
     configuration: IImbricateConfiguration,
     originManager: ImbricateOriginManager,
-): Promise<void> => {
+): Promise<PagesTreeViewDataProvider> => {
 
     const pagesDataProvider = await PagesTreeViewDataProvider.create(
         configuration,
@@ -19,4 +19,6 @@ export const registerPagesTreeView = async (
     );
 
     vscode.window.registerTreeDataProvider("imbricate-pages", pagesDataProvider);
+
+    return pagesDataProvider;
 };
