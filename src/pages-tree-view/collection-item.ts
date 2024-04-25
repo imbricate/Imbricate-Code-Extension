@@ -1,17 +1,17 @@
 /**
  * @author WMXPY
- * @namespace ActivityBar
+ * @namespace PagesTreeView
  * @description Collection Item
  */
 
 import { IImbricateOriginCollection } from "@imbricate/core";
 import * as vscode from "vscode";
 
-export class CollectionItem extends vscode.TreeItem {
+export class PagesCollectionItem extends vscode.TreeItem {
 
     public static withCollection(collection: IImbricateOriginCollection) {
 
-        return new CollectionItem(collection);
+        return new PagesCollectionItem(collection);
     }
 
     private readonly _collection: IImbricateOriginCollection;

@@ -1,20 +1,20 @@
 /**
  * @author WMXPY
- * @namespace ActivityBar
+ * @namespace PagesTreeView
  * @description Origin Item
  */
 
 import { IImbricateOrigin } from "@imbricate/core";
 import * as vscode from "vscode";
 
-export class OriginItem extends vscode.TreeItem {
+export class PagesOriginItem extends vscode.TreeItem {
 
     public static withOrigin(
         originName: string,
         origin: IImbricateOrigin,
     ) {
 
-        return new OriginItem(originName, origin);
+        return new PagesOriginItem(originName, origin);
     }
 
     private readonly _originName: string;

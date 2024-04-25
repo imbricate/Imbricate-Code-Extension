@@ -1,41 +1,24 @@
 /**
  * @author WMXPY
- * @namespace ActivityBar
- * @description Sidebar
+ * @namespace PagesTreeView
+ * @description Tree View Data Provider
  */
 import { IImbricateOrigin, IImbricateOriginCollection, ImbricatePageSnapshot } from "@imbricate/core";
-import { ImbricateOriginInitializer, ImbricateOriginManager } from "@imbricate/local-fundamental";
-import { FileSystemImbricateOrigin, FileSystemOriginPayload } from "@imbricate/origin-file-system";
+import { ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { IImbricateConfiguration } from "../configuration/definition";
-import { readCLIConfiguration } from "../configuration/io";
 import { IImbricateConfigurationOrigin } from "../configuration/raw-definition";
-import { resolveImbricateHomeDirectory } from "../util/directory-resolve";
-import { CollectionItem } from "./collection-item";
-import { OriginItem } from "./origin-item";
-import { PlaceholderItem } from "./placeholder-item";
+import { PagesCollectionItem } from "./collection-item";
+import { PagesOriginItem } from "./origin-item";
 
-export class ImbricateActivityDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
+export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
 
-    public static async fromHomeConfig(): Promise<ImbricateActivityDataProvider> {
+    public static async create(
+        configuration: IImbricateConfiguration,
+        originManager: ImbricateOriginManager,
+    ): Promise<PagesTreeViewDataProvider> {
 
-        const originInitializer: ImbricateOriginInitializer = ImbricateOriginInitializer.create();
-
-        originInitializer.registerOriginConstructor(
-            "file-system",
-            (origin: IImbricateConfigurationOrigin) => {
-                return FileSystemImbricateOrigin.withPayloads(
-                    origin.payloads as FileSystemOriginPayload,
-                );
-            }
-        );
-
-        const configurationPath: string = resolveImbricateHomeDirectory();
-        const configuration = await readCLIConfiguration(configurationPath);
-
-        const originManager = originInitializer.initializeOrigins(configuration.origins);
-
-        return new ImbricateActivityDataProvider(
+        return new PagesTreeViewDataProvider(
             configuration,
             originManager,
         );
@@ -81,10 +64,10 @@ export class ImbricateActivityDataProvider implements vscode.TreeDataProvider<vs
                     this._originManager.getOrigin(originConfig.originName);
 
                 if (!origin) {
-                    return new PlaceholderItem();
+                    return new vscode.TreeItem("test");
                 }
 
-                return OriginItem.withOrigin(
+                return PagesOriginItem.withOrigin(
                     originConfig.originName,
                     origin,
                 );
@@ -93,18 +76,18 @@ export class ImbricateActivityDataProvider implements vscode.TreeDataProvider<vs
             return Promise.resolve(items);
         }
 
-        if (element instanceof OriginItem) {
+        if (element instanceof PagesOriginItem) {
 
             const collections = await element.origin.listCollections();
 
             return collections.map((
                 collection: IImbricateOriginCollection,
             ) => {
-                return CollectionItem.withCollection(collection);
+                return PagesCollectionItem.withCollection(collection);
             });
         }
 
-        if (element instanceof CollectionItem) {
+        if (element instanceof PagesCollectionItem) {
 
             const pages: ImbricatePageSnapshot[] =
                 await element.collection.listPages();
@@ -115,7 +98,7 @@ export class ImbricateActivityDataProvider implements vscode.TreeDataProvider<vs
         }
 
         return Promise.resolve([
-            new PlaceholderItem(),
+            new vscode.TreeItem("test"),
         ]);
     }
 }
