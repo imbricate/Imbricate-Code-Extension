@@ -1,14 +1,16 @@
 {
   "name": "imbricate",
   "displayName": "imbricate",
+  "icon": "images/imbricate.png",
+  "author": "WMXPY",
+  "license": "MIT",
+  "private": true,
   "publisher": "imbricate",
   "description": "Yes to accountable notes, no to external hosting. Free, for everyone.",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.76.0"
   },
-  "author": "WMXPY",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Imbricate/Imbricate/issues"
   },
@@ -133,11 +135,11 @@
           "when": "false"
         },
         {
-          "command": "imbricate.pages.refresh",
+          "command": "imbricate.page.edit",
           "when": "false"
         },
         {
-          "command": "imbricate.page.edit",
+          "command": "imbricate.pages.refresh",
           "when": "false"
         },
         {
