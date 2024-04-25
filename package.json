@@ -47,49 +47,85 @@
     "commands": [
       {
         "command": "imbricate.editings.refresh",
-        "title": "Imbricate Editings Refresh",
+        "title": "Editings Refresh",
+        "category": "Imbricate",
         "icon": "$(timeline-refresh)"
       },
       {
         "command": "imbricate.editing.resume",
-        "title": "Imbricate Editing Resume",
+        "title": "Editing Resume",
+        "category": "Imbricate",
         "icon": "$(settings-edit)"
       },
       {
         "command": "imbricate.page.preview",
-        "title": "Imbricate Page Preview",
+        "title": "Page Preview",
+        "category": "Imbricate",
         "icon": "$(notebook-render-output)"
       },
       {
         "command": "imbricate.pages.refresh",
-        "title": "Imbricate Pages Refresh",
+        "title": "Pages Refresh",
+        "category": "Imbricate",
         "icon": "$(timeline-refresh)"
       },
       {
         "command": "imbricate.page.edit",
-        "title": "Imbricate Page Edit",
+        "title": "Page Edit",
+        "category": "Imbricate",
         "icon": "$(settings-edit)"
       },
       {
         "command": "imbricate.script.edit",
-        "title": "Imbricate Script Edit",
+        "title": "Script Edit",
+        "category": "Imbricate",
         "icon": "$(settings-edit)"
       },
       {
         "command": "imbricate.script.preview",
-        "title": "Imbricate Script Preview",
+        "title": "Script Preview",
+        "category": "Imbricate",
         "icon": "$(notebook-render-output)"
       },
       {
         "command": "imbricate.scripts.refresh",
-        "title": "Imbricate Scripts Refresh",
+        "title": "Scripts Refresh",
+        "category": "Imbricate",
         "icon": "$(timeline-refresh)"
       }
     ],
     "menus": {
       "commandPalette": [
         {
+          "command": "imbricate.editings.refresh",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.editing.resume",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.page.preview",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.pages.refresh",
+          "when": "false"
+        },
+        {
           "command": "imbricate.page.edit",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.script.edit",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.script.preview",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.scripts.refresh",
           "when": "false"
         }
       ],
