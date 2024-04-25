@@ -3,11 +3,10 @@
  * @namespace PagesTreeView
  * @description Tree View Data Provider
  */
+
 import { IImbricateOrigin, IImbricateOriginCollection, ImbricatePageSnapshot } from "@imbricate/core";
-import { ImbricateOriginManager } from "@imbricate/local-fundamental";
+import { IImbricateConfiguration, IImbricateConfigurationOrigin, ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
-import { IImbricateConfiguration } from "../configuration/definition";
-import { IImbricateConfigurationOrigin } from "../configuration/raw-definition";
 import { PagesCollectionItem } from "./collection-item";
 import { PagesOriginItem } from "./origin-item";
 import { PagePageItem } from "./page-item";

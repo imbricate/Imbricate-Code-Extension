@@ -4,13 +4,11 @@
  * @description IO
  */
 
+import { IImbricateConfiguration, IRawImbricateConfiguration, getDefaultRawImbricateConfiguration, parseRawImbricateConfiguration } from "@imbricate/local-fundamental";
 import { attemptMarkDir, pathExists, readTextFile, writeTextFile } from "@sudoo/io";
 import * as Path from "path";
 import { concatConfigurationPath } from "../util/directory-concat";
 import { formatJSON } from "../util/format-json";
-import { IImbricateConfiguration } from "./definition";
-import { parseRawImbricateConfiguration } from "./parse";
-import { IRawImbricateConfiguration, getDefaultRawImbricateConfiguration } from "./raw-definition";
 
 const createOrGetFile = async (
     path: string,

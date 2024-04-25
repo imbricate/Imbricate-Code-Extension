@@ -6,9 +6,10 @@
 import { IImbricateConfigurationOrigin, ImbricateOriginInitializer, resolveImbricateHomeDirectory } from "@imbricate/local-fundamental";
 import { FileSystemImbricateOrigin, FileSystemOriginPayload } from "@imbricate/origin-file-system";
 import * as vscode from "vscode";
+import { registerRefreshCommand } from "./command/refresh";
 import { readCLIConfiguration } from "./configuration/io";
-import { PagesTreeViewDataProvider } from "./pages-tree-view/data-provider";
-import { ScriptsTreeViewDataProvider } from "./scripts-tree-view/data-provider";
+import { registerPagesTreeView } from "./pages-tree-view/register";
+import { registerScriptsTreeView } from "./scripts-tree-view/register";
 
 export const activate = async (context: vscode.ExtensionContext) => {
 
@@ -30,25 +31,11 @@ export const activate = async (context: vscode.ExtensionContext) => {
 
 	console.log('Congratulations, your extension "imbricate" is now active!');
 
-	const pagesDataProvider = await PagesTreeViewDataProvider.create(
-		configuration,
-		originManager,
-	);
+	registerPagesTreeView(configuration, originManager);
+	registerScriptsTreeView(configuration, originManager);
 
-	vscode.window.registerTreeDataProvider("imbricate-pages", pagesDataProvider);
-
-	const scriptsDataProvider = await ScriptsTreeViewDataProvider.create(
-		configuration,
-		originManager,
-	);
-
-	vscode.window.registerTreeDataProvider("imbricate-scripts", scriptsDataProvider);
-
-	const disposable = vscode.commands.registerCommand("imbricate.refresh", () => {
-		vscode.window.showInformationMessage("Hello World from imbricate!");
-	});
-
-	context.subscriptions.push(disposable);
+	const refreshDisposable = registerRefreshCommand();
+	context.subscriptions.push(refreshDisposable);
 }
 
 export const deactivate = () => {

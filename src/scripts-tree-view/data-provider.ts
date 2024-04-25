@@ -3,11 +3,10 @@
  * @namespace ScriptsTreeView
  * @description Tree View Data Provider
  */
+
 import { IImbricateOrigin, ImbricateScriptSnapshot } from "@imbricate/core";
-import { ImbricateOriginManager } from "@imbricate/local-fundamental";
+import { IImbricateConfiguration, IImbricateConfigurationOrigin, ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
-import { IImbricateConfiguration } from "../configuration/definition";
-import { IImbricateConfigurationOrigin } from "../configuration/raw-definition";
 import { ScriptsOriginItem } from "./origin-item";
 import { ScriptScriptItem } from "./script-item";
 
