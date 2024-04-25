@@ -8,7 +8,7 @@ import { IImbricatePage } from "@imbricate/core";
 import { ActiveEditing, createPageSavingTarget, establishImbricateSavingTarget } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { PagePageItem } from "../pages-tree-view/page-item";
-import { showErrorMessage } from "../util/show-message";
+import { showErrorMessage, showInformationMessage } from "../util/show-message";
 
 export const registerPageEditCommand = (): vscode.Disposable => {
 
@@ -35,6 +35,13 @@ export const registerPageEditCommand = (): vscode.Disposable => {
             `${item.pageSnapshot.title}.md`,
             content,
         );
+
+        const textDocument: vscode.TextDocument =
+            await vscode.workspace.openTextDocument(activeEditing.path);
+
+        await vscode.window.showTextDocument(textDocument);
+
+        showInformationMessage(`Editing page: ${item.pageSnapshot.title}`);
     });
 
     return disposable;

@@ -10,3 +10,8 @@ export const showErrorMessage = (message: string): void => {
 
     vscode.window.showErrorMessage(message);
 };
+
+export const showInformationMessage = (message: string): void => {
+
+    vscode.window.showInformationMessage(message);
+};
