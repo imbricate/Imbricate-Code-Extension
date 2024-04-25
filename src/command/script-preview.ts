@@ -6,7 +6,6 @@
 
 import * as vscode from "vscode";
 import { ScriptScriptItem } from "../scripts-tree-view/script-item";
-import { showInformationMessage } from "../util/show-message";
 
 export const registerScriptPreviewCommand = (): vscode.Disposable => {
 
@@ -18,8 +17,6 @@ export const registerScriptPreviewCommand = (): vscode.Disposable => {
             await vscode.workspace.openTextDocument(uri);
 
         await vscode.window.showTextDocument(textDocument);
-
-        showInformationMessage(`Previewing script: ${item.scriptSnapshot.scriptName}`);
     });
 
     return disposable;

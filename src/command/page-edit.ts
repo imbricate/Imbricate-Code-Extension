@@ -7,10 +7,13 @@
 import { IImbricatePage } from "@imbricate/core";
 import { ActiveEditing, createPageSavingTarget, establishImbricateSavingTarget } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
+import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
 import { PagePageItem } from "../pages-tree-view/page-item";
-import { showErrorMessage, showInformationMessage } from "../util/show-message";
+import { showErrorMessage } from "../util/show-message";
 
-export const registerPageEditCommand = (): vscode.Disposable => {
+export const registerPageEditCommand = (
+    editingsDataProvider: EditingTreeViewDataProvider,
+): vscode.Disposable => {
 
     const disposable = vscode.commands.registerCommand("imbricate.page.edit", async (item: PagePageItem) => {
 
@@ -41,7 +44,7 @@ export const registerPageEditCommand = (): vscode.Disposable => {
 
         await vscode.window.showTextDocument(textDocument);
 
-        showInformationMessage(`Editing page: ${item.pageSnapshot.title}`);
+        editingsDataProvider.refresh();
     });
 
     return disposable;

@@ -4,12 +4,13 @@
  * @description Editing Perform
  */
 
-import { ActiveEditing, ImbricateOriginManager, getActiveEditingReference, performImbricateSavingTarget } from "@imbricate/local-fundamental";
+import { ActiveEditing, ImbricateOriginManager, performImbricateSavingTarget } from "@imbricate/local-fundamental";
 import { readTextFile } from "@sudoo/io";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
-import { showInformationMessage } from "../util/show-message";
 import { EditingEditingItem } from "../editing-tree-view/editing-item";
+import { concatSavingTargetUrl } from "../virtual-document/concat-target";
+import { onChangeEmitter } from "../virtual-document/on-change-emitter";
 
 export const registerEditingPerformCommand = (
     originManager: ImbricateOriginManager,
@@ -20,8 +21,6 @@ export const registerEditingPerformCommand = (
 
         const activeEditing: ActiveEditing = item.activeEditing;
 
-        const reference: string = getActiveEditingReference(activeEditing);
-
         const updateContent: string = await readTextFile(activeEditing.path);
 
         await performImbricateSavingTarget(
@@ -30,9 +29,11 @@ export const registerEditingPerformCommand = (
             originManager,
         );
 
-        showInformationMessage(`Perform Editing: ${reference}`);
-
         editingDataProvider.refresh();
+
+        const url = concatSavingTargetUrl(activeEditing.target);
+
+        onChangeEmitter.fire(url);
     });
 
     return disposable;

@@ -6,7 +6,6 @@
 
 import * as vscode from "vscode";
 import { PagePageItem } from "../pages-tree-view/page-item";
-import { showInformationMessage } from "../util/show-message";
 import { concatPageMarkdownUrl } from "../virtual-document/page-markdown/concat";
 
 export const registerPagePreviewCommand = (): vscode.Disposable => {
@@ -23,8 +22,6 @@ export const registerPagePreviewCommand = (): vscode.Disposable => {
             await vscode.workspace.openTextDocument(uri);
 
         await vscode.window.showTextDocument(textDocument);
-
-        showInformationMessage(`Previewing page: ${item.pageSnapshot.title}`);
     });
 
     return disposable;

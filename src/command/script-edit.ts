@@ -7,10 +7,13 @@
 import { IImbricateScript } from "@imbricate/core";
 import { ActiveEditing, createScriptSavingTarget, establishImbricateSavingTarget } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
+import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
 import { ScriptScriptItem } from "../scripts-tree-view/script-item";
-import { showErrorMessage, showInformationMessage } from "../util/show-message";
+import { showErrorMessage } from "../util/show-message";
 
-export const registerScriptEditCommand = (): vscode.Disposable => {
+export const registerScriptEditCommand = (
+    editingsDataProvider: EditingTreeViewDataProvider,
+): vscode.Disposable => {
 
     const disposable = vscode.commands.registerCommand("imbricate.script.edit", async (item: ScriptScriptItem) => {
 
@@ -40,7 +43,7 @@ export const registerScriptEditCommand = (): vscode.Disposable => {
 
         await vscode.window.showTextDocument(textDocument);
 
-        showInformationMessage(`Editing script: ${item.scriptSnapshot.scriptName}`);
+        editingsDataProvider.refresh();
     });
 
     return disposable;

@@ -52,7 +52,9 @@ export const registerOperations = async (
     const editingResumeDisposable = registerEditingResumeCommand();
     context.subscriptions.push(editingResumeDisposable);
 
-    const pageEditDisposable = registerPageEditCommand();
+    const pageEditDisposable = registerPageEditCommand(
+        editingsDataProvider,
+    );
     context.subscriptions.push(pageEditDisposable);
 
     const pagePreviewDisposable = registerPagePreviewCommand();
@@ -61,7 +63,9 @@ export const registerOperations = async (
     const pagesRefreshDisposable = registerPagesRefreshCommand(pagesDataProvider);
     context.subscriptions.push(pagesRefreshDisposable);
 
-    const scriptEditDisposable = registerScriptEditCommand();
+    const scriptEditDisposable = registerScriptEditCommand(
+        editingsDataProvider,
+    );
     context.subscriptions.push(scriptEditDisposable);
 
     const scriptPreviewDisposable = registerScriptPreviewCommand();
