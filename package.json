@@ -40,10 +40,57 @@
     },
     "commands": [
       {
-        "command": "imbricate.helloWorld",
-        "title": "Hello World"
+        "command": "imbricate.refresh",
+        "title": "Imbricate Refresh",
+        "icon": "$(timeline-refresh)"
+      },
+      {
+        "command": "imbricate.page.preview",
+        "title": "Imbricate Page Preview",
+        "icon": "$(notebook-render-output)"
+      },
+      {
+        "command": "imbricate.page.edit",
+        "title": "Imbricate Page Edit",
+        "icon": "$(settings-edit)"
+      },
+      {
+        "command": "imbricate.script.edit",
+        "title": "Imbricate Script Edit",
+        "icon": "$(settings-edit)"
       }
-    ]
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "imbricate.refresh",
+          "when": "view == imbricate-pages",
+          "group": "navigation"
+        },
+        {
+          "command": "imbricate.refresh",
+          "when": "view == imbricate-scripts",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "imbricate.page.preview",
+          "when": "view == imbricate-pages && viewItem == dependency",
+          "group": "inline"
+        },
+        {
+          "command": "imbricate.page.edit",
+          "when": "view == imbricate-pages && viewItem == dependency",
+          "group": "inline"
+        },
+        {
+          "command": "imbricate.script.edit",
+          "when": "view == imbricate-scripts && viewItem == dependency",
+          "group": "inline"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",

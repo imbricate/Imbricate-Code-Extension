@@ -44,11 +44,9 @@ export const activate = async (context: vscode.ExtensionContext) => {
 
 	vscode.window.registerTreeDataProvider("imbricate-scripts", scriptsDataProvider);
 
-	const disposable = vscode.commands.registerCommand("imbricate.helloWorld", () => {
+	const disposable = vscode.commands.registerCommand("imbricate.refresh", () => {
 		vscode.window.showInformationMessage("Hello World from imbricate!");
 	});
-
-	vscode.window.showInformationMessage("Hello World from imbricate!");
 
 	context.subscriptions.push(disposable);
 }
