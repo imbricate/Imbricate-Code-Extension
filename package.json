@@ -25,10 +25,16 @@
     "views": {
       "imbricate": [
         {
-          "id": "imbricate",
-          "name": "Imbricate",
-          "icon": "$(primitive-square)",
-          "contextualTitle": "Imbricate"
+          "id": "imbricate-pages",
+          "name": "Imbricate Pages",
+          "icon": "$(remote-explorer-documentation)",
+          "contextualTitle": "Imbricate Pages"
+        },
+        {
+          "id": "imbricate-scripts",
+          "name": "Imbricate Scripts",
+          "icon": "$(terminal-view-icon)",
+          "contextualTitle": "Imbricate Scripts"
         }
       ]
     },
