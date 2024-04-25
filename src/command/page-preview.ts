@@ -12,7 +12,7 @@ export const registerPagePreviewCommand = (): vscode.Disposable => {
 
     const disposable = vscode.commands.registerCommand("imbricate.page.preview", async (item: PagePageItem) => {
 
-        const uri = vscode.Uri.parse(`imbricate-page-markdown:${item.originName}/${item.collection.collectionName}/${item.pageSnapshot.identifier}/${item.pageSnapshot.title}.md`);
+        const uri = vscode.Uri.parse(`imbricate-page-markdown:${item.originName}/${item.collection.collectionName}/${item.pageSnapshot.identifier}/[READONLY] ${item.pageSnapshot.title}.md`);
 
         const textDocument: vscode.TextDocument =
             await vscode.workspace.openTextDocument(uri);

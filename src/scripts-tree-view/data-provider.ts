@@ -81,7 +81,11 @@ export class ScriptsTreeViewDataProvider implements vscode.TreeDataProvider<vsco
                 await element.origin.listScripts();
 
             return scripts.map((script: ImbricateScriptSnapshot) => {
-                return ScriptScriptItem.withSnapshot(script);
+                return ScriptScriptItem.withSnapshot(
+                    element.originName,
+                    element.origin,
+                    script,
+                );
             });
         }
 

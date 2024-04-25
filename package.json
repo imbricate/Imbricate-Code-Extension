@@ -76,6 +76,11 @@
         "icon": "$(settings-edit)"
       },
       {
+        "command": "imbricate.script.preview",
+        "title": "Imbricate Script Preview",
+        "icon": "$(notebook-render-output)"
+      },
+      {
         "command": "imbricate.scripts.refresh",
         "title": "Imbricate Scripts Refresh",
         "icon": "$(timeline-refresh)"
@@ -106,11 +111,6 @@
         }
       ],
       "view/item/context": [
-        {
-          "command": "imbricate.page.preview",
-          "when": "view == imbricate-pages && viewItem == page-item",
-          "group": "inline"
-        },
         {
           "command": "imbricate.page.edit",
           "when": "view == imbricate-pages && viewItem == page-item",

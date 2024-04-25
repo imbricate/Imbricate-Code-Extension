@@ -35,6 +35,12 @@ export class PagePageItem extends vscode.TreeItem {
         super(pageSnapshot.title, 0);
         this.contextValue = "page-item";
 
+        this.command = {
+            command: 'imbricate.page.preview',
+            title: 'Preview Page',
+            arguments: [this],
+        };
+
         this._originName = originName;
         this._collection = collection;
 
