@@ -100,15 +100,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@imbricate/local-fundamental@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@imbricate/local-fundamental@npm:1.1.0"
+"@imbricate/local-fundamental@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@imbricate/local-fundamental@npm:1.2.0"
   dependencies:
     "@sudoo/io": "npm:^1.8.0"
     "@sudoo/uuid": "npm:^1.1.0"
   peerDependencies:
     "@imbricate/core": "*"
-  checksum: 10c0/34f6d80451e5c0b49c52c6d19570182facd4c86133bc768f293d2387a9c351472adf24283be2ba232ec3e88885d5206a7ae0a71486af6f3a64d0d1534830edab
+  checksum: 10c0/08f6cd94e1b3a093ef4627bba6d277016cd771c816a09dd9ac9de4ce8bfe05ebb380cd090e1f2c71042f58a5bbf0d38433c90aeaf909fc6b2cc6b61a17aee144
   languageName: node
   linkType: hard
 
@@ -1714,7 +1714,7 @@ __metadata:
   resolution: "imbricate@workspace:."
   dependencies:
     "@imbricate/core": "npm:^1.10.0"
-    "@imbricate/local-fundamental": "npm:^1.1.0"
+    "@imbricate/local-fundamental": "npm:^1.2.0"
     "@imbricate/markdown-render": "npm:^1.1.2"
     "@imbricate/origin-file-system": "npm:^1.8.0"
     "@sudoo/io": "npm:^1.8.0"
