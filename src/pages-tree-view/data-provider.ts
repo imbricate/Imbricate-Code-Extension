@@ -83,7 +83,10 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
             return collections.map((
                 collection: IImbricateOriginCollection,
             ) => {
-                return PagesCollectionItem.withCollection(collection);
+                return PagesCollectionItem.withCollection(
+                    element.originName,
+                    collection,
+                );
             });
         }
 
@@ -93,7 +96,11 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
                 await element.collection.listPages();
 
             return pages.map((page: ImbricatePageSnapshot) => {
-                return PagePageItem.withSnapshot(page);
+                return PagePageItem.withSnapshot(
+                    element.originName,
+                    element.collection,
+                    page,
+                );
             });
         }
 

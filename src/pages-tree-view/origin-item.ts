@@ -31,6 +31,10 @@ export class PagesOriginItem extends vscode.TreeItem {
         this._origin = origin;
     }
 
+    public get originName(): string {
+        return this._originName;
+    }
+
     public get origin(): IImbricateOrigin {
         return this._origin;
     }
