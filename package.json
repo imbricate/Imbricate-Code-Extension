@@ -76,17 +76,17 @@
       "view/item/context": [
         {
           "command": "imbricate.page.preview",
-          "when": "view == imbricate-pages && viewItem == dependency",
+          "when": "view == imbricate-pages && viewItem == page-item",
           "group": "inline"
         },
         {
           "command": "imbricate.page.edit",
-          "when": "view == imbricate-pages && viewItem == dependency",
+          "when": "view == imbricate-pages && viewItem == page-item",
           "group": "inline"
         },
         {
           "command": "imbricate.script.edit",
-          "when": "view == imbricate-scripts && viewItem == dependency",
+          "when": "view == imbricate-scripts && viewItem == script-item",
           "group": "inline"
         }
       ]

@@ -9,6 +9,7 @@ import * as vscode from "vscode";
 import { IImbricateConfiguration } from "../configuration/definition";
 import { IImbricateConfigurationOrigin } from "../configuration/raw-definition";
 import { ScriptsOriginItem } from "./origin-item";
+import { ScriptScriptItem } from "./script-item";
 
 export class ScriptsTreeViewDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
 
@@ -81,7 +82,7 @@ export class ScriptsTreeViewDataProvider implements vscode.TreeDataProvider<vsco
                 await element.origin.listScripts();
 
             return scripts.map((script: ImbricateScriptSnapshot) => {
-                return new vscode.TreeItem(script.scriptName);
+                return ScriptScriptItem.withSnapshot(script);
             });
         }
 

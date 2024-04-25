@@ -10,6 +10,7 @@ import { IImbricateConfiguration } from "../configuration/definition";
 import { IImbricateConfigurationOrigin } from "../configuration/raw-definition";
 import { PagesCollectionItem } from "./collection-item";
 import { PagesOriginItem } from "./origin-item";
+import { PagePageItem } from "./page-item";
 
 export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
 
@@ -93,7 +94,7 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
                 await element.collection.listPages();
 
             return pages.map((page: ImbricatePageSnapshot) => {
-                return new vscode.TreeItem(page.title);
+                return PagePageItem.withSnapshot(page);
             });
         }
 
