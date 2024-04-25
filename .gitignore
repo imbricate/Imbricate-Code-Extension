@@ -28,6 +28,7 @@ node_modules
 # Build
 app
 coverage
+**/*.vsix
 
 # Demo
 demo

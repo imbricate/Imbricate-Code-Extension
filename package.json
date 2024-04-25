@@ -2,14 +2,27 @@
   "name": "imbricate",
   "displayName": "imbricate",
   "publisher": "imbricate",
-  "description": "Code extension for Imbricate",
+  "description": "Yes to accountable notes, no to external hosting. Free, for everyone.",
   "version": "0.1.0",
   "engines": {
     "vscode": "^1.76.0"
   },
+  "author": "WMXPY",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Imbricate/Imbricate/issues"
+  },
+  "homepage": "https://imbricate.io",
   "categories": [
     "Notebooks"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Imbricate/Imbricate.git"
+  },
+  "keywords": [
+    "imbricate",
+    "note"
   ],
   "activationEvents": [],
   "main": "./out/extension.js",
@@ -182,7 +195,9 @@
     "watch": "tsc -watch -p ./",
     "pretest": "yarn run compile && yarn run lint",
     "lint": "eslint src --ext ts",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "package": "vsce package --no-yarn",
+    "publish": "vsce publish --no-yarn"
   },
   "dependencies": {
     "@imbricate/core": "^1.10.0",
