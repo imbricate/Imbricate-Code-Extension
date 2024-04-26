@@ -92,6 +92,18 @@
         "icon": "$(add)"
       },
       {
+        "command": "imbricate.page.delete",
+        "title": "Delete Imbricate Page",
+        "category": "Imbricate",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "imbricate.page.edit",
+        "title": "Page Edit",
+        "category": "Imbricate",
+        "icon": "$(settings-edit)"
+      },
+      {
         "command": "imbricate.page.preview",
         "title": "Page Preview",
         "category": "Imbricate",
@@ -104,16 +116,16 @@
         "icon": "$(timeline-refresh)"
       },
       {
-        "command": "imbricate.page.edit",
-        "title": "Page Edit",
-        "category": "Imbricate",
-        "icon": "$(settings-edit)"
-      },
-      {
         "command": "imbricate.script.create",
         "title": "Create Imbricate Script",
         "category": "Imbricate",
         "icon": "$(add)"
+      },
+      {
+        "command": "imbricate.script.delete",
+        "title": "Delete Imbricate Script",
+        "category": "Imbricate",
+        "icon": "$(trash)"
       },
       {
         "command": "imbricate.script.edit",
@@ -149,7 +161,7 @@
           "when": "false"
         },
         {
-          "command": "imbricate.page.preview",
+          "command": "imbricate.page.delete",
           "when": "false"
         },
         {
@@ -157,7 +169,15 @@
           "when": "false"
         },
         {
+          "command": "imbricate.page.preview",
+          "when": "false"
+        },
+        {
           "command": "imbricate.pages.refresh",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.script.delete",
           "when": "false"
         },
         {

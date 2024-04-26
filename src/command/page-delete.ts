@@ -4,8 +4,7 @@
  * @description Page Delete
  */
 
-import { IImbricatePage } from "@imbricate/core";
-import { ActiveEditing, createPageSavingTarget, establishImbricateSavingTarget } from "@imbricate/local-fundamental";
+import { checkSavingTargetActive, createPageSavingTarget } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
 import { PagePageItem } from "../pages-tree-view/page-item";
@@ -23,28 +22,14 @@ export const registerPageDeleteCommand = (
             item.pageSnapshot.identifier,
         );
 
-        const page: IImbricatePage | null =
-            await item.collection.getPage(item.pageSnapshot.identifier);
+        const isActive: boolean = await checkSavingTargetActive(savingTarget);
 
-        if (!page) {
-            showErrorMessage(`Cannot find page: ${item.pageSnapshot.title}`);
+        if (isActive) {
+            showErrorMessage(`Page is currently editing: ${item.pageSnapshot.title}`);
             return;
         }
 
-        const deleted = await item.collection.deletePage(item.pageSnapshot.identifier);
-
-        const content: string = await page.readContent();
-
-        const activeEditing: ActiveEditing = await establishImbricateSavingTarget(
-            savingTarget,
-            `${item.pageSnapshot.title}.md`,
-            content,
-        );
-
-        const textDocument: vscode.TextDocument =
-            await vscode.workspace.openTextDocument(activeEditing.path);
-
-        await vscode.window.showTextDocument(textDocument);
+        await item.collection.deletePage(item.pageSnapshot.identifier);
 
         editingsDataProvider.refresh();
     });
