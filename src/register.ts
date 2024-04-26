@@ -11,10 +11,12 @@ import { registerEditingPerformAllCommand } from "./command/editing-perform-all"
 import { registerEditingsRefreshCommand } from "./command/editing-refresh";
 import { registerEditingResumeCommand } from "./command/editing-resume";
 import { registerPageCreateCommand } from "./command/page-create";
+import { registerPageDeleteCommand } from "./command/page-delete";
 import { registerPageEditCommand } from "./command/page-edit";
 import { registerPagePreviewCommand } from "./command/page-preview";
 import { registerPagesRefreshCommand } from "./command/page-refresh";
 import { registerScriptCreateCommand } from "./command/script-create";
+import { registerScriptDeleteCommand } from "./command/script-delete";
 import { registerScriptEditCommand } from "./command/script-edit";
 import { registerScriptPreviewCommand } from "./command/script-preview";
 import { registerScriptsRefreshCommand } from "./command/script-refresh";
@@ -37,7 +39,7 @@ export const registerOperations = async (
         await registerEditingTreeView(configuration);
     const pagesDataProvider: PagesTreeViewDataProvider =
         await registerPagesTreeView(configuration, originManager);
-    const scriptsDataProvide: ScriptsTreeViewDataProvider =
+    const scriptsDataProvider: ScriptsTreeViewDataProvider =
         await registerScriptsTreeView(configuration, originManager);
 
     registerPageMarkdownContentProvider(originManager, context);
@@ -55,7 +57,9 @@ export const registerOperations = async (
     );
     context.subscriptions.push(editingPerformCommand);
 
-    const editingsRefreshCommand = registerEditingsRefreshCommand(editingsDataProvider);
+    const editingsRefreshCommand = registerEditingsRefreshCommand(
+        editingsDataProvider,
+    );
     context.subscriptions.push(editingsRefreshCommand);
 
     const editingResumeDisposable = registerEditingResumeCommand();
@@ -68,6 +72,11 @@ export const registerOperations = async (
     );
     context.subscriptions.push(pageCreateDisposable);
 
+    const pageDeleteDisposable = registerPageDeleteCommand(
+        pagesDataProvider,
+    );
+    context.subscriptions.push(pageDeleteDisposable);
+
     const pageEditDisposable = registerPageEditCommand(
         editingsDataProvider,
     );
@@ -76,15 +85,22 @@ export const registerOperations = async (
     const pagePreviewDisposable = registerPagePreviewCommand();
     context.subscriptions.push(pagePreviewDisposable);
 
-    const pagesRefreshDisposable = registerPagesRefreshCommand(pagesDataProvider);
+    const pagesRefreshDisposable = registerPagesRefreshCommand(
+        pagesDataProvider,
+    );
     context.subscriptions.push(pagesRefreshDisposable);
 
     const scriptCreateDisposable = registerScriptCreateCommand(
         editingsDataProvider,
-        scriptsDataProvide,
+        scriptsDataProvider,
         originManager,
     );
     context.subscriptions.push(scriptCreateDisposable);
+
+    const scriptDeleteDisposable = registerScriptDeleteCommand(
+        scriptsDataProvider,
+    );
+    context.subscriptions.push(scriptDeleteDisposable);
 
     const scriptEditDisposable = registerScriptEditCommand(
         editingsDataProvider,
@@ -94,6 +110,8 @@ export const registerOperations = async (
     const scriptPreviewDisposable = registerScriptPreviewCommand();
     context.subscriptions.push(scriptPreviewDisposable);
 
-    const scriptsRefreshDisposable = registerScriptsRefreshCommand(scriptsDataProvide);
+    const scriptsRefreshDisposable = registerScriptsRefreshCommand(
+        scriptsDataProvider,
+    );
     context.subscriptions.push(scriptsRefreshDisposable);
 };

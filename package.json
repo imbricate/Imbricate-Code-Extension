@@ -93,7 +93,8 @@
       },
       {
         "command": "imbricate.page.delete",
-        "title": "Delete Imbricate Page",
+        "title": "Delete Page",
+        "shortTitle": "Delete",
         "category": "Imbricate",
         "icon": "$(trash)"
       },
@@ -123,7 +124,8 @@
       },
       {
         "command": "imbricate.script.delete",
-        "title": "Delete Imbricate Script",
+        "title": "Delete Script",
+        "shortTitle": "Delete",
         "category": "Imbricate",
         "icon": "$(trash)"
       },
@@ -227,6 +229,10 @@
           "group": "inline"
         },
         {
+          "command": "imbricate.page.delete",
+          "when": "view == imbricate-pages && viewItem == page-item"
+        },
+        {
           "command": "imbricate.page.edit",
           "when": "view == imbricate-pages && viewItem == page-item",
           "group": "inline"
@@ -235,6 +241,10 @@
           "command": "imbricate.script.create",
           "when": "view == imbricate-scripts && viewItem == script-origin-item",
           "group": "inline"
+        },
+        {
+          "command": "imbricate.script.delete",
+          "when": "view == imbricate-scripts && viewItem == script-item"
         },
         {
           "command": "imbricate.script.edit",

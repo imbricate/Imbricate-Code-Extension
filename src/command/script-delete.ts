@@ -6,12 +6,12 @@
 
 import { checkSavingTargetActive, createScriptSavingTarget } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
-import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
+import { ScriptsTreeViewDataProvider } from "../scripts-tree-view/data-provider";
 import { ScriptScriptItem } from "../scripts-tree-view/script-item";
 import { showErrorMessage } from "../util/show-message";
 
 export const registerScriptDeleteCommand = (
-    editingsDataProvider: EditingTreeViewDataProvider,
+    scriptsDataProvider: ScriptsTreeViewDataProvider,
 ): vscode.Disposable => {
 
     const disposable = vscode.commands.registerCommand("imbricate.script.delete", async (item: ScriptScriptItem) => {
@@ -30,7 +30,7 @@ export const registerScriptDeleteCommand = (
 
         await item.origin.deleteScript(item.scriptSnapshot.identifier);
 
-        editingsDataProvider.refresh();
+        scriptsDataProvider.refresh();
     });
 
     return disposable;

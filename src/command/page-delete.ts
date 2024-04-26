@@ -6,12 +6,12 @@
 
 import { checkSavingTargetActive, createPageSavingTarget } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
-import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
+import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
 import { PagePageItem } from "../pages-tree-view/page-item";
 import { showErrorMessage } from "../util/show-message";
 
 export const registerPageDeleteCommand = (
-    editingsDataProvider: EditingTreeViewDataProvider,
+    pagesDataProvider: PagesTreeViewDataProvider,
 ): vscode.Disposable => {
 
     const disposable = vscode.commands.registerCommand("imbricate.page.delete", async (item: PagePageItem) => {
@@ -31,7 +31,7 @@ export const registerPageDeleteCommand = (
 
         await item.collection.deletePage(item.pageSnapshot.identifier);
 
-        editingsDataProvider.refresh();
+        pagesDataProvider.refresh();
     });
 
     return disposable;
