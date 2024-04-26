@@ -6,12 +6,16 @@
 
 import * as vscode from "vscode";
 import { ScriptScriptItem } from "../scripts-tree-view/script-item";
+import { concatScriptJavascriptUrl } from "../virtual-document/script-javascript/concat";
 
 export const registerScriptPreviewCommand = (): vscode.Disposable => {
 
     const disposable = vscode.commands.registerCommand("imbricate.script.preview", async (item: ScriptScriptItem) => {
 
-        const uri = vscode.Uri.parse(`imbricate-script-javascript:${item.originName}/${item.scriptSnapshot.identifier}/[READONLY] ${item.scriptSnapshot.scriptName}.js`);
+        const uri = concatScriptJavascriptUrl(
+            item.originName,
+            item.scriptSnapshot.identifier,
+        );
 
         const textDocument: vscode.TextDocument =
             await vscode.workspace.openTextDocument(uri);

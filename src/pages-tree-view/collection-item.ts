@@ -29,6 +29,7 @@ export class PagesCollectionItem extends vscode.TreeItem {
         collection: IImbricateOriginCollection,
     ) {
         super(collection.collectionName, 1);
+        this.contextValue = "page-collection-item";
 
         this.iconPath = new vscode.ThemeIcon('default-view-icon');
 
