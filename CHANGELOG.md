@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.2.0
+
+- Add Page create function
+- Add Script create function
+- Add Editing perform all function
+- Add Command center support for create and save method
+- Fix Script preview issue
+
+## 1.1.0
+
+- Add Preview refresh on save
+- Add Editing perform functions
+- Improve performance
+
 ## 1.0.0
 
 - Improve descriptions

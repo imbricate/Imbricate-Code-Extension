@@ -1,5 +1,6 @@
 {
   "name": "imbricate",
+  "version": "1.2.0",
   "displayName": "imbricate",
   "icon": "images/imbricate.png",
   "author": "WMXPY",
@@ -7,7 +8,6 @@
   "private": true,
   "publisher": "imbricate",
   "description": "Yes to accountable notes, no to external hosting. Free, for everyone.",
-  "version": "1.1.0",
   "engines": {
     "vscode": "^1.76.0"
   },
@@ -62,6 +62,18 @@
     },
     "commands": [
       {
+        "command": "imbricate.editings.perform-all",
+        "title": "Perform All Imbricate Editings",
+        "category": "Imbricate",
+        "icon": "$(save-all)"
+      },
+      {
+        "command": "imbricate.editing.perform",
+        "title": "Perform Editing",
+        "category": "Imbricate",
+        "icon": "$(save)"
+      },
+      {
         "command": "imbricate.editings.refresh",
         "title": "Editings Refresh",
         "category": "Imbricate",
@@ -74,10 +86,10 @@
         "icon": "$(settings-edit)"
       },
       {
-        "command": "imbricate.editing.perform",
-        "title": "Perform Editing",
+        "command": "imbricate.page.create",
+        "title": "Create Imbricate Page",
         "category": "Imbricate",
-        "icon": "$(save)"
+        "icon": "$(add)"
       },
       {
         "command": "imbricate.page.preview",
@@ -96,6 +108,12 @@
         "title": "Page Edit",
         "category": "Imbricate",
         "icon": "$(settings-edit)"
+      },
+      {
+        "command": "imbricate.script.create",
+        "title": "Create Imbricate Script",
+        "category": "Imbricate",
+        "icon": "$(add)"
       },
       {
         "command": "imbricate.script.edit",
@@ -157,6 +175,11 @@
       ],
       "view/title": [
         {
+          "command": "imbricate.editings.perform-all",
+          "when": "view == imbricate-editings",
+          "group": "navigation"
+        },
+        {
           "command": "imbricate.editings.refresh",
           "when": "view == imbricate-editings",
           "group": "navigation"
@@ -179,8 +202,18 @@
           "group": "inline"
         },
         {
+          "command": "imbricate.page.create",
+          "when": "view == imbricate-pages && viewItem == page-collection-item",
+          "group": "inline"
+        },
+        {
           "command": "imbricate.page.edit",
           "when": "view == imbricate-pages && viewItem == page-item",
+          "group": "inline"
+        },
+        {
+          "command": "imbricate.script.create",
+          "when": "view == imbricate-scripts && viewItem == script-origin-item",
           "group": "inline"
         },
         {
