@@ -7,11 +7,14 @@
 import { IImbricateConfiguration, ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { registerEditingPerformCommand } from "./command/editing-perform";
+import { registerEditingPerformAllCommand } from "./command/editing-perform-all";
 import { registerEditingsRefreshCommand } from "./command/editing-refresh";
 import { registerEditingResumeCommand } from "./command/editing-resume";
+import { registerPageCreateCommand } from "./command/page-create";
 import { registerPageEditCommand } from "./command/page-edit";
 import { registerPagePreviewCommand } from "./command/page-preview";
 import { registerPagesRefreshCommand } from "./command/page-refresh";
+import { registerScriptCreateCommand } from "./command/script-create";
 import { registerScriptEditCommand } from "./command/script-edit";
 import { registerScriptPreviewCommand } from "./command/script-preview";
 import { registerScriptsRefreshCommand } from "./command/script-refresh";
@@ -40,6 +43,12 @@ export const registerOperations = async (
     registerPageMarkdownContentProvider(originManager, context);
     registerScriptJavascriptContentProvider(originManager, context);
 
+    const editingPerformAllCommand = registerEditingPerformAllCommand(
+        originManager,
+        editingsDataProvider,
+    );
+    context.subscriptions.push(editingPerformAllCommand);
+
     const editingPerformCommand = registerEditingPerformCommand(
         originManager,
         editingsDataProvider,
@@ -52,6 +61,13 @@ export const registerOperations = async (
     const editingResumeDisposable = registerEditingResumeCommand();
     context.subscriptions.push(editingResumeDisposable);
 
+    const pageCreateDisposable = registerPageCreateCommand(
+        editingsDataProvider,
+        pagesDataProvider,
+        originManager,
+    );
+    context.subscriptions.push(pageCreateDisposable);
+
     const pageEditDisposable = registerPageEditCommand(
         editingsDataProvider,
     );
@@ -62,6 +78,13 @@ export const registerOperations = async (
 
     const pagesRefreshDisposable = registerPagesRefreshCommand(pagesDataProvider);
     context.subscriptions.push(pagesRefreshDisposable);
+
+    const scriptCreateDisposable = registerScriptCreateCommand(
+        editingsDataProvider,
+        scriptsDataProvide,
+        originManager,
+    );
+    context.subscriptions.push(scriptCreateDisposable);
 
     const scriptEditDisposable = registerScriptEditCommand(
         editingsDataProvider,
