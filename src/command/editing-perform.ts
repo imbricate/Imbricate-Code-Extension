@@ -9,6 +9,7 @@ import { readTextFile } from "@sudoo/io";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
 import { EditingEditingItem } from "../editing-tree-view/editing-item";
+import { showInformationMessage } from "../util/show-message";
 import { concatSavingTargetUrl } from "../virtual-document/concat-target";
 import { onChangeEmitter } from "../virtual-document/on-change-emitter";
 
@@ -23,11 +24,15 @@ export const registerEditingPerformCommand = (
 
         const updateContent: string = await readTextFile(activeEditing.path);
 
-        await performImbricateSavingTarget(
+        const isPerformed: boolean = await performImbricateSavingTarget(
             activeEditing.target,
             updateContent,
             originManager,
         );
+
+        if (!isPerformed) {
+            showInformationMessage(`Document ${activeEditing.hash} has not been modified`);
+        }
 
         editingDataProvider.refresh();
 

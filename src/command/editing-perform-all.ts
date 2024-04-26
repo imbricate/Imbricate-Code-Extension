@@ -8,6 +8,7 @@ import { ActiveEditing, ImbricateOriginManager, performImbricateSavingTarget, re
 import { readTextFile } from "@sudoo/io";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
+import { showInformationMessage } from "../util/show-message";
 import { concatSavingTargetUrl } from "../virtual-document/concat-target";
 import { onChangeEmitter } from "../virtual-document/on-change-emitter";
 
@@ -20,19 +21,28 @@ export const registerEditingPerformAllCommand = (
 
         const activeEditings: ActiveEditing[] = await readActiveEditing();
 
+        const unmodified: ActiveEditing[] = [];
         for (const activeEditing of activeEditings) {
 
             const updateContent: string = await readTextFile(activeEditing.path);
 
-            await performImbricateSavingTarget(
+            const isPerformed: boolean = await performImbricateSavingTarget(
                 activeEditing.target,
                 updateContent,
                 originManager,
             );
 
+            if (!isPerformed) {
+                unmodified.push(activeEditing);
+            }
+
             const url = concatSavingTargetUrl(activeEditing.target);
 
             onChangeEmitter.fire(url);
+        }
+
+        if (unmodified.length > 0) {
+            showInformationMessage(`Documents ${unmodified.map((each: ActiveEditing) => each.hash).join(', ')} have not been modified`);
         }
 
         editingDataProvider.refresh();
