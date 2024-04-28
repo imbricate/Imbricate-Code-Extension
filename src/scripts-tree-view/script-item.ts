@@ -32,8 +32,8 @@ export class ScriptScriptItem extends vscode.TreeItem {
         this.contextValue = "script-item";
 
         this.command = {
-            command: 'imbricate.script.preview',
-            title: 'Preview Script',
+            command: "imbricate.script.preview",
+            title: "Preview Script",
             arguments: [this],
         };
 

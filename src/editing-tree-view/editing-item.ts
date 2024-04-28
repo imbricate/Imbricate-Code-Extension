@@ -4,7 +4,6 @@
  * @description Editing Item
  */
 
-import { IImbricateOrigin } from "@imbricate/core";
 import { ActiveEditing, getActiveEditingReference } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 
@@ -27,10 +26,10 @@ export class EditingEditingItem extends vscode.TreeItem {
         super(reference, 0);
         this.contextValue = "editing-item";
 
-        this.iconPath = new vscode.ThemeIcon('settings-edit');
+        this.iconPath = new vscode.ThemeIcon("settings-edit");
         this.command = {
-            command: 'imbricate.editing.resume',
-            title: 'Resume Editing',
+            command: "imbricate.editing.resume",
+            title: "Resume Editing",
             arguments: [activeEditing],
         };
 

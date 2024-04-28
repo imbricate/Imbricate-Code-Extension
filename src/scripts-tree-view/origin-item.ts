@@ -27,7 +27,7 @@ export class ScriptsOriginItem extends vscode.TreeItem {
         super(originName, 1);
         this.contextValue = "script-origin-item";
 
-        this.iconPath = new vscode.ThemeIcon('ports-open-browser-icon');
+        this.iconPath = new vscode.ThemeIcon("ports-open-browser-icon");
 
         this._originName = originName;
         this._origin = origin;

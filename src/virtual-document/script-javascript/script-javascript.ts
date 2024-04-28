@@ -19,7 +19,7 @@ export const registerScriptJavascriptContentProvider = (
     const contextProvide = vscode.workspace.registerTextDocumentContentProvider(
         scheme,
         provider,
-    )
+    );
 
     context.subscriptions.push(contextProvide);
 };
