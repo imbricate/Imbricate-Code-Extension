@@ -87,9 +87,17 @@
       },
       {
         "command": "imbricate.page.create",
-        "title": "Create Imbricate Page",
+        "title": "Create Page...",
+        "shortTitle": "Create Page",
         "category": "Imbricate",
         "icon": "$(add)"
+      },
+      {
+        "command": "imbricate.page.create.directory",
+        "title": "Create Directory...",
+        "shortTitle": "Create Page Directory",
+        "category": "Imbricate",
+        "icon": "$(file-directory-create)"
       },
       {
         "command": "imbricate.page.delete",
@@ -169,6 +177,14 @@
           "when": "false"
         },
         {
+          "command": "imbricate.page.create",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.page.create.directory",
+          "when": "false"
+        },
+        {
           "command": "imbricate.page.delete",
           "when": "false"
         },
@@ -231,8 +247,7 @@
         },
         {
           "command": "imbricate.page.create",
-          "when": "view == imbricate-pages && viewItem == page-collection-item",
-          "group": "inline"
+          "when": "view == imbricate-pages && viewItem == page-collection-item"
         },
         {
           "command": "imbricate.page.delete",

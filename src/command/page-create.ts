@@ -5,7 +5,7 @@
  */
 
 import { IImbricateOriginCollection, IImbricatePage } from "@imbricate/core";
-import { ActiveEditing, ImbricateOriginManager, createPageSavingTarget, establishImbricateSavingTarget } from "@imbricate/local-fundamental";
+import { ActiveEditing, createPageSavingTarget, establishImbricateSavingTarget } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
 import { PagesCollectionItem } from "../pages-tree-view/collection-item";
@@ -15,52 +15,15 @@ import { showErrorMessage } from "../util/show-message";
 export const registerPageCreateCommand = (
     editingsDataProvider: EditingTreeViewDataProvider,
     pagesDataProvider: PagesTreeViewDataProvider,
-    originManager: ImbricateOriginManager,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.page.create", async (item?: PagesCollectionItem) => {
+    const disposable = vscode.commands.registerCommand("imbricate.page.create", async (item: PagesCollectionItem) => {
 
         let originName: string | null = null;
         let collection: IImbricateOriginCollection | null = null;
-        if (typeof item === "undefined") {
 
-            const targetOriginName: string | undefined = await vscode.window.showInputBox({
-                prompt: "Origin Name",
-            });
-
-            if (!targetOriginName) {
-                return;
-            }
-
-            originName = targetOriginName;
-            const origin = originManager.getOrigin(targetOriginName);
-
-            if (!origin) {
-                showErrorMessage(`Cannot find origin: ${targetOriginName}`);
-                return;
-            }
-
-            const collectionName: string | undefined = await vscode.window.showInputBox({
-                prompt: "Collection Name",
-            });
-
-            if (!collectionName) {
-                return;
-            }
-
-            const targetCollection = await origin.getCollection(collectionName);
-
-            if (!targetCollection) {
-                showErrorMessage(`Cannot find collection: ${collectionName}`);
-                return;
-            }
-
-            collection = targetCollection;
-        } else {
-
-            originName = item.originName;
-            collection = item.collection;
-        }
+        originName = item.originName;
+        collection = item.collection;
 
         if (!originName) {
             showErrorMessage("Cannot find origin name");

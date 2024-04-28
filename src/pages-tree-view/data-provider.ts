@@ -77,6 +77,40 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
             return Promise.resolve(items);
         }
 
+        if (element instanceof PageDirectoryItem) {
+
+            const pages: ImbricatePageSnapshot[] =
+                await element.collection.listPages(
+                    element.directories,
+                    false,
+                );
+
+            const directories: string[] =
+                await element.collection.listDirectories(
+                    element.directories,
+                );
+
+            return [
+                ...directories.map((directory: string) => {
+                    return PageDirectoryItem.withDirectories(
+                        element.originName,
+                        element.collection,
+                        [
+                            ...element.directories,
+                            directory,
+                        ],
+                    );
+                }),
+                ...pages.map((page: ImbricatePageSnapshot) => {
+                    return PagePageItem.withSnapshot(
+                        element.originName,
+                        element.collection,
+                        page,
+                    );
+                }),
+            ];
+        }
+
         if (element instanceof PagesOriginItem) {
 
             const collections = await element.origin.listCollections();
@@ -94,7 +128,7 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
         if (element instanceof PagesCollectionItem) {
 
             const pages: ImbricatePageSnapshot[] =
-                await element.collection.listPages([], false); // TODO
+                await element.collection.listPages([], false);
 
             const directories: string[] =
                 await element.collection.listDirectories([]);
@@ -118,7 +152,7 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
         }
 
         return Promise.resolve([
-            new vscode.TreeItem("test"),
+            new vscode.TreeItem("ERROR!"),
         ]);
     }
 }
