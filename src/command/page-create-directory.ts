@@ -41,6 +41,24 @@ export const registerPageCreateDirectoryCommand = (
             return;
         }
 
+        const pageDirectories: string | undefined = await vscode.window.showInputBox({
+            prompt: `Page Directories, split by /, under: ${directories.join("/")}`,
+            placeHolder: "split by /",
+        });
+
+        if (!pageDirectories) {
+            return;
+        }
+
+        const splitedDirectories: string[] = pageDirectories
+            .split("/")
+            .filter((splited: string) => splited.trim().length > 0);
+
+        const fixedDirectories: string[] = [
+            ...directories,
+            ...splitedDirectories,
+        ];
+
         const pageTitle: string | undefined = await vscode.window.showInputBox({
             prompt: "Page Title",
         });
@@ -52,7 +70,7 @@ export const registerPageCreateDirectoryCommand = (
         const content: string = "";
 
         const page: IImbricatePage = await collection.createPage(
-            directories,
+            fixedDirectories,
             pageTitle,
             content,
         );

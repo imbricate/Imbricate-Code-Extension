@@ -94,8 +94,7 @@
       },
       {
         "command": "imbricate.page.create.directory",
-        "title": "Create Directory...",
-        "shortTitle": "Create Page Directory",
+        "title": "Create Page Under a Directory...",
         "category": "Imbricate",
         "icon": "$(file-directory-create)"
       },
@@ -247,11 +246,13 @@
         },
         {
           "command": "imbricate.page.create",
-          "when": "view == imbricate-pages && (viewItem == page-collection-item || viewItem == page-directory-item)"
+          "when": "view == imbricate-pages && (viewItem == page-collection-item || viewItem == page-directory-item)",
+          "group": "context@1"
         },
         {
           "command": "imbricate.page.create.directory",
-          "when": "view == imbricate-pages && (viewItem == page-collection-item || viewItem == page-directory-item)"
+          "when": "view == imbricate-pages && (viewItem == page-collection-item || viewItem == page-directory-item)",
+          "group": "context@2"
         },
         {
           "command": "imbricate.page.delete",
