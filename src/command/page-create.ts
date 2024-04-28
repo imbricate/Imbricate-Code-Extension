@@ -63,12 +63,12 @@ export const registerPageCreateCommand = (
         }
 
         if (!originName) {
-            showErrorMessage(`Cannot find origin name`);
+            showErrorMessage("Cannot find origin name");
             return;
         }
 
         if (!collection) {
-            showErrorMessage(`Cannot find collection`);
+            showErrorMessage("Cannot find collection");
             return;
         }
 

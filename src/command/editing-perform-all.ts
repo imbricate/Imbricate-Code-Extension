@@ -42,7 +42,7 @@ export const registerEditingPerformAllCommand = (
         }
 
         if (unmodified.length > 0) {
-            showInformationMessage(`Documents ${unmodified.map((each: ActiveEditing) => each.hash).join(', ')} have not been modified`);
+            showInformationMessage(`Documents ${unmodified.map((each: ActiveEditing) => each.hash).join(", ")} have not been modified`);
         }
 
         editingDataProvider.refresh();

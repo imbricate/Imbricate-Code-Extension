@@ -48,12 +48,12 @@ export const registerScriptCreateCommand = (
         }
 
         if (!originName) {
-            showErrorMessage(`Cannot find origin name`);
+            showErrorMessage("Cannot find origin name");
             return;
         }
 
         if (!origin) {
-            showErrorMessage(`Cannot find origin`);
+            showErrorMessage("Cannot find origin");
             return;
         }
 
