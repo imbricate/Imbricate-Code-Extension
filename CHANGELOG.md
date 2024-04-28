@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.5.0
+
+- Add directory support
+- Add page metadata encoding
+- Add page create under directory support
+- Add page name validation
+- Fix known issues
+
+## 1.4.0
+
+- Fix page history record support
+- Improve performance
+
 ## 1.3.1
 
 - Fix issue of performing save
