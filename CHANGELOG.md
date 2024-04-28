@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.3.1
+
+- Fix issue of performing save
+- Add cancel unsaved edits
+- Add unsaved edits warning
+
+## 1.3.0
+
+- Add Page delete function
+- Add Script delete function
+- Add historyRecord support for imbricate core
+- Add shortcut for create and delete
+- Improve performance
+- Fix perform saving issue
+
 ## 1.2.0
 
 - Add Page create function
