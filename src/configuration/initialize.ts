@@ -19,7 +19,7 @@ export const initializeOriginManager = (
             return FileSystemImbricateOrigin.withPayloads(
                 origin.payloads as FileSystemOriginPayload,
             );
-        }
+        },
     );
 
     const originManager = originInitializer.initializeOrigins(configuration.origins);
