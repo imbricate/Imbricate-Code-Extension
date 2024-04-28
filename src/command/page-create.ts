@@ -9,8 +9,8 @@ import { ActiveEditing, ImbricateOriginManager, createPageSavingTarget, establis
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
 import { PagesCollectionItem } from "../pages-tree-view/collection-item";
-import { showErrorMessage } from "../util/show-message";
 import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
+import { showErrorMessage } from "../util/show-message";
 
 export const registerPageCreateCommand = (
     editingsDataProvider: EditingTreeViewDataProvider,
@@ -81,7 +81,9 @@ export const registerPageCreateCommand = (
         }
 
         const page: IImbricatePage = await collection.createPage(
+            [], // TODO
             pageTitle,
+            "",
         );
 
         const savingTarget = createPageSavingTarget(

@@ -8,6 +8,7 @@ import { IImbricateOrigin, IImbricateOriginCollection, ImbricatePageSnapshot } f
 import { IImbricateConfiguration, IImbricateConfigurationOrigin, ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { PagesCollectionItem } from "./collection-item";
+import { PageDirectoryItem } from "./directory-item";
 import { PagesOriginItem } from "./origin-item";
 import { PagePageItem } from "./page-item";
 
@@ -93,15 +94,27 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
         if (element instanceof PagesCollectionItem) {
 
             const pages: ImbricatePageSnapshot[] =
-                await element.collection.listPages();
+                await element.collection.listPages([], false); // TODO
 
-            return pages.map((page: ImbricatePageSnapshot) => {
-                return PagePageItem.withSnapshot(
-                    element.originName,
-                    element.collection,
-                    page,
-                );
-            });
+            const directories: string[] =
+                await element.collection.listDirectories([]);
+
+            return [
+                ...directories.map((directory: string) => {
+                    return PageDirectoryItem.withDirectories(
+                        element.originName,
+                        element.collection,
+                        [directory],
+                    );
+                }),
+                ...pages.map((page: ImbricatePageSnapshot) => {
+                    return PagePageItem.withSnapshot(
+                        element.originName,
+                        element.collection,
+                        page,
+                    );
+                }),
+            ];
         }
 
         return Promise.resolve([
