@@ -247,7 +247,11 @@
         },
         {
           "command": "imbricate.page.create",
-          "when": "view == imbricate-pages && viewItem == page-collection-item"
+          "when": "view == imbricate-pages && (viewItem == page-collection-item || viewItem == page-directory-item)"
+        },
+        {
+          "command": "imbricate.page.create.directory",
+          "when": "view == imbricate-pages && (viewItem == page-collection-item || viewItem == page-directory-item)"
         },
         {
           "command": "imbricate.page.delete",

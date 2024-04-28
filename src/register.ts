@@ -11,6 +11,7 @@ import { registerEditingPerformAllCommand } from "./command/editing-perform-all"
 import { registerEditingsRefreshCommand } from "./command/editing-refresh";
 import { registerEditingResumeCommand } from "./command/editing-resume";
 import { registerPageCreateCommand } from "./command/page-create";
+import { registerPageCreateDirectoryCommand } from "./command/page-create-directory";
 import { registerPageDeleteCommand } from "./command/page-delete";
 import { registerPageEditCommand } from "./command/page-edit";
 import { registerPagePreviewCommand } from "./command/page-preview";
@@ -71,6 +72,12 @@ export const registerOperations = async (
         pagesDataProvider,
     );
     context.subscriptions.push(pageCreateDisposable);
+
+    const pageCreateDirectoryDisposable = registerPageCreateDirectoryCommand(
+        editingsDataProvider,
+        pagesDataProvider,
+    );
+    context.subscriptions.push(pageCreateDirectoryDisposable);
 
     const pageDeleteDisposable = registerPageDeleteCommand(
         pagesDataProvider,
