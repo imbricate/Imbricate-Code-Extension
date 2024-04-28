@@ -5,7 +5,7 @@
  */
 
 import { IImbricateOriginCollection, IImbricatePage } from "@imbricate/core";
-import { ActiveEditing, createPageSavingTarget, establishImbricateSavingTarget } from "@imbricate/local-fundamental";
+import { ActiveEditing, createPageSavingTarget, establishImbricateSavingTarget, validateFilename } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
 import { PagesCollectionItem } from "../pages-tree-view/collection-item";
@@ -42,7 +42,7 @@ export const registerPageCreateDirectoryCommand = (
         }
 
         const pageDirectories: string | undefined = await vscode.window.showInputBox({
-            prompt: `Page Directories, split by /, under: ${directories.join("/")}`,
+            prompt: `Page Directories, split by /, under: "${directories.join("/")}"`,
             placeHolder: "split by /",
         });
 
@@ -64,6 +64,11 @@ export const registerPageCreateDirectoryCommand = (
         });
 
         if (!pageTitle) {
+            return;
+        }
+
+        if (!validateFilename(pageTitle)) {
+            showErrorMessage(`Invalid page title: ${pageTitle}`);
             return;
         }
 
