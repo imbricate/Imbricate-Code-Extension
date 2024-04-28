@@ -1196,7 +1196,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.20.2":
+"esbuild@npm:^0":
   version: 0.20.2
   resolution: "esbuild@npm:0.20.2"
   dependencies:
@@ -1763,7 +1763,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^7"
     "@vscode/test-cli": "npm:^0"
     "@vscode/test-electron": "npm:^2"
-    esbuild: "npm:^0.20.2"
+    esbuild: "npm:^0"
     eslint: "npm:^8"
     typescript: "npm:^5"
   languageName: unknown

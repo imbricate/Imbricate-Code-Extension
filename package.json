@@ -288,7 +288,7 @@
     "@typescript-eslint/parser": "^7",
     "@vscode/test-cli": "^0",
     "@vscode/test-electron": "^2",
-    "esbuild": "^0.20.2",
+    "esbuild": "^0",
     "eslint": "^8",
     "typescript": "^5"
   }
