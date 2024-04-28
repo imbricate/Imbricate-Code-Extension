@@ -11,7 +11,7 @@ import { registerOperations } from "./register";
 
 export const activate = async (context: vscode.ExtensionContext) => {
 
-	console.log('Imbricate Activities');
+	console.log("Imbricate Activities");
 
 	const configurationPath: string = resolveImbricateHomeDirectory();
 	const configuration = await readCLIConfiguration(configurationPath);
@@ -23,9 +23,9 @@ export const activate = async (context: vscode.ExtensionContext) => {
 		originManager,
 		context,
 	);
-}
+};
 
 export const deactivate = () => {
 
-	console.log('Imbricate Deactivated');
+	console.log("Imbricate Deactivated");
 };

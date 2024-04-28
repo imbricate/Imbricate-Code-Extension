@@ -20,6 +20,7 @@ import { registerScriptDeleteCommand } from "./command/script-delete";
 import { registerScriptEditCommand } from "./command/script-edit";
 import { registerScriptPreviewCommand } from "./command/script-preview";
 import { registerScriptsRefreshCommand } from "./command/script-refresh";
+import { registerSearchCommand } from "./command/search";
 import { EditingTreeViewDataProvider } from "./editing-tree-view/data-provider";
 import { registerEditingTreeView } from "./editing-tree-view/register";
 import { PagesTreeViewDataProvider } from "./pages-tree-view/data-provider";
@@ -114,4 +115,10 @@ export const registerOperations = async (
         scriptsDataProvider,
     );
     context.subscriptions.push(scriptsRefreshDisposable);
+
+    const searchDisposable = registerSearchCommand(
+        originManager,
+        editingsDataProvider,
+    );
+    context.subscriptions.push(searchDisposable);
 };
