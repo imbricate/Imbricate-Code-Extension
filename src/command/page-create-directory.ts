@@ -10,6 +10,7 @@ import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
 import { PagesCollectionItem } from "../pages-tree-view/collection-item";
 import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
+import { PageDirectoryItem } from "../pages-tree-view/directory-item";
 import { showErrorMessage } from "../util/show-message";
 
 export const registerPageCreateDirectoryCommand = (
@@ -17,10 +18,15 @@ export const registerPageCreateDirectoryCommand = (
     pagesDataProvider: PagesTreeViewDataProvider,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.page.create.directory", async (item: PagesCollectionItem) => {
+    const disposable = vscode.commands.registerCommand("imbricate.page.create.directory", async (item: PagesCollectionItem | PageDirectoryItem) => {
 
         let originName: string | null = null;
         let collection: IImbricateOriginCollection | null = null;
+        let directories: string[] = [];
+
+        if (item instanceof PageDirectoryItem) {
+            directories = item.directories;
+        }
 
         originName = item.originName;
         collection = item.collection;
@@ -43,10 +49,12 @@ export const registerPageCreateDirectoryCommand = (
             return;
         }
 
+        const content: string = "";
+
         const page: IImbricatePage = await collection.createPage(
-            [], // TODO
+            directories,
             pageTitle,
-            "",
+            content,
         );
 
         const savingTarget = createPageSavingTarget(
@@ -55,7 +63,6 @@ export const registerPageCreateDirectoryCommand = (
             page.identifier,
         );
 
-        const content: string = "";
 
         const activeEditing: ActiveEditing = await establishImbricateSavingTarget(
             savingTarget,
