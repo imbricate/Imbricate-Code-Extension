@@ -246,13 +246,23 @@
         },
         {
           "command": "imbricate.page.create",
-          "when": "view == imbricate-pages && (viewItem == page-collection-item || viewItem == page-directory-item)",
-          "group": "context@1"
+          "when": "view == imbricate-pages && viewItem == page-collection-item",
+          "group": "collection-context@1"
         },
         {
           "command": "imbricate.page.create.directory",
-          "when": "view == imbricate-pages && (viewItem == page-collection-item || viewItem == page-directory-item)",
-          "group": "context@2"
+          "when": "view == imbricate-pages && viewItem == page-collection-item",
+          "group": "collection-context@2"
+        },
+        {
+          "command": "imbricate.page.create",
+          "when": "view == imbricate-pages && viewItem == page-directory-item",
+          "group": "directory-context@1"
+        },
+        {
+          "command": "imbricate.page.create.directory",
+          "when": "view == imbricate-pages && viewItem == page-directory-item",
+          "group": "directory-context@2"
         },
         {
           "command": "imbricate.page.delete",
