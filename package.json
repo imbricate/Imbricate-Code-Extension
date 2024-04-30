@@ -1,6 +1,6 @@
 {
   "name": "imbricate",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "displayName": "imbricate",
   "icon": "images/imbricate.png",
   "author": "WMXPY",
@@ -34,7 +34,7 @@
         {
           "id": "imbricate",
           "title": "Imbricate",
-          "icon": "$(primitive-square)"
+          "icon": "$(library)"
         }
       ]
     },
@@ -43,19 +43,19 @@
         {
           "id": "imbricate-editings",
           "name": "Imbricate Editings",
-          "icon": "$(settings-edit)",
+          "icon": "$(edit)",
           "contextualTitle": "Imbricate Editings"
         },
         {
           "id": "imbricate-pages",
           "name": "Imbricate Pages",
-          "icon": "$(remote-explorer-documentation)",
+          "icon": "$(book)",
           "contextualTitle": "Imbricate Pages"
         },
         {
           "id": "imbricate-scripts",
           "name": "Imbricate Scripts",
-          "icon": "$(terminal-view-icon)",
+          "icon": "$(terminal)",
           "contextualTitle": "Imbricate Scripts"
         }
       ]
@@ -77,13 +77,13 @@
         "command": "imbricate.editings.refresh",
         "title": "Editings Refresh",
         "category": "Imbricate",
-        "icon": "$(timeline-refresh)"
+        "icon": "$(refresh)"
       },
       {
         "command": "imbricate.editing.resume",
         "title": "Editing Resume",
         "category": "Imbricate",
-        "icon": "$(settings-edit)"
+        "icon": "$(edit)"
       },
       {
         "command": "imbricate.page.create",
@@ -109,7 +109,7 @@
         "command": "imbricate.page.edit",
         "title": "Page Edit",
         "category": "Imbricate",
-        "icon": "$(settings-edit)"
+        "icon": "$(edit)"
       },
       {
         "command": "imbricate.page.preview",
@@ -121,7 +121,7 @@
         "command": "imbricate.pages.refresh",
         "title": "Pages Refresh",
         "category": "Imbricate",
-        "icon": "$(timeline-refresh)"
+        "icon": "$(refresh)"
       },
       {
         "command": "imbricate.script.create",
@@ -140,19 +140,19 @@
         "command": "imbricate.script.edit",
         "title": "Script Edit",
         "category": "Imbricate",
-        "icon": "$(settings-edit)"
+        "icon": "$(edit)"
       },
       {
         "command": "imbricate.script.preview",
         "title": "Script Preview",
         "category": "Imbricate",
-        "icon": "$(notebook-render-output)"
+        "icon": "$(preview)"
       },
       {
         "command": "imbricate.scripts.refresh",
         "title": "Scripts Refresh",
         "category": "Imbricate",
-        "icon": "$(timeline-refresh)"
+        "icon": "$(refresh)"
       },
       {
         "command": "imbricate.search",
