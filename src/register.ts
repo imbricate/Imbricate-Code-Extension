@@ -39,8 +39,14 @@ export const registerOperations = async (
 
     const editingsDataProvider: EditingTreeViewDataProvider =
         await registerEditingTreeView(configuration);
+
     const pagesDataProvider: PagesTreeViewDataProvider =
-        await registerPagesTreeView(configuration, originManager);
+        await registerPagesTreeView(
+            configuration,
+            originManager,
+            context,
+        );
+
     const scriptsDataProvider: ScriptsTreeViewDataProvider =
         await registerScriptsTreeView(configuration, originManager);
 
