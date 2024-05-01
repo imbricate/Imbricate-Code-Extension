@@ -27,5 +27,6 @@ export const registerPagesTreeView = async (
     });
 
     context.subscriptions.push(treeView);
+
     return pagesDataProvider;
 };

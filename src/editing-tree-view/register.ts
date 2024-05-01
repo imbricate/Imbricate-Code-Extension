@@ -10,13 +10,20 @@ import { EditingTreeViewDataProvider } from "./data-provider";
 
 export const registerEditingTreeView = async (
     configuration: IImbricateConfiguration,
+    context: vscode.ExtensionContext,
 ): Promise<EditingTreeViewDataProvider> => {
 
     const editingDataProvider = await EditingTreeViewDataProvider.create(
         configuration,
     );
 
-    vscode.window.registerTreeDataProvider("imbricate-editings", editingDataProvider);
+    const treeView = vscode.window.createTreeView("imbricate-editings", {
+        treeDataProvider: editingDataProvider,
+        showCollapseAll: false,
+        canSelectMany: false,
+    });
+
+    context.subscriptions.push(treeView);
 
     return editingDataProvider;
 };

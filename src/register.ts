@@ -37,18 +37,22 @@ export const registerOperations = async (
     context: vscode.ExtensionContext,
 ): Promise<void> => {
 
-    const editingsDataProvider: EditingTreeViewDataProvider =
-        await registerEditingTreeView(configuration);
+    const editingsDataProvider: EditingTreeViewDataProvider = await registerEditingTreeView(
+        configuration,
+        context,
+    );
 
-    const pagesDataProvider: PagesTreeViewDataProvider =
-        await registerPagesTreeView(
-            configuration,
-            originManager,
-            context,
-        );
+    const pagesDataProvider: PagesTreeViewDataProvider = await registerPagesTreeView(
+        configuration,
+        originManager,
+        context,
+    );
 
-    const scriptsDataProvider: ScriptsTreeViewDataProvider =
-        await registerScriptsTreeView(configuration, originManager);
+    const scriptsDataProvider: ScriptsTreeViewDataProvider = await registerScriptsTreeView(
+        configuration,
+        originManager,
+        context,
+    );
 
     registerPageMarkdownContentProvider(originManager, context);
     registerScriptJavascriptContentProvider(originManager, context);
