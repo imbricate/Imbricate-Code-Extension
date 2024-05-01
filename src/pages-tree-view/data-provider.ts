@@ -59,11 +59,16 @@ export class PagesTreeViewDataProvider implements
 
     public async handleDrag(
         source: readonly vscode.TreeItem[],
-        _dataTransfer: vscode.DataTransfer,
+        dataTransfer: vscode.DataTransfer,
         _token: vscode.CancellationToken,
     ): Promise<void> {
 
         console.log(source);
+
+        dataTransfer.set(
+            "application/vnd.code.tree.imbricate-page",
+            new vscode.DataTransferItem(source),
+        );
     }
 
     public handleDrop(
