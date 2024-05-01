@@ -23,7 +23,6 @@ export const registerPagesTreeView = async (
         treeDataProvider: pagesDataProvider,
         showCollapseAll: true,
         canSelectMany: false,
-        dragAndDropController: pagesDataProvider,
     });
 
     context.subscriptions.push(treeView);

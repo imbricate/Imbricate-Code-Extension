@@ -12,9 +12,7 @@ import { PageDirectoryItem } from "./directory-item";
 import { PagesOriginItem } from "./origin-item";
 import { PagePageItem } from "./page-item";
 
-export class PagesTreeViewDataProvider implements
-    vscode.TreeDataProvider<vscode.TreeItem>,
-    vscode.TreeDragAndDropController<vscode.TreeItem> {
+export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
 
     public static async create(
         configuration: IImbricateConfiguration,
@@ -38,9 +36,6 @@ export class PagesTreeViewDataProvider implements
         vscode.Event<vscode.TreeItem | undefined | void> =
         this._onDidChangeTreeData.event;
 
-    public readonly dropMimeTypes: string[];
-    public readonly dragMimeTypes: string[];
-
     private constructor(
         configuration: IImbricateConfiguration,
         originManager: ImbricateOriginManager,
@@ -48,36 +43,6 @@ export class PagesTreeViewDataProvider implements
 
         this._configuration = configuration;
         this._originManager = originManager;
-
-        this.dropMimeTypes = [
-            "application/vnd.code.tree.imbricate-page",
-        ];
-        this.dragMimeTypes = [
-            "application/vnd.code.tree.imbricate-page",
-        ];
-    }
-
-    public async handleDrag(
-        source: readonly vscode.TreeItem[],
-        dataTransfer: vscode.DataTransfer,
-        _token: vscode.CancellationToken,
-    ): Promise<void> {
-
-        console.log(source);
-
-        dataTransfer.set(
-            "application/vnd.code.tree.imbricate-page",
-            new vscode.DataTransferItem(source),
-        );
-    }
-
-    public handleDrop(
-        target: vscode.TreeItem | undefined,
-        _dataTransfer: vscode.DataTransfer,
-        _token: vscode.CancellationToken,
-    ): void {
-
-        console.log(target);
     }
 
     public refresh(): void {
