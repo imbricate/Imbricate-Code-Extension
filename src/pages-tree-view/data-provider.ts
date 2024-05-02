@@ -5,7 +5,7 @@
  */
 
 import { IImbricateOrigin, IImbricateOriginCollection, ImbricatePageSnapshot } from "@imbricate/core";
-import { IImbricateConfiguration, IImbricateConfigurationOrigin, ImbricateOriginManager } from "@imbricate/local-fundamental";
+import { ImbricateOriginManager, ImbricateOriginManagerOriginResponse } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { PagesCollectionItem } from "./collection-item";
 import { PageDirectoryItem } from "./directory-item";
@@ -15,18 +15,17 @@ import { PagePageItem } from "./page-item";
 export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
 
     public static async create(
-        configuration: IImbricateConfiguration,
         originManager: ImbricateOriginManager,
     ): Promise<PagesTreeViewDataProvider> {
 
         return new PagesTreeViewDataProvider(
-            configuration,
             originManager,
         );
     }
 
-    private readonly _configuration: IImbricateConfiguration;
     private readonly _originManager: ImbricateOriginManager;
+
+    private _loaded: boolean = false;
 
     private _onDidChangeTreeData:
         vscode.EventEmitter<vscode.TreeItem | undefined | void> =
@@ -37,11 +36,9 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
         this._onDidChangeTreeData.event;
 
     private constructor(
-        configuration: IImbricateConfiguration,
         originManager: ImbricateOriginManager,
     ) {
 
-        this._configuration = configuration;
         this._originManager = originManager;
     }
 
@@ -57,8 +54,8 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
 
         if (typeof element === "undefined") {
 
-            const items: vscode.TreeItem[] = this._configuration.origins.map((
-                originConfig: IImbricateConfigurationOrigin,
+            const items: vscode.TreeItem[] = this._originManager.origins.map((
+                originConfig: ImbricateOriginManagerOriginResponse,
             ) => {
 
                 const origin: IImbricateOrigin | null =
@@ -73,6 +70,14 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
                     origin,
                 );
             });
+
+            if (!this._loaded) {
+
+                this._loaded = true;
+
+                console.log("Pages Tree Data Provider Loaded");
+                vscode.commands.executeCommand("setContext", "imbricate.context.pages.loaded", true);
+            }
 
             return Promise.resolve(items);
         }

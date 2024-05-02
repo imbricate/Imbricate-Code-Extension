@@ -4,18 +4,16 @@
  * @description Register
  */
 
-import { IImbricateConfiguration, ImbricateOriginManager } from "@imbricate/local-fundamental";
+import { ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { PagesTreeViewDataProvider } from "./data-provider";
 
 export const registerPagesTreeView = async (
-    configuration: IImbricateConfiguration,
     originManager: ImbricateOriginManager,
     context: vscode.ExtensionContext,
 ): Promise<PagesTreeViewDataProvider> => {
 
     const pagesDataProvider = await PagesTreeViewDataProvider.create(
-        configuration,
         originManager,
     );
 
