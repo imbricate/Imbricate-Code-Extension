@@ -13,12 +13,14 @@ export class PagePageItem extends vscode.TreeItem {
         originName: string,
         collection: IImbricateOriginCollection,
         pageSnapshot: ImbricatePageSnapshot,
+        variant?: string,
     ) {
 
         return new PagePageItem(
             originName,
             collection,
             pageSnapshot,
+            variant,
         );
     }
 
@@ -31,9 +33,15 @@ export class PagePageItem extends vscode.TreeItem {
         originName: string,
         collection: IImbricateOriginCollection,
         pageSnapshot: ImbricatePageSnapshot,
+        variant?: string,
     ) {
         super(pageSnapshot.title, 0);
-        this.contextValue = "page-item";
+
+        const contextValue: string = typeof variant === "string"
+            ? `page-item-${variant}`
+            : "page-item";
+
+        this.contextValue = contextValue;
 
         this.command = {
             command: "imbricate.page.preview",

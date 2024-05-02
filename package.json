@@ -192,6 +192,12 @@
         "icon": "$(refresh)"
       },
       {
+        "command": "imbricate.page.unfavorite",
+        "title": "Unmark Page as Favorite",
+        "category": "Imbricate",
+        "icon": "$(star-delete)"
+      },
+      {
         "command": "imbricate.script.create",
         "title": "Create Imbricate Script",
         "category": "Imbricate",
@@ -261,6 +267,10 @@
         },
         {
           "command": "imbricate.page.preview",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.page.unfavorite",
           "when": "false"
         },
         {
@@ -353,7 +363,12 @@
         },
         {
           "command": "imbricate.page.favorite",
-          "when": "view == imbricate-pages && viewItem =~ /^page-item/",
+          "when": "view == imbricate-pages && viewItem == page-item",
+          "group": "page-context@2"
+        },
+        {
+          "command": "imbricate.page.unfavorite",
+          "when": "view == imbricate-pages && viewItem == page-item-favorite",
           "group": "page-context@2"
         },
         {

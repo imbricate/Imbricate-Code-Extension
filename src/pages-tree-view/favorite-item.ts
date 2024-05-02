@@ -64,6 +64,7 @@ export const renderPageFavoriteItem = async (
             favorite.originName,
             collection,
             favorite.pageSnapshot,
+            "favorite",
         );
 
         treeItems.push(result);

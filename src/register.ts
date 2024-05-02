@@ -34,6 +34,7 @@ import { ScriptsTreeViewDataProvider } from "./scripts-tree-view/data-provider";
 import { registerScriptsTreeView } from "./scripts-tree-view/register";
 import { registerPageMarkdownContentProvider } from "./virtual-document/page-markdown/page-markdown";
 import { registerScriptJavascriptContentProvider } from "./virtual-document/script-javascript/script-javascript";
+import { registerPageUnfavoriteCommand } from "./command/page-unfavorite";
 
 export const registerOperations = async (
     configuration: IImbricateConfiguration,
@@ -133,6 +134,12 @@ export const registerOperations = async (
         pagesDataProvider,
     );
     context.subscriptions.push(pagesRefreshDisposable);
+
+    const pageUnfavoriteDisposable = registerPageUnfavoriteCommand(
+        pagesDataProvider,
+        context,
+    );
+    context.subscriptions.push(pageUnfavoriteDisposable);
 
     const scriptCreateDisposable = registerScriptCreateCommand(
         editingsDataProvider,
