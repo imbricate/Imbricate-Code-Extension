@@ -71,7 +71,7 @@ export class PagePageItem extends vscode.TreeItem {
 
     private _buildTooltip(): string {
 
-        return this._originName + ":" + this._collection.collectionName
+        return this._originName + " - " + this._collection.collectionName
             + "\n"
             + this._pageSnapshot.directories.join("/") + "/" + this._pageSnapshot.title
             + "\n"
