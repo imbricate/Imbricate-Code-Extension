@@ -163,7 +163,7 @@
       },
       {
         "command": "imbricate.page.edit",
-        "title": "Page Edit",
+        "title": "Edit Page",
         "category": "Imbricate",
         "icon": "$(edit)"
       },
@@ -175,7 +175,7 @@
       },
       {
         "command": "imbricate.page.favorite",
-        "title": "Page Favorite",
+        "title": "Mark Page as Favorite",
         "category": "Imbricate",
         "icon": "$(star)"
       },
@@ -338,12 +338,23 @@
         },
         {
           "command": "imbricate.page.delete",
-          "when": "view == imbricate-pages && viewItem == page-item"
+          "when": "view == imbricate-pages && viewItem =~ /^page-item/",
+          "group": "page-context@3"
         },
         {
           "command": "imbricate.page.edit",
-          "when": "view == imbricate-pages && viewItem == page-item",
+          "when": "view == imbricate-pages && viewItem =~ /^page-item/",
+          "group": "page-context@1"
+        },
+        {
+          "command": "imbricate.page.edit",
+          "when": "view == imbricate-pages && viewItem =~ /^page-item/",
           "group": "inline"
+        },
+        {
+          "command": "imbricate.page.favorite",
+          "when": "view == imbricate-pages && viewItem =~ /^page-item/",
+          "group": "page-context@2"
         },
         {
           "command": "imbricate.script.create",

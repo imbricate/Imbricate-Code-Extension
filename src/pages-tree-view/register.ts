@@ -15,6 +15,7 @@ export const registerPagesTreeView = async (
 
     const pagesDataProvider = await PagesTreeViewDataProvider.create(
         originManager,
+        context,
     );
 
     const treeView = vscode.window.createTreeView("imbricate-pages", {

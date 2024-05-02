@@ -4,7 +4,11 @@
  * @description Favorite Item
  */
 
+import { IImbricateOrigin, IImbricateOriginCollection } from "@imbricate/core";
+import { ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
+import { PAGES_FAVORITES_KEY, PagePersistanceData } from "./page-data";
+import { PagePageItem } from "./page-item";
 
 export class PagesFavoriteItem extends vscode.TreeItem {
 
@@ -22,10 +26,48 @@ export class PagesFavoriteItem extends vscode.TreeItem {
 }
 
 export const renderPageFavoriteItem = async (
+    originManager: ImbricateOriginManager,
     context: vscode.ExtensionContext,
 ): Promise<vscode.TreeItem[]> => {
 
-    // console.log(context.globalState.update('imbricate', 'imbricate'));
+    const favoriteItems: PagePersistanceData[] | undefined = context.globalState.get(PAGES_FAVORITES_KEY);
 
-    return [];
+    if (!favoriteItems) {
+        return [];
+    }
+
+    const treeItems: vscode.TreeItem[] = [];
+
+    for (const favorite of favoriteItems) {
+
+        const origin: IImbricateOrigin | null = originManager.getOrigin(favorite.originName);
+
+        if (!origin) {
+
+            treeItems.push(
+                new vscode.TreeItem("ERROR, Origin Not Found"),
+            );
+            continue;
+        }
+
+        const collection: IImbricateOriginCollection | null = await origin.getCollection(favorite.collectionName);
+
+        if (!collection) {
+
+            treeItems.push(
+                new vscode.TreeItem("ERROR, Collection Not Found"),
+            );
+            continue;
+        }
+
+        const result = PagePageItem.withSnapshot(
+            favorite.originName,
+            collection,
+            favorite.pageSnapshot,
+        );
+
+        treeItems.push(result);
+    }
+
+    return treeItems;
 };

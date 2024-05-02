@@ -9,7 +9,7 @@ import { ImbricateOriginManager, ImbricateOriginManagerOriginResponse } from "@i
 import * as vscode from "vscode";
 import { PagesCollectionItem } from "./collection-item";
 import { PageDirectoryItem, renderPageDirectoryItem } from "./directory-item";
-import { PagesFavoriteItem } from "./favorite-item";
+import { PagesFavoriteItem, renderPageFavoriteItem } from "./favorite-item";
 import { PagesOriginItem } from "./origin-item";
 import { PagePageItem } from "./page-item";
 import { PagesRecentItem } from "./recent-item";
@@ -18,14 +18,17 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
 
     public static async create(
         originManager: ImbricateOriginManager,
+        context: vscode.ExtensionContext,
     ): Promise<PagesTreeViewDataProvider> {
 
         return new PagesTreeViewDataProvider(
             originManager,
+            context,
         );
     }
 
     private readonly _originManager: ImbricateOriginManager;
+    private readonly _context: vscode.ExtensionContext;
 
     private _loaded: boolean = false;
 
@@ -39,9 +42,11 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
 
     private constructor(
         originManager: ImbricateOriginManager,
+        context: vscode.ExtensionContext,
     ) {
 
         this._originManager = originManager;
+        this._context = context;
     }
 
     public refresh(): void {
@@ -145,9 +150,10 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
 
         if (element instanceof PagesFavoriteItem) {
 
-            return [
-                new vscode.TreeItem("Favorite"),
-            ];
+            return await renderPageFavoriteItem(
+                this._originManager,
+                this._context,
+            );
         }
 
         return Promise.resolve([
