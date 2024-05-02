@@ -17,6 +17,7 @@ import { registerPageCreateDirectoryCommand } from "./command/page-create-direct
 import { registerPageDeleteCommand } from "./command/page-delete";
 import { registerPageEditCommand } from "./command/page-edit";
 import { registerPageEditEditorCommand } from "./command/page-edit-editor";
+import { registerPageFavoriteCommand } from "./command/page-favorite";
 import { registerPagePreviewCommand } from "./command/page-preview";
 import { registerPagesRefreshCommand } from "./command/page-refresh";
 import { registerScriptCreateCommand } from "./command/script-create";
@@ -118,6 +119,12 @@ export const registerOperations = async (
         originManager,
     );
     context.subscriptions.push(pageEditEditorDisposable);
+
+    const pageFavoriteDisposable = registerPageFavoriteCommand(
+        pagesDataProvider,
+        context,
+    );
+    context.subscriptions.push(pageFavoriteDisposable);
 
     const pagePreviewDisposable = registerPagePreviewCommand();
     context.subscriptions.push(pagePreviewDisposable);
