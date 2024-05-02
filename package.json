@@ -1,6 +1,6 @@
 {
   "name": "imbricate",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "displayName": "Imbricate",
   "icon": "images/imbricate.png",
   "author": "WMXPY",
@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@imbricate/core": "1.15.0",
-    "@imbricate/local-fundamental": "1.4.4",
+    "@imbricate/local-fundamental": "1.5.1",
     "@imbricate/origin-file-system": "1.12.0",
     "@sudoo/io": "^1.8.0"
   },
@@ -92,12 +92,30 @@
         }
       ]
     },
+    "viewsWelcome": [
+      {
+        "view": "imbricate-pages",
+        "contents": "No Imbricate Origin found\n[Create Origin](command:imbricate.origin.create)\n[Learn More](https://imbricate.io)",
+        "when": "imbricate.context.pages.loaded"
+      },
+      {
+        "view": "imbricate-scripts",
+        "contents": "No Imbricate Origin found\n[Create Origin](command:imbricate.origin.create)\n[Learn More](https://imbricate.io)",
+        "when": "imbricate.context.scripts.loaded"
+      }
+    ],
     "commands": [
       {
         "command": "imbricate.editings.perform-all",
         "title": "Perform All Imbricate Editings",
         "category": "Imbricate",
         "icon": "$(save-all)"
+      },
+      {
+        "command": "imbricate.editing.perform-editor",
+        "title": "Perform Editing in Editor",
+        "category": "Imbricate",
+        "icon": "$(save)"
       },
       {
         "command": "imbricate.editing.perform",
@@ -116,6 +134,12 @@
         "title": "Editing Resume",
         "category": "Imbricate",
         "icon": "$(edit)"
+      },
+      {
+        "command": "imbricate.origin.create",
+        "title": "Create Imbricate Origin",
+        "category": "Imbricate",
+        "icon": "$(add)"
       },
       {
         "command": "imbricate.page.create",
@@ -140,6 +164,12 @@
       {
         "command": "imbricate.page.edit",
         "title": "Page Edit",
+        "category": "Imbricate",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "imbricate.page.edit-editor",
+        "title": "Edit Page in Editor",
         "category": "Imbricate",
         "icon": "$(edit)"
       },
@@ -196,10 +226,6 @@
     "menus": {
       "commandPalette": [
         {
-          "command": "imbricate.editings.refresh",
-          "when": "false"
-        },
-        {
           "command": "imbricate.editing.resume",
           "when": "false"
         },
@@ -228,10 +254,6 @@
           "when": "false"
         },
         {
-          "command": "imbricate.pages.refresh",
-          "when": "false"
-        },
-        {
           "command": "imbricate.script.delete",
           "when": "false"
         },
@@ -242,10 +264,18 @@
         {
           "command": "imbricate.script.preview",
           "when": "false"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "imbricate.editing.perform-editor",
+          "when": "resourceDirname =~ /.imbricate/ && editorLangId == markdown",
+          "group": "navigation"
         },
         {
-          "command": "imbricate.scripts.refresh",
-          "when": "false"
+          "command": "imbricate.page.edit-editor",
+          "when": "resourceScheme == imbricate-page-markdown",
+          "group": "navigation"
         }
       ],
       "view/title": [
