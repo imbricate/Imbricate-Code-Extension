@@ -12,7 +12,6 @@ import { PageDirectoryItem, renderPageDirectoryItem } from "./directory-item";
 import { PagesFavoriteItem, renderPageFavoriteItem } from "./favorite-item";
 import { PagesOriginItem } from "./origin-item";
 import { PagePageItem } from "./page-item";
-import { PagesRecentItem } from "./recent-item";
 
 export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
 
@@ -64,7 +63,6 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
             const items: vscode.TreeItem[] = [];
 
             items.push(PagesFavoriteItem.create());
-            items.push(PagesRecentItem.create());
 
             const originItems: vscode.TreeItem[] = this._originManager.origins.map((
                 originConfig: ImbricateOriginManagerOriginResponse,
@@ -138,13 +136,6 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
                         page,
                     );
                 }),
-            ];
-        }
-
-        if (element instanceof PagesRecentItem) {
-
-            return [
-                new vscode.TreeItem("Recent"),
             ];
         }
 
