@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.6.0
+
+- Add Pages Favorites
+- Fix known issues
+
 ## 1.5.0
 
 - Add directory support
