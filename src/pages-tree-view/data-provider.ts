@@ -8,9 +8,11 @@ import { IImbricateOrigin, IImbricateOriginCollection, ImbricatePageSnapshot } f
 import { ImbricateOriginManager, ImbricateOriginManagerOriginResponse } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { PagesCollectionItem } from "./collection-item";
-import { PageDirectoryItem } from "./directory-item";
+import { PageDirectoryItem, renderPageDirectoryItem } from "./directory-item";
+import { PagesFavoriteItem } from "./favorite-item";
 import { PagesOriginItem } from "./origin-item";
 import { PagePageItem } from "./page-item";
+import { PagesRecentItem } from "./recent-item";
 
 export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
 
@@ -54,7 +56,12 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
 
         if (typeof element === "undefined") {
 
-            const items: vscode.TreeItem[] = this._originManager.origins.map((
+            const items: vscode.TreeItem[] = [];
+
+            items.push(PagesFavoriteItem.create());
+            items.push(PagesRecentItem.create());
+
+            const originItems: vscode.TreeItem[] = this._originManager.origins.map((
                 originConfig: ImbricateOriginManagerOriginResponse,
             ) => {
 
@@ -62,7 +69,7 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
                     this._originManager.getOrigin(originConfig.originName);
 
                 if (!origin) {
-                    return new vscode.TreeItem("test");
+                    return new vscode.TreeItem("ERROR!");
                 }
 
                 return PagesOriginItem.withOrigin(
@@ -70,6 +77,8 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
                     origin,
                 );
             });
+
+            items.push(...originItems);
 
             if (!this._loaded) {
 
@@ -84,36 +93,7 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
 
         if (element instanceof PageDirectoryItem) {
 
-            const pages: ImbricatePageSnapshot[] =
-                await element.collection.listPages(
-                    element.directories,
-                    false,
-                );
-
-            const directories: string[] =
-                await element.collection.listDirectories(
-                    element.directories,
-                );
-
-            return [
-                ...directories.map((directory: string) => {
-                    return PageDirectoryItem.withDirectories(
-                        element.originName,
-                        element.collection,
-                        [
-                            ...element.directories,
-                            directory,
-                        ],
-                    );
-                }),
-                ...pages.map((page: ImbricatePageSnapshot) => {
-                    return PagePageItem.withSnapshot(
-                        element.originName,
-                        element.collection,
-                        page,
-                    );
-                }),
-            ];
+            return await renderPageDirectoryItem(element);
         }
 
         if (element instanceof PagesOriginItem) {
@@ -153,6 +133,20 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
                         page,
                     );
                 }),
+            ];
+        }
+
+        if (element instanceof PagesRecentItem) {
+
+            return [
+                new vscode.TreeItem("Recent"),
+            ];
+        }
+
+        if (element instanceof PagesFavoriteItem) {
+
+            return [
+                new vscode.TreeItem("Favorite"),
             ];
         }
 

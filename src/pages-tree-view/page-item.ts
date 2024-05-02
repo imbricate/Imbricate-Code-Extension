@@ -41,6 +41,8 @@ export class PagePageItem extends vscode.TreeItem {
             arguments: [this],
         };
 
+        this.tooltip = pageSnapshot.identifier;
+
         this._originName = originName;
         this._collection = collection;
 

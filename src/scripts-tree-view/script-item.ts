@@ -37,6 +37,8 @@ export class ScriptScriptItem extends vscode.TreeItem {
             arguments: [this],
         };
 
+        this.tooltip = scriptSnapshot.identifier;
+
         this._originName = originName;
         this._origin = origin;
 

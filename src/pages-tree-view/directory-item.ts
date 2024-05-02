@@ -4,8 +4,9 @@
  * @description Directory Item
  */
 
-import { IImbricateOriginCollection } from "@imbricate/core";
+import { IImbricateOriginCollection, ImbricatePageSnapshot } from "@imbricate/core";
 import * as vscode from "vscode";
+import { PagePageItem } from "./page-item";
 
 export class PageDirectoryItem extends vscode.TreeItem {
 
@@ -55,3 +56,37 @@ export class PageDirectoryItem extends vscode.TreeItem {
         return this._directories;
     }
 }
+
+export const renderPageDirectoryItem = async (item: PageDirectoryItem): Promise<vscode.TreeItem[]> => {
+
+    const pages: ImbricatePageSnapshot[] =
+        await item.collection.listPages(
+            item.directories,
+            false,
+        );
+
+    const directories: string[] =
+        await item.collection.listDirectories(
+            item.directories,
+        );
+
+    return [
+        ...directories.map((directory: string) => {
+            return PageDirectoryItem.withDirectories(
+                item.originName,
+                item.collection,
+                [
+                    ...item.directories,
+                    directory,
+                ],
+            );
+        }),
+        ...pages.map((page: ImbricatePageSnapshot) => {
+            return PagePageItem.withSnapshot(
+                item.originName,
+                item.collection,
+                page,
+            );
+        }),
+    ];
+};
