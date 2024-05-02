@@ -8,6 +8,7 @@ import { ActiveEditing, ImbricateOriginManager, performImbricateSavingTarget, re
 import { readTextFile } from "@sudoo/io";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
+import { closeEditor } from "../util/close-editor";
 import { showInformationMessage } from "../util/show-message";
 import { concatSavingTargetUrl } from "../virtual-document/concat-target";
 import { onChangeEmitter } from "../virtual-document/on-change-emitter";
@@ -46,6 +47,20 @@ export const registerEditingPerformAllCommand = (
         }
 
         editingDataProvider.refresh();
+
+        for (const visibleEditor of vscode.window.visibleTextEditors) {
+
+            const included: boolean = activeEditings.some((
+                each: ActiveEditing,
+            ) => {
+                return each.path === visibleEditor.document.uri.path;
+            });
+
+            if (included) {
+
+                closeEditor(visibleEditor);
+            }
+        }
     });
 
     return disposable;

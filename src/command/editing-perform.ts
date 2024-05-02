@@ -9,6 +9,7 @@ import { readTextFile } from "@sudoo/io";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
 import { EditingEditingItem } from "../editing-tree-view/editing-item";
+import { closeEditor } from "../util/close-editor";
 import { showInformationMessage } from "../util/show-message";
 import { concatSavingTargetUrl } from "../virtual-document/concat-target";
 import { onChangeEmitter } from "../virtual-document/on-change-emitter";
@@ -18,7 +19,10 @@ export const registerEditingPerformCommand = (
     editingDataProvider: EditingTreeViewDataProvider,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.editing.perform", async (item: EditingEditingItem) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.editing.perform", async (
+            item: EditingEditingItem,
+        ) => {
 
         const activeEditing: ActiveEditing = item.activeEditing;
 
@@ -39,6 +43,13 @@ export const registerEditingPerformCommand = (
         const url = concatSavingTargetUrl(activeEditing.target);
 
         onChangeEmitter.fire(url);
+
+        for (const visibleEditor of vscode.window.visibleTextEditors) {
+            if (visibleEditor.document.uri.path === activeEditing.path) {
+
+                closeEditor(visibleEditor);
+            }
+        }
     });
 
     return disposable;
