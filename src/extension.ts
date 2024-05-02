@@ -3,10 +3,9 @@
  * @description Extension
  */
 
-import { resolveImbricateHomeDirectory } from "@imbricate/local-fundamental";
+import { readOrCreateImbricateConfiguration, resolveImbricateHomeDirectory } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { initializeOriginManager } from "./configuration/initialize";
-import { readCLIConfiguration } from "./configuration/io";
 import { registerOperations } from "./register";
 
 export const activate = async (context: vscode.ExtensionContext) => {
@@ -14,7 +13,7 @@ export const activate = async (context: vscode.ExtensionContext) => {
 	console.log("Imbricate Activities");
 
 	const configurationPath: string = resolveImbricateHomeDirectory();
-	const configuration = await readCLIConfiguration(configurationPath);
+	const configuration = await readOrCreateImbricateConfiguration(configurationPath);
 
 	const originManager = initializeOriginManager(configuration);
 

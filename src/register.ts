@@ -8,12 +8,15 @@ import { IImbricateConfiguration, ImbricateOriginManager } from "@imbricate/loca
 import * as vscode from "vscode";
 import { registerEditingPerformCommand } from "./command/editing-perform";
 import { registerEditingPerformAllCommand } from "./command/editing-perform-all";
+import { registerEditingPerformEditorCommand } from "./command/editing-perform-editor";
 import { registerEditingsRefreshCommand } from "./command/editing-refresh";
 import { registerEditingResumeCommand } from "./command/editing-resume";
+import { registerOriginCreateCommand } from "./command/origin-create";
 import { registerPageCreateCommand } from "./command/page-create";
 import { registerPageCreateDirectoryCommand } from "./command/page-create-directory";
 import { registerPageDeleteCommand } from "./command/page-delete";
 import { registerPageEditCommand } from "./command/page-edit";
+import { registerPageEditEditorCommand } from "./command/page-edit-editor";
 import { registerPagePreviewCommand } from "./command/page-preview";
 import { registerPagesRefreshCommand } from "./command/page-refresh";
 import { registerScriptCreateCommand } from "./command/script-create";
@@ -43,13 +46,11 @@ export const registerOperations = async (
     );
 
     const pagesDataProvider: PagesTreeViewDataProvider = await registerPagesTreeView(
-        configuration,
         originManager,
         context,
     );
 
     const scriptsDataProvider: ScriptsTreeViewDataProvider = await registerScriptsTreeView(
-        configuration,
         originManager,
         context,
     );
@@ -62,6 +63,12 @@ export const registerOperations = async (
         editingsDataProvider,
     );
     context.subscriptions.push(editingPerformAllCommand);
+
+    const editingPerformEditorCommand = registerEditingPerformEditorCommand(
+        originManager,
+        editingsDataProvider,
+    );
+    context.subscriptions.push(editingPerformEditorCommand);
 
     const editingPerformCommand = registerEditingPerformCommand(
         originManager,
@@ -76,6 +83,13 @@ export const registerOperations = async (
 
     const editingResumeDisposable = registerEditingResumeCommand();
     context.subscriptions.push(editingResumeDisposable);
+
+    const originCreateDisposable = registerOriginCreateCommand(
+        pagesDataProvider,
+        scriptsDataProvider,
+        originManager,
+    );
+    context.subscriptions.push(originCreateDisposable);
 
     const pageCreateDisposable = registerPageCreateCommand(
         editingsDataProvider,
@@ -98,6 +112,12 @@ export const registerOperations = async (
         editingsDataProvider,
     );
     context.subscriptions.push(pageEditDisposable);
+
+    const pageEditEditorDisposable = registerPageEditEditorCommand(
+        editingsDataProvider,
+        originManager,
+    );
+    context.subscriptions.push(pageEditEditorDisposable);
 
     const pagePreviewDisposable = registerPagePreviewCommand();
     context.subscriptions.push(pagePreviewDisposable);

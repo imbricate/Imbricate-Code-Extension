@@ -4,18 +4,16 @@
  * @description Register
  */
 
-import { IImbricateConfiguration, ImbricateOriginManager } from "@imbricate/local-fundamental";
+import { ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { ScriptsTreeViewDataProvider } from "./data-provider";
 
 export const registerScriptsTreeView = async (
-    configuration: IImbricateConfiguration,
     originManager: ImbricateOriginManager,
     context: vscode.ExtensionContext,
 ): Promise<ScriptsTreeViewDataProvider> => {
 
     const scriptsDataProvider = await ScriptsTreeViewDataProvider.create(
-        configuration,
         originManager,
     );
 

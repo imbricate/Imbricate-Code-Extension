@@ -5,7 +5,7 @@
  */
 
 import { IImbricateOrigin, ImbricateScriptSnapshot } from "@imbricate/core";
-import { IImbricateConfiguration, IImbricateConfigurationOrigin, ImbricateOriginManager } from "@imbricate/local-fundamental";
+import { ImbricateOriginManager, ImbricateOriginManagerOriginResponse } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { ScriptsOriginItem } from "./origin-item";
 import { ScriptScriptItem } from "./script-item";
@@ -13,18 +13,17 @@ import { ScriptScriptItem } from "./script-item";
 export class ScriptsTreeViewDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
 
     public static async create(
-        configuration: IImbricateConfiguration,
         originManager: ImbricateOriginManager,
     ): Promise<ScriptsTreeViewDataProvider> {
 
         return new ScriptsTreeViewDataProvider(
-            configuration,
             originManager,
         );
     }
 
-    private readonly _configuration: IImbricateConfiguration;
     private readonly _originManager: ImbricateOriginManager;
+
+    private _loaded: boolean = false;
 
     private _onDidChangeTreeData:
         vscode.EventEmitter<vscode.TreeItem | undefined | void> =
@@ -35,11 +34,9 @@ export class ScriptsTreeViewDataProvider implements vscode.TreeDataProvider<vsco
         this._onDidChangeTreeData.event;
 
     private constructor(
-        configuration: IImbricateConfiguration,
         originManager: ImbricateOriginManager,
     ) {
 
-        this._configuration = configuration;
         this._originManager = originManager;
     }
 
@@ -55,8 +52,8 @@ export class ScriptsTreeViewDataProvider implements vscode.TreeDataProvider<vsco
 
         if (typeof element === "undefined") {
 
-            const items: vscode.TreeItem[] = this._configuration.origins.map((
-                originConfig: IImbricateConfigurationOrigin,
+            const items: vscode.TreeItem[] = this._originManager.origins.map((
+                originConfig: ImbricateOriginManagerOriginResponse,
             ) => {
 
                 const origin: IImbricateOrigin | null =
@@ -71,6 +68,14 @@ export class ScriptsTreeViewDataProvider implements vscode.TreeDataProvider<vsco
                     origin,
                 );
             });
+
+            if (!this._loaded) {
+
+                this._loaded = true;
+
+                console.log("Scripts Tree Data Provider Loaded");
+                vscode.commands.executeCommand("setContext", "imbricate.context.scripts.loaded", true);
+            }
 
             return Promise.resolve(items);
         }
