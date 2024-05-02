@@ -1,8 +1,19 @@
 # Change Log
 
-## 1.6.0
+## 1.7.0
 
 - Add Pages Favorites
+- Add Pages tree view tooltips
+- Add context menu editing actions
+- Fix known issues
+
+## 1.6.0
+
+- Add inline editing function for Page previews
+- Add inline saving function for Page editings
+- Add one click saving function for Page editings
+- Improve menu texts
+- Improve page view context menus
 - Fix known issues
 
 ## 1.5.0
