@@ -8,6 +8,7 @@ import * as vscode from "vscode";
 import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
 import { PAGES_FAVORITES_KEY, PagePersistanceData } from "../pages-tree-view/page-data";
 import { PagePageItem } from "../pages-tree-view/page-item";
+import { showInformationMessage } from "../util/show-message";
 
 export const registerPageFavoriteCommand = (
     pagesDataProvider: PagesTreeViewDataProvider,
@@ -31,6 +32,17 @@ export const registerPageFavoriteCommand = (
                 [persistanceData],
             );
             return;
+        }
+
+        for (const current of currentFavorites) {
+
+            showInformationMessage("Already favorited");
+
+            if (current.originName === persistanceData.originName
+                && current.collectionName === persistanceData.collectionName
+                && current.pageSnapshot.identifier === persistanceData.pageSnapshot.identifier) {
+                return;
+            }
         }
 
         const newFavorites: PagePersistanceData[] = [

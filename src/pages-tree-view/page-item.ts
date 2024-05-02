@@ -49,12 +49,12 @@ export class PagePageItem extends vscode.TreeItem {
             arguments: [this],
         };
 
-        this.tooltip = pageSnapshot.identifier;
-
         this._originName = originName;
         this._collection = collection;
 
         this._pageSnapshot = pageSnapshot;
+
+        this.tooltip = this._buildTooltip();
     }
 
     public get originName(): string {
@@ -67,5 +67,14 @@ export class PagePageItem extends vscode.TreeItem {
 
     public get pageSnapshot(): ImbricatePageSnapshot {
         return this._pageSnapshot;
+    }
+
+    private _buildTooltip(): string {
+
+        return this._originName + ":" + this._collection.collectionName
+            + "\n"
+            + this._pageSnapshot.directories.join("/") + "/" + this._pageSnapshot.title
+            + "\n"
+            + this._pageSnapshot.identifier;
     }
 }
