@@ -25,7 +25,8 @@ export const registerScriptCreateCommand = (
         if (typeof item === "undefined") {
 
             const targetOriginName: string | undefined = await vscode.window.showInputBox({
-                prompt: "Origin Name",
+                title: "Create Script",
+                prompt: "Origin Name...",
             });
 
             if (!targetOriginName) {
@@ -58,7 +59,8 @@ export const registerScriptCreateCommand = (
         }
 
         const scriptTitle: string | undefined = await vscode.window.showInputBox({
-            prompt: "Script Title",
+            title: "Create Script",
+            prompt: "Script Title...",
         });
 
         if (!scriptTitle) {

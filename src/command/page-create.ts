@@ -42,7 +42,8 @@ export const registerPageCreateCommand = (
         }
 
         const pageTitle: string | undefined = await vscode.window.showInputBox({
-            prompt: "Page Title",
+            title: "Create Page",
+            prompt: "Page Title...",
         });
 
         if (!pageTitle) {

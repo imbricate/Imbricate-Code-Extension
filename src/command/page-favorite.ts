@@ -15,12 +15,15 @@ export const registerPageFavoriteCommand = (
     context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.page.favorite", async (item: PagePageItem) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.page.favorite", async (
+            pageItem: PagePageItem,
+        ) => {
 
         const persistanceData: PagePersistanceData = {
-            originName: item.originName,
-            collectionName: item.collection.collectionName,
-            pageSnapshot: item.pageSnapshot,
+            originName: pageItem.originName,
+            collectionName: pageItem.collection.collectionName,
+            pageSnapshot: pageItem.pageSnapshot,
         };
 
         const currentFavorites: PagePersistanceData[] | undefined =
@@ -36,11 +39,12 @@ export const registerPageFavoriteCommand = (
 
         for (const current of currentFavorites) {
 
-            showInformationMessage("Already favorited");
-
             if (current.originName === persistanceData.originName
                 && current.collectionName === persistanceData.collectionName
                 && current.pageSnapshot.identifier === persistanceData.pageSnapshot.identifier) {
+
+                showInformationMessage("Already favorited");
+
                 return;
             }
         }
