@@ -6,6 +6,7 @@
 
 import { IImbricateConfiguration, ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
+import { registerCollectionRenameCommand } from "./command/collection-rename";
 import { registerEditingPerformCommand } from "./command/editing-perform";
 import { registerEditingPerformAllCommand } from "./command/editing-perform-all";
 import { registerEditingPerformEditorCommand } from "./command/editing-perform-editor";
@@ -20,6 +21,8 @@ import { registerPageEditEditorCommand } from "./command/page-edit-editor";
 import { registerPageFavoriteCommand } from "./command/page-favorite";
 import { registerPagePreviewCommand } from "./command/page-preview";
 import { registerPagesRefreshCommand } from "./command/page-refresh";
+import { registerPageRetitleCommand } from "./command/page-retitle";
+import { registerPageUnfavoriteCommand } from "./command/page-unfavorite";
 import { registerScriptCreateCommand } from "./command/script-create";
 import { registerScriptDeleteCommand } from "./command/script-delete";
 import { registerScriptEditCommand } from "./command/script-edit";
@@ -34,7 +37,6 @@ import { ScriptsTreeViewDataProvider } from "./scripts-tree-view/data-provider";
 import { registerScriptsTreeView } from "./scripts-tree-view/register";
 import { registerPageMarkdownContentProvider } from "./virtual-document/page-markdown/page-markdown";
 import { registerScriptJavascriptContentProvider } from "./virtual-document/script-javascript/script-javascript";
-import { registerPageUnfavoriteCommand } from "./command/page-unfavorite";
 
 export const registerOperations = async (
     configuration: IImbricateConfiguration,
@@ -59,6 +61,12 @@ export const registerOperations = async (
 
     registerPageMarkdownContentProvider(originManager, context);
     registerScriptJavascriptContentProvider(originManager, context);
+
+    const collectionRenameCommand = registerCollectionRenameCommand(
+        pagesDataProvider,
+        originManager,
+    );
+    context.subscriptions.push(collectionRenameCommand);
 
     const editingPerformAllCommand = registerEditingPerformAllCommand(
         originManager,
@@ -134,6 +142,11 @@ export const registerOperations = async (
         pagesDataProvider,
     );
     context.subscriptions.push(pagesRefreshDisposable);
+
+    const pageRetitleDisposable = registerPageRetitleCommand(
+        pagesDataProvider,
+    );
+    context.subscriptions.push(pageRetitleDisposable);
 
     const pageUnfavoriteDisposable = registerPageUnfavoriteCommand(
         pagesDataProvider,

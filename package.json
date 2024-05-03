@@ -343,7 +343,8 @@
       "view/item/context": [
         {
           "command": "imbricate.collection.rename",
-          "when": "view == imbricate-pages && viewItem == page-collection-item"
+          "when": "view == imbricate-pages && viewItem == page-collection-item",
+          "group": "collection-context-2@1"
         },
         {
           "command": "imbricate.editing.perform",
@@ -353,12 +354,12 @@
         {
           "command": "imbricate.page.create",
           "when": "view == imbricate-pages && viewItem == page-collection-item",
-          "group": "collection-context@1"
+          "group": "collection-context-1@1"
         },
         {
           "command": "imbricate.page.create.directory",
           "when": "view == imbricate-pages && viewItem == page-collection-item",
-          "group": "collection-context@2"
+          "group": "collection-context-1@2"
         },
         {
           "command": "imbricate.page.create",
@@ -373,12 +374,12 @@
         {
           "command": "imbricate.page.delete",
           "when": "view == imbricate-pages && viewItem =~ /^page-item/",
-          "group": "page-context@3"
+          "group": "page-context-3@1"
         },
         {
           "command": "imbricate.page.edit",
           "when": "view == imbricate-pages && viewItem =~ /^page-item/",
-          "group": "page-context@1"
+          "group": "page-context-1@1"
         },
         {
           "command": "imbricate.page.edit",
@@ -386,14 +387,19 @@
           "group": "inline"
         },
         {
+          "command": "imbricate.page.retitle",
+          "when": "view == imbricate-pages && viewItem =~ /^page-item/",
+          "group": "page-context-1@2"
+        },
+        {
           "command": "imbricate.page.favorite",
           "when": "view == imbricate-pages && viewItem == page-item",
-          "group": "page-context@2"
+          "group": "page-context-2@1"
         },
         {
           "command": "imbricate.page.unfavorite",
           "when": "view == imbricate-pages && viewItem == page-item-favorite",
-          "group": "page-context@2"
+          "group": "page-context-2@1"
         },
         {
           "command": "imbricate.script.create",
