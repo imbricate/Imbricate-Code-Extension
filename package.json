@@ -377,8 +377,18 @@
         },
         {
           "command": "imbricate.collection.rename",
-          "when": "view == imbricate-pages && viewItem == page-collection-item",
+          "when": "view == imbricate-pages && viewItem =~ /^page-collection-item/",
           "group": "collection-context-2@1"
+        },
+        {
+          "command": "imbricate.collection.search.include",
+          "when": "view == imbricate-pages && viewItem == page-collection-item-exclude",
+          "group": "collection-context-3@1"
+        },
+        {
+          "command": "imbricate.collection.search.exclude",
+          "when": "view == imbricate-pages && viewItem == page-collection-item-include",
+          "group": "collection-context-3@1"
         },
         {
           "command": "imbricate.editing.perform",

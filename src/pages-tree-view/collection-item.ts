@@ -29,7 +29,14 @@ export class PagesCollectionItem extends vscode.TreeItem {
         collection: IImbricateOriginCollection,
     ) {
         super(collection.collectionName, 1);
-        this.contextValue = "page-collection-item";
+
+        let contextValue = "page-collection-item";
+        if (collection.includeInSearch) {
+            contextValue = "page-collection-item-include";
+        } else {
+            contextValue = "page-collection-item-exclude";
+        }
+        this.contextValue = contextValue;
 
         this.iconPath = new vscode.ThemeIcon("default-view-icon");
 

@@ -75,8 +75,11 @@ export const registerScriptCreateCommand = (
             return;
         }
 
+        const initialScript: string = "";
+
         const script: IImbricateScript = await origin.createScript(
             scriptTitle,
+            initialScript,
         );
 
         const savingTarget = createScriptSavingTarget(
@@ -84,12 +87,10 @@ export const registerScriptCreateCommand = (
             script.identifier,
         );
 
-        const content: string = "";
-
         const activeEditing: ActiveEditing = await establishImbricateSavingTarget(
             savingTarget,
             `${script.scriptName}.js`,
-            content,
+            initialScript,
         );
 
         const textDocument: vscode.TextDocument =
