@@ -63,7 +63,7 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
         if (typeof element === "undefined") {
 
             const enableRecent: boolean =
-                getConfiguration(CONFIG_KEY.PAGE_RECENT_ENABLE, true);
+                getConfiguration(CONFIG_KEY.PAGE_RECENT_ENABLE);
 
             const items: vscode.TreeItem[] = [];
 

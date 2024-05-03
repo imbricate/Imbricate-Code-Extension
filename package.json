@@ -66,10 +66,12 @@
       "properties": {
         "imbricate.page.recent.enable": {
           "type": "boolean",
+          "default": true,
           "description": "Enable recent pages"
         },
         "imbricate.page.recent.maximum": {
           "type": "number",
+          "default": 10,
           "description": "Maximum number of recent pages"
         }
       }
@@ -410,12 +412,12 @@
         },
         {
           "command": "imbricate.page.create",
-          "when": "view == imbricate-pages && viewItem == page-collection-item",
+          "when": "view == imbricate-pages && viewItem =~ /^page-collection-item/",
           "group": "collection-context-1@1"
         },
         {
           "command": "imbricate.page.create.directory",
-          "when": "view == imbricate-pages && viewItem == page-collection-item",
+          "when": "view == imbricate-pages && viewItem =~ /^page-collection-item/",
           "group": "collection-context-1@2"
         },
         {

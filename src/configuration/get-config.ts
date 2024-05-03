@@ -8,23 +8,22 @@ import * as vscode from "vscode";
 
 export enum CONFIG_KEY {
 
-    PAGE_RECENT_ENABLE = "imbricate.page.recent.enable",
-    PAGE_RECENT_MAXIMUM = "imbricate.page.recent.maximum",
+    PAGE_RECENT_ENABLE = "page.recent.enable",
+    PAGE_RECENT_MAXIMUM = "page.recent.maximum",
 }
 
 export const getConfiguration = <T>(
     configKey: CONFIG_KEY,
-    defaultValue: T,
 ): T => {
 
     const configuration: vscode.WorkspaceConfiguration =
-        vscode.workspace.getConfiguration("imbricateQuill");
+        vscode.workspace.getConfiguration("imbricate");
 
     const result: T | undefined = configuration.get(configKey);
 
-    if (typeof result !== "undefined") {
-        return result;
+    if (typeof result === "undefined") {
+        throw new Error(`Config ${configKey} not found`);
     }
 
-    return defaultValue;
+    return result;
 };

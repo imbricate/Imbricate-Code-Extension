@@ -124,6 +124,7 @@ export const registerOperations = async (
     const pageCreateDisposable = registerPageCreateCommand(
         editingsDataProvider,
         pagesDataProvider,
+        context,
     );
     context.subscriptions.push(pageCreateDisposable);
 

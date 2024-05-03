@@ -11,11 +11,14 @@ import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider"
 import { PagesCollectionItem } from "../pages-tree-view/collection-item";
 import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
 import { PageDirectoryItem } from "../pages-tree-view/directory-item";
+import { PagePersistanceData } from "../pages-tree-view/page-data";
+import { recordRecentPage } from "../util/recent";
 import { showErrorMessage } from "../util/show-message";
 
 export const registerPageCreateCommand = (
     editingsDataProvider: EditingTreeViewDataProvider,
     pagesDataProvider: PagesTreeViewDataProvider,
+    context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 
     const disposable = vscode.commands.registerCommand("imbricate.page.create", async (item: PagesCollectionItem | PageDirectoryItem) => {
@@ -72,7 +75,6 @@ export const registerPageCreateCommand = (
             page.identifier,
         );
 
-
         const activeEditing: ActiveEditing = await establishImbricateSavingTarget(
             savingTarget,
             `${page.title}.md`,
@@ -83,6 +85,23 @@ export const registerPageCreateCommand = (
             await vscode.workspace.openTextDocument(activeEditing.path);
 
         await vscode.window.showTextDocument(textDocument);
+
+        const persistanceData: PagePersistanceData = {
+            originName: item.originName,
+            collectionName: item.collection.collectionName,
+            pageSnapshot: {
+                identifier: page.identifier,
+                title: page.title,
+                directories: directories,
+            },
+        };
+
+        await recordRecentPage(
+            persistanceData,
+            pagesDataProvider,
+            context,
+            false,
+        );
 
         pagesDataProvider.refresh();
         editingsDataProvider.refresh();

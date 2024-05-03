@@ -55,7 +55,7 @@ export const registerPageEditCommand = (
             pageSnapshot: item.pageSnapshot,
         };
 
-        recordRecentPage(
+        await recordRecentPage(
             persistanceData,
             pageDataProvider,
             context,

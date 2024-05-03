@@ -13,6 +13,7 @@ export const recordRecentPage = async (
     persistanceData: PagePersistanceData,
     pageDataProvider: PagesTreeViewDataProvider,
     context: vscode.ExtensionContext,
+    refresh: boolean = true,
 ): Promise<void> => {
 
     const currentRecents: PagePersistanceData[] | undefined =
@@ -23,7 +24,8 @@ export const recordRecentPage = async (
         return;
     }
 
-    const maximumRecentPages = getConfiguration(CONFIG_KEY.PAGE_RECENT_MAXIMUM, 10);
+    const maximumRecentPages: number =
+        getConfiguration(CONFIG_KEY.PAGE_RECENT_MAXIMUM);
 
     const filteredItems: PagePersistanceData[] = currentRecents.filter((current: PagePersistanceData) => {
         return current.originName !== persistanceData.originName
@@ -49,6 +51,8 @@ export const recordRecentPage = async (
 
     await context.globalState.update(PAGES_RECENTS_KEY, newRecentItems);
 
-    pageDataProvider.refresh();
+    if (refresh) {
+        pageDataProvider.refresh();
+    }
     return;
 };
