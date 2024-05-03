@@ -32,6 +32,16 @@ export const registerCollectionRenameCommand = (
         const newCollectionName: string | undefined = await vscode.window.showInputBox({
             title: "Rename Collection",
             prompt: `Renaming Collection ${collectionItem.collection.collectionName}...`,
+            value: collectionItem.collection.collectionName,
+            valueSelection: [0, collectionItem.collection.collectionName.length],
+            validateInput: (value: string) => {
+
+                if (value === collectionItem.collection.collectionName) {
+                    return "New collection name should not be the same as the old one";
+                }
+
+                return undefined;
+            },
             placeHolder: "New Collection Name...",
         });
 

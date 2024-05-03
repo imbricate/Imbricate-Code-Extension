@@ -44,14 +44,17 @@ export const registerPageCreateCommand = (
         const pageTitle: string | undefined = await vscode.window.showInputBox({
             title: "Create Page",
             prompt: "Page Title...",
+            validateInput: (value: string) => {
+
+                if (!validateFilename(value)) {
+                    return "Invalid page title";
+                }
+
+                return undefined;
+            },
         });
 
         if (!pageTitle) {
-            return;
-        }
-
-        if (!validateFilename(pageTitle)) {
-            showErrorMessage(`Invalid page title: ${pageTitle}`);
             return;
         }
 

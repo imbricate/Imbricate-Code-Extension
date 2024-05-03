@@ -4,7 +4,7 @@
  * @description Page Retitle
  */
 
-import { checkSavingTargetActive, createPageSavingTarget } from "@imbricate/local-fundamental";
+import { checkSavingTargetActive, createPageSavingTarget, validateFilename } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
 import { PAGES_FAVORITES_KEY, PagePersistanceData } from "../pages-tree-view/page-data";
@@ -37,6 +37,20 @@ export const registerPageRetitleCommand = (
         const newTitle: string | undefined = await vscode.window.showInputBox({
             title: "Retitle Page",
             prompt: `Retitling Page ${pageItem.pageSnapshot.title}...`,
+            value: pageItem.pageSnapshot.title,
+            valueSelection: [0, pageItem.pageSnapshot.title.length],
+            validateInput: (value: string) => {
+
+                if (value === pageItem.pageSnapshot.title) {
+                    return "New page title should not be the same as the old one";
+                }
+
+                if (!validateFilename(value)) {
+                    return "Invalid page title";
+                }
+
+                return undefined;
+            },
             placeHolder: "New Page Title...",
         });
 

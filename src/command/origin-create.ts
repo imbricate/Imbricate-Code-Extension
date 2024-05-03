@@ -24,6 +24,13 @@ export const registerOriginCreateCommand = (
             title: "Create File System Origin",
             prompt: "Origin Name...",
             placeHolder: "The name of the origin...",
+            validateInput: (value: string) => {
+
+                if (value.length <= 2) {
+                    return "Origin name must be longer than 2 characters";
+                }
+                return undefined;
+            },
         });
 
         if (typeof originName === "undefined") {

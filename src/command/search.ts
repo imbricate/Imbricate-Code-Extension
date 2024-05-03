@@ -21,7 +21,16 @@ export const registerSearchCommand = (
     const disposable = vscode.commands.registerCommand("imbricate.search", async () => {
 
         const prompt: string | undefined = await vscode.window.showInputBox({
+            title: "Search",
             prompt: "Search for...",
+            validateInput: (value: string) => {
+
+                if (value.trim().length === 0) {
+                    return "Search value should not be empty";
+                }
+
+                return undefined;
+            },
         });
 
         if (!prompt) {

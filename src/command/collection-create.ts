@@ -21,6 +21,14 @@ export const registerCollectionCreateCommand = (
             title: "Create Collection",
             prompt: "New Collection Name...",
             placeHolder: "Collection Name...",
+            validateInput: (value: string) => {
+
+                if (value.length < 2) {
+                    return "Collection name must be longer than or equal 2 characters";
+                }
+
+                return undefined;
+            },
         });
 
         if (!collectionName) {

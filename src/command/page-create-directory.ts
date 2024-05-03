@@ -44,6 +44,14 @@ export const registerPageCreateDirectoryCommand = (
         const pageDirectories: string | undefined = await vscode.window.showInputBox({
             prompt: `Page Directories, split by /, under: "${directories.join("/")}"`,
             placeHolder: "split by /",
+            validateInput: (value: string) => {
+
+                if (value.trim().length <= 0) {
+                    return "Directories should not be empty";
+                }
+
+                return undefined;
+            },
         });
 
         if (!pageDirectories) {
@@ -60,7 +68,16 @@ export const registerPageCreateDirectoryCommand = (
         ];
 
         const pageTitle: string | undefined = await vscode.window.showInputBox({
-            prompt: "Page Title",
+            title: "Create Page",
+            prompt: "Page Title...",
+            validateInput: (value: string) => {
+
+                if (!validateFilename(value)) {
+                    return "Invalid page title";
+                }
+
+                return undefined;
+            },
         });
 
         if (!pageTitle) {

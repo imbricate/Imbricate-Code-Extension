@@ -5,7 +5,7 @@
  */
 
 import { IImbricateOrigin, IImbricateScript } from "@imbricate/core";
-import { ActiveEditing, ImbricateOriginManager, createScriptSavingTarget, establishImbricateSavingTarget } from "@imbricate/local-fundamental";
+import { ActiveEditing, ImbricateOriginManager, createScriptSavingTarget, establishImbricateSavingTarget, validateFilename } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
 import { ScriptsTreeViewDataProvider } from "../scripts-tree-view/data-provider";
@@ -61,6 +61,14 @@ export const registerScriptCreateCommand = (
         const scriptTitle: string | undefined = await vscode.window.showInputBox({
             title: "Create Script",
             prompt: "Script Title...",
+            validateInput: (value: string) => {
+
+                if (validateFilename(value)) {
+                    return "Script title should not be empty";
+                }
+
+                return undefined;
+            },
         });
 
         if (!scriptTitle) {
