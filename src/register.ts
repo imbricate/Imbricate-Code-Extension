@@ -6,6 +6,7 @@
 
 import { IImbricateConfiguration, ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
+import { registerCollectionCreateCommand } from "./command/collection-create";
 import { registerCollectionRenameCommand } from "./command/collection-rename";
 import { registerEditingPerformCommand } from "./command/editing-perform";
 import { registerEditingPerformAllCommand } from "./command/editing-perform-all";
@@ -61,6 +62,11 @@ export const registerOperations = async (
 
     registerPageMarkdownContentProvider(originManager, context);
     registerScriptJavascriptContentProvider(originManager, context);
+
+    const collectionCreateCommand = registerCollectionCreateCommand(
+        pagesDataProvider,
+    );
+    context.subscriptions.push(collectionCreateCommand);
 
     const collectionRenameCommand = registerCollectionRenameCommand(
         pagesDataProvider,

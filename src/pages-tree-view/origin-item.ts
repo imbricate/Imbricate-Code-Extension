@@ -26,6 +26,7 @@ export class PagesOriginItem extends vscode.TreeItem {
     ) {
 
         super(originName, 1);
+        this.contextValue = "page-origin-item";
 
         this.iconPath = new vscode.ThemeIcon("globe");
 

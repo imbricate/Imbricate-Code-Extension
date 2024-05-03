@@ -106,6 +106,12 @@
     ],
     "commands": [
       {
+        "command": "imbricate.collection.create",
+        "title": "Create Collection...",
+        "category": "Imbricate",
+        "icon": "$(add)"
+      },
+      {
         "command": "imbricate.collection.rename",
         "title": "Rename Collection...",
         "category": "Imbricate",
@@ -250,6 +256,10 @@
     "menus": {
       "commandPalette": [
         {
+          "command": "imbricate.collection.create",
+          "when": "false"
+        },
+        {
           "command": "imbricate.collection.rename",
           "when": "false"
         },
@@ -341,6 +351,10 @@
         }
       ],
       "view/item/context": [
+        {
+          "command": "imbricate.collection.create",
+          "when": "view == imbricate-pages && viewItem == page-origin-item"
+        },
         {
           "command": "imbricate.collection.rename",
           "when": "view == imbricate-pages && viewItem == page-collection-item",
