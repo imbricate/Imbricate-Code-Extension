@@ -1,6 +1,6 @@
 {
   "name": "imbricate",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "displayName": "Imbricate",
   "icon": "images/imbricate.png",
   "author": "WMXPY",
@@ -106,6 +106,12 @@
     ],
     "commands": [
       {
+        "command": "imbricate.collection.rename",
+        "title": "Rename Collection...",
+        "category": "Imbricate",
+        "icon": "$(edit)"
+      },
+      {
         "command": "imbricate.editings.perform-all",
         "title": "Perform All Imbricate Editings",
         "category": "Imbricate",
@@ -192,6 +198,12 @@
         "icon": "$(refresh)"
       },
       {
+        "command": "imbricate.page.retitle",
+        "title": "Retitle Page...",
+        "category": "Imbricate",
+        "icon": "$(edit)"
+      },
+      {
         "command": "imbricate.page.unfavorite",
         "title": "Unmark Page as Favorite",
         "category": "Imbricate",
@@ -238,6 +250,10 @@
     "menus": {
       "commandPalette": [
         {
+          "command": "imbricate.collection.rename",
+          "when": "false"
+        },
+        {
           "command": "imbricate.editing.resume",
           "when": "false"
         },
@@ -267,6 +283,10 @@
         },
         {
           "command": "imbricate.page.preview",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.page.retitle",
           "when": "false"
         },
         {
@@ -321,6 +341,10 @@
         }
       ],
       "view/item/context": [
+        {
+          "command": "imbricate.collection.rename",
+          "when": "view == imbricate-pages && viewItem == page-collection-item"
+        },
         {
           "command": "imbricate.editing.perform",
           "when": "view == imbricate-editings && viewItem == editing-item",
