@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.7.1
+
+- Fix "Already Favorited" message incorrectly shown issue
+
 ## 1.7.0
 
 - Add Pages Favorites
