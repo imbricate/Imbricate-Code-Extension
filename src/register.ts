@@ -8,6 +8,8 @@ import { IImbricateConfiguration, ImbricateOriginManager } from "@imbricate/loca
 import * as vscode from "vscode";
 import { registerCollectionCreateCommand } from "./command/collection-create";
 import { registerCollectionRenameCommand } from "./command/collection-rename";
+import { registerCollectionSearchExcludeCommand } from "./command/collection-search-exclude";
+import { registerCollectionSearchIncludeCommand } from "./command/collection-search-include";
 import { registerEditingPerformCommand } from "./command/editing-perform";
 import { registerEditingPerformAllCommand } from "./command/editing-perform-all";
 import { registerEditingPerformEditorCommand } from "./command/editing-perform-editor";
@@ -73,6 +75,18 @@ export const registerOperations = async (
         originManager,
     );
     context.subscriptions.push(collectionRenameCommand);
+
+    const collectionSearchIncludeCommand = registerCollectionSearchIncludeCommand(
+        pagesDataProvider,
+        originManager,
+    );
+    context.subscriptions.push(collectionSearchIncludeCommand);
+
+    const collectionSearchExcludeCommand = registerCollectionSearchExcludeCommand(
+        pagesDataProvider,
+        originManager,
+    );
+    context.subscriptions.push(collectionSearchExcludeCommand);
 
     const editingPerformAllCommand = registerEditingPerformAllCommand(
         originManager,

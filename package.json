@@ -118,6 +118,18 @@
         "icon": "$(edit)"
       },
       {
+        "command": "imbricate.collection.search.include",
+        "title": "Include Collection in Search...",
+        "category": "Imbricate",
+        "icon": "$(search)"
+      },
+      {
+        "command": "imbricate.collection.search.exclude",
+        "title": "Exclude Collection in Search...",
+        "category": "Imbricate",
+        "icon": "$(search-stop)"
+      },
+      {
         "command": "imbricate.editings.perform-all",
         "title": "Perform All Imbricate Editings",
         "category": "Imbricate",
@@ -261,6 +273,14 @@
         },
         {
           "command": "imbricate.collection.rename",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.collection.search.include",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.collection.search.exclude",
           "when": "false"
         },
         {
