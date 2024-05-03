@@ -140,6 +140,8 @@ export const registerOperations = async (
 
     const pageEditDisposable = registerPageEditCommand(
         editingsDataProvider,
+        pagesDataProvider,
+        context,
     );
     context.subscriptions.push(pageEditDisposable);
 
@@ -155,7 +157,10 @@ export const registerOperations = async (
     );
     context.subscriptions.push(pageFavoriteDisposable);
 
-    const pagePreviewDisposable = registerPagePreviewCommand();
+    const pagePreviewDisposable = registerPagePreviewCommand(
+        pagesDataProvider,
+        context,
+    );
     context.subscriptions.push(pagePreviewDisposable);
 
     const pagesRefreshDisposable = registerPagesRefreshCommand(

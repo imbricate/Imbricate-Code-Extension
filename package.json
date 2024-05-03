@@ -61,6 +61,19 @@
     "typescript": "^5.4.5"
   },
   "contributes": {
+    "configuration": {
+      "title": "Imbricate",
+      "properties": {
+        "imbricate.page.recent.enable": {
+          "type": "boolean",
+          "description": "Enable recent pages"
+        },
+        "imbricate.page.recent.maximum": {
+          "type": "number",
+          "description": "Maximum number of recent pages"
+        }
+      }
+    },
     "viewsContainers": {
       "activitybar": [
         {
@@ -119,13 +132,13 @@
       },
       {
         "command": "imbricate.collection.search.include",
-        "title": "Include Collection in Search...",
+        "title": "Include Collection in Search",
         "category": "Imbricate",
         "icon": "$(search)"
       },
       {
         "command": "imbricate.collection.search.exclude",
-        "title": "Exclude Collection in Search...",
+        "title": "Exclude Collection in Search",
         "category": "Imbricate",
         "icon": "$(search-stop)"
       },

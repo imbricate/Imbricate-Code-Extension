@@ -7,11 +7,13 @@
 import { IImbricateOrigin, IImbricateOriginCollection, ImbricatePageSnapshot } from "@imbricate/core";
 import { ImbricateOriginManager, ImbricateOriginManagerOriginResponse } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
+import { CONFIG_KEY, getConfiguration } from "../configuration/get-config";
 import { PagesCollectionItem } from "./collection-item";
 import { PageDirectoryItem, renderPageDirectoryItem } from "./directory-item";
 import { PagesFavoriteItem, renderPageFavoriteItem } from "./favorite-item";
 import { PagesOriginItem } from "./origin-item";
 import { PagePageItem } from "./page-item";
+import { PagesRecentItem, renderPageRecentItem } from "./recent-item";
 
 export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
 
@@ -60,9 +62,16 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
 
         if (typeof element === "undefined") {
 
+            const enableRecent: boolean =
+                getConfiguration(CONFIG_KEY.PAGE_RECENT_ENABLE, true);
+
             const items: vscode.TreeItem[] = [];
 
             items.push(PagesFavoriteItem.create());
+
+            if (enableRecent) {
+                items.push(PagesRecentItem.create());
+            }
 
             const originItems: vscode.TreeItem[] = this._originManager.origins.map((
                 originConfig: ImbricateOriginManagerOriginResponse,
@@ -142,6 +151,14 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
         if (element instanceof PagesFavoriteItem) {
 
             return await renderPageFavoriteItem(
+                this._originManager,
+                this._context,
+            );
+        }
+
+        if (element instanceof PagesRecentItem) {
+
+            return await renderPageRecentItem(
                 this._originManager,
                 this._context,
             );

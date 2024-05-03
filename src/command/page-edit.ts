@@ -8,11 +8,16 @@ import { IImbricatePage } from "@imbricate/core";
 import { ActiveEditing, createPageSavingTarget, establishImbricateSavingTarget } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
+import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
+import { PagePersistanceData } from "../pages-tree-view/page-data";
 import { PagePageItem } from "../pages-tree-view/page-item";
+import { recordRecentPage } from "../util/recent";
 import { showErrorMessage } from "../util/show-message";
 
 export const registerPageEditCommand = (
     editingsDataProvider: EditingTreeViewDataProvider,
+    pageDataProvider: PagesTreeViewDataProvider,
+    context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 
     const disposable = vscode.commands.registerCommand("imbricate.page.edit", async (item: PagePageItem) => {
@@ -43,6 +48,18 @@ export const registerPageEditCommand = (
             await vscode.workspace.openTextDocument(activeEditing.path);
 
         await vscode.window.showTextDocument(textDocument);
+
+        const persistanceData: PagePersistanceData = {
+            originName: item.originName,
+            collectionName: item.collection.collectionName,
+            pageSnapshot: item.pageSnapshot,
+        };
+
+        recordRecentPage(
+            persistanceData,
+            pageDataProvider,
+            context,
+        );
 
         editingsDataProvider.refresh();
     });

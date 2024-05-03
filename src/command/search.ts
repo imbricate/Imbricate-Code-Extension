@@ -44,7 +44,11 @@ export const registerSearchCommand = (
 
             const collections: IImbricateOriginCollection[] = await origin.origin.listCollections();
 
-            for (const collection of collections) {
+            collections: for (const collection of collections) {
+
+                if (!collection.includeInSearch) {
+                    continue collections;
+                }
 
                 const pageResults: ImbricatePageSearchResult[] =
                     await collection.searchPages(prompt, {
