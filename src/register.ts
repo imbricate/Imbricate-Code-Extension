@@ -145,6 +145,7 @@ export const registerOperations = async (
 
     const pageRetitleDisposable = registerPageRetitleCommand(
         pagesDataProvider,
+        context,
     );
     context.subscriptions.push(pageRetitleDisposable);
 
