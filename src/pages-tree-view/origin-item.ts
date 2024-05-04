@@ -32,6 +32,13 @@ export class PagesOriginItem extends vscode.TreeItem {
 
         this._originName = originName;
         this._origin = origin;
+
+        const tooltipLines: string[] = [
+            `Origin: ${this._originName}`,
+            `Type: ${this._origin.metadata.type}`,
+        ];
+
+        this.tooltip = tooltipLines.join("\n");
     }
 
     public get originName(): string {

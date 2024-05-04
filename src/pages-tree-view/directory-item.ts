@@ -42,6 +42,8 @@ export class PageDirectoryItem extends vscode.TreeItem {
         this._collection = collection;
 
         this._directories = directories;
+
+        this.tooltip = this._buildTooltip();
     }
 
     public get originName(): string {
@@ -54,6 +56,13 @@ export class PageDirectoryItem extends vscode.TreeItem {
 
     public get directories(): string[] {
         return this._directories;
+    }
+
+    private _buildTooltip(): string {
+
+        return this._originName + " - " + this._collection.collectionName
+            + "\n"
+            + this._directories.join("/");
     }
 }
 

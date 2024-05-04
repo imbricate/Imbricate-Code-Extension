@@ -22,6 +22,8 @@ export class PagesFavoriteItem extends vscode.TreeItem {
         super("Favorites", 1);
 
         this.iconPath = new vscode.ThemeIcon("star");
+
+        this.tooltip = "Favorite Pages";
     }
 }
 

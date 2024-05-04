@@ -23,6 +23,8 @@ export class PagesRecentItem extends vscode.TreeItem {
         this.contextValue = "page-recent";
 
         this.iconPath = new vscode.ThemeIcon("clock");
+
+        this.tooltip = "Recent Pages";
     }
 }
 
