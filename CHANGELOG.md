@@ -1,5 +1,32 @@
 # Change Log
 
+## 1.9.2
+
+- Add Documents
+
+## 1.9.1
+
+- Improve Recent Performance
+- Fix Page Deletion Issue
+- Fix Known Issues
+
+## 1.9.0
+
+- Add Page Recent Features
+- Add Recent enabling configuration
+- Add Recent maximum configuration
+- Add Collection search limitation feature
+- Improve Search performance
+- Fix Known Issues
+
+## 1.8.0
+
+- Add Collection Creation Feature
+- Add Collection Rename Feature
+- Add Page Retitle Feature
+- Upgrade Imbricate Core and Origin Versions
+- Fix Known Issues
+
 ## 1.7.1
 
 - Fix "Already Favorited" message incorrectly shown issue
