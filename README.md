@@ -1,4 +1,4 @@
-# Imbricate-Code-Extension
+# Imbricate
 
 ```
 ┌───────┐
@@ -10,6 +10,14 @@
 
 Yes to accountable notes, no to external hosting. Free, for everyone.
 
+[Github](https://github.com/imbricate/Imbricate-Code-Extension)
+
 ## Documentation
 
 Visit [imbricate.io](https://imbricate.io/).
+
+## Quick Start
+
+To get started, install the extension from the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=imbricate.imbricate).
+
+Open the Imbricate View in the sidebar to get started.
