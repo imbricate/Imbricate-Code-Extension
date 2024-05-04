@@ -26,6 +26,8 @@ import { registerPagePreviewCommand } from "./command/page-preview";
 import { registerPagesRefreshCommand } from "./command/page-refresh";
 import { registerPageRetitleCommand } from "./command/page-retitle";
 import { registerPageUnfavoriteCommand } from "./command/page-unfavorite";
+import { registerPageRecentClearCommand } from "./command/recent-clear";
+import { registerPageRecentRemoveCommand } from "./command/recent-remove";
 import { registerScriptCreateCommand } from "./command/script-create";
 import { registerScriptDeleteCommand } from "./command/script-delete";
 import { registerScriptEditCommand } from "./command/script-edit";
@@ -181,6 +183,18 @@ export const registerOperations = async (
         context,
     );
     context.subscriptions.push(pageUnfavoriteDisposable);
+
+    const recentClearDisposable = registerPageRecentClearCommand(
+        pagesDataProvider,
+        context,
+    );
+    context.subscriptions.push(recentClearDisposable);
+
+    const recentRemoveDisposable = registerPageRecentRemoveCommand(
+        pagesDataProvider,
+        context,
+    );
+    context.subscriptions.push(recentRemoveDisposable);
 
     const scriptCreateDisposable = registerScriptCreateCommand(
         editingsDataProvider,
