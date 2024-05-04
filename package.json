@@ -243,6 +243,18 @@
         "icon": "$(star-delete)"
       },
       {
+        "command": "imbricate.page.recent.clear",
+        "title": "Clear Recent Pages",
+        "category": "Imbricate",
+        "icon": "$(clock)"
+      },
+      {
+        "command": "imbricate.page.recent.remove",
+        "title": "Remove from Recent",
+        "category": "Imbricate",
+        "icon": "$(close)"
+      },
+      {
         "command": "imbricate.script.create",
         "title": "Create Imbricate Script",
         "category": "Imbricate",
@@ -336,6 +348,10 @@
         },
         {
           "command": "imbricate.page.unfavorite",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.page.recent.remove",
           "when": "false"
         },
         {
