@@ -136,6 +136,7 @@ export const registerOperations = async (
 
     const pageDeleteDisposable = registerPageDeleteCommand(
         pagesDataProvider,
+        context,
     );
     context.subscriptions.push(pageDeleteDisposable);
 
