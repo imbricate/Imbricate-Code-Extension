@@ -477,6 +477,16 @@
           "group": "page-context-2@1"
         },
         {
+          "command": "imbricate.page.recent.clear",
+          "when": "view == imbricate-pages && viewItem == page-recent",
+          "group": "page-recent-context-1@1"
+        },
+        {
+          "command": "imbricate.page.recent.remove",
+          "when": "view == imbricate-pages && viewItem == page-item-recent",
+          "group": "page-context-2@1"
+        },
+        {
           "command": "imbricate.script.create",
           "when": "view == imbricate-scripts && viewItem == script-origin-item",
           "group": "inline"
