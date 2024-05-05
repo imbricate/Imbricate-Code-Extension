@@ -25,11 +25,12 @@ export const gatherAndCreateFileSystemOrigin = async (
         return;
     }
 
+    const defaultValue: string = "6";
     const asynchronousPoolLimitString: string | undefined = await vscode.window.showInputBox({
         title: "Create File System Origin - Asynchronous Pool Limit",
         prompt: "Asynchronous Pool Limit...",
-        value: "6",
-        valueSelection: [0, 1],
+        value: defaultValue,
+        valueSelection: [0, defaultValue.length],
     });
 
     if (typeof asynchronousPoolLimitString === "undefined") {
