@@ -5,7 +5,7 @@
  */
 
 import { IImbricateOriginCollection, IMBRICATE_SEARCH_RESULT_TYPE, ImbricatePageSearchResult, ImbricateScriptSearchResult } from "@imbricate/core";
-import { ImbricateOriginManager, ImbricateOriginManagerOriginResponse } from "@imbricate/local-fundamental";
+import { ImbricateOriginManager, ImbricateOriginManagerOriginResponse, ImbricateSearchPreference, IncludedSearchPreference, readOrCreateSearchPreferenceConfiguration, resolveImbricateHomeDirectory } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
 import { OriginMappedSearchResult, SearchResultItem } from "../search/definition";
@@ -40,13 +40,24 @@ export const registerSearchCommand = (
         const origins: ImbricateOriginManagerOriginResponse[] = originManager.origins;
         const originMappedResults: Array<OriginMappedSearchResult<IMBRICATE_SEARCH_RESULT_TYPE>> = [];
 
+        const configurationPath: string = resolveImbricateHomeDirectory();
+        const searchPreference: ImbricateSearchPreference =
+            await readOrCreateSearchPreferenceConfiguration(
+                configurationPath,
+            );
+
         for (const origin of origins) {
 
             const collections: IImbricateOriginCollection[] = await origin.origin.listCollections();
 
             collections: for (const collection of collections) {
 
-                if (!collection.includeInSearch) {
+                const includedInSearch = searchPreference.included.some((item: IncludedSearchPreference) => {
+                    return item.originName === origin.originName &&
+                        item.collectionName === collection.collectionName;
+                });
+
+                if (!includedInSearch) {
                     continue collections;
                 }
 

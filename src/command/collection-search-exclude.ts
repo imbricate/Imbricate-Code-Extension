@@ -5,7 +5,7 @@
  */
 
 import { IImbricateOrigin } from "@imbricate/core";
-import { ImbricateOriginManager } from "@imbricate/local-fundamental";
+import { ImbricateOriginManager, excludeCollectionInSearch, resolveImbricateHomeDirectory } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { PagesCollectionItem } from "../pages-tree-view/collection-item";
 import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
@@ -29,7 +29,11 @@ export const registerCollectionSearchExcludeCommand = (
             return;
         }
 
-        await origin.excludeCollectionInSearch(
+        const configurationPath: string = resolveImbricateHomeDirectory();
+
+        await excludeCollectionInSearch(
+            configurationPath,
+            collectionItem.originName,
             collectionItem.collection.collectionName,
         );
 
