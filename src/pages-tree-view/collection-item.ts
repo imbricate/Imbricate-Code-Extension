@@ -5,6 +5,7 @@
  */
 
 import { IImbricateOriginCollection } from "@imbricate/core";
+import { ImbricateSearchPreference, IncludedSearchPreference } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 
 export class PagesCollectionItem extends vscode.TreeItem {
@@ -12,11 +13,13 @@ export class PagesCollectionItem extends vscode.TreeItem {
     public static withCollection(
         originName: string,
         collection: IImbricateOriginCollection,
+        searchPreference: ImbricateSearchPreference,
     ) {
 
         return new PagesCollectionItem(
             originName,
             collection,
+            searchPreference,
         );
     }
 
@@ -27,16 +30,15 @@ export class PagesCollectionItem extends vscode.TreeItem {
     private constructor(
         originName: string,
         collection: IImbricateOriginCollection,
+        searchPreference: ImbricateSearchPreference,
     ) {
         super(collection.collectionName, 1);
 
-        let contextValue = "page-collection-item";
-        if (collection.includeInSearch) {
-            contextValue = "page-collection-item-include";
-        } else {
-            contextValue = "page-collection-item-exclude";
-        }
-        this.contextValue = contextValue;
+        this.contextValue = this._buildContextValue(
+            originName,
+            collection,
+            searchPreference,
+        );
 
         this.iconPath = new vscode.ThemeIcon("default-view-icon");
 
@@ -61,5 +63,22 @@ export class PagesCollectionItem extends vscode.TreeItem {
 
     public get collection(): IImbricateOriginCollection {
         return this._collection;
+    }
+
+    private _buildContextValue(
+        originName: string,
+        collection: IImbricateOriginCollection,
+        searchPreference: ImbricateSearchPreference,
+    ): string {
+
+        const includedInSearch = searchPreference.included.some((item: IncludedSearchPreference) => {
+            return item.originName === originName &&
+                item.collectionName === collection.collectionName;
+        });
+
+        if (includedInSearch) {
+            return "page-collection-item-include";
+        }
+        return "page-collection-item-exclude";
     }
 }
