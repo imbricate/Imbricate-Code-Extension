@@ -19,7 +19,8 @@ export class PagesRecentItem extends vscode.TreeItem {
 
     private constructor() {
 
-        super("Recents", 1);
+        super("Recents", vscode.TreeItemCollapsibleState.Collapsed);
+
         this.contextValue = "page-recent";
 
         this.iconPath = new vscode.ThemeIcon("clock");

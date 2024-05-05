@@ -35,7 +35,8 @@ export class PagePageItem extends vscode.TreeItem {
         pageSnapshot: ImbricatePageSnapshot,
         variant?: string,
     ) {
-        super(pageSnapshot.title, 0);
+
+        super(pageSnapshot.title, vscode.TreeItemCollapsibleState.None);
 
         const contextValue: string = typeof variant === "string"
             ? `page-item-${variant}`

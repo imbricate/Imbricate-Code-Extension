@@ -19,7 +19,7 @@ export class PagesFavoriteItem extends vscode.TreeItem {
 
     private constructor() {
 
-        super("Favorites", 1);
+        super("Favorites", vscode.TreeItemCollapsibleState.Collapsed);
 
         this.iconPath = new vscode.ThemeIcon("star");
 

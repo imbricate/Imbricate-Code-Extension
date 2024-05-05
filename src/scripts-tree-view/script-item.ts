@@ -28,7 +28,9 @@ export class ScriptScriptItem extends vscode.TreeItem {
         origin: IImbricateOrigin,
         scriptSnapshot: ImbricateScriptSnapshot,
     ) {
-        super(scriptSnapshot.scriptName, 0);
+
+        super(scriptSnapshot.scriptName, vscode.TreeItemCollapsibleState.None);
+
         this.contextValue = "script-item";
 
         this.command = {

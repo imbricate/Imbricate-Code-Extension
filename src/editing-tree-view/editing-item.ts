@@ -23,7 +23,7 @@ export class EditingEditingItem extends vscode.TreeItem {
     ) {
 
         const reference = getActiveEditingReference(activeEditing);
-        super(reference, 0);
+        super(reference, vscode.TreeItemCollapsibleState.None);
         this.contextValue = "editing-item";
 
         this.iconPath = new vscode.ThemeIcon("settings-edit");

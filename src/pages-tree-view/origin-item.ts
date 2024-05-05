@@ -25,7 +25,8 @@ export class PagesOriginItem extends vscode.TreeItem {
         origin: IImbricateOrigin,
     ) {
 
-        super(originName, 1);
+        super(originName, vscode.TreeItemCollapsibleState.Collapsed);
+
         this.contextValue = "page-origin-item";
 
         this.iconPath = new vscode.ThemeIcon("globe");

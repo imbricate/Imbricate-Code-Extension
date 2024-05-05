@@ -33,7 +33,9 @@ export class PageDirectoryItem extends vscode.TreeItem {
         collection: IImbricateOriginCollection,
         directories: string[],
     ) {
-        super(directories[directories.length - 1], 1);
+
+        super(directories[directories.length - 1], vscode.TreeItemCollapsibleState.Collapsed);
+
         this.contextValue = "page-directory-item";
 
         this.iconPath = new vscode.ThemeIcon("folder");

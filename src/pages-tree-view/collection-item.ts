@@ -32,7 +32,8 @@ export class PagesCollectionItem extends vscode.TreeItem {
         collection: IImbricateOriginCollection,
         searchPreference: ImbricateSearchPreference,
     ) {
-        super(collection.collectionName, 1);
+
+        super(collection.collectionName, vscode.TreeItemCollapsibleState.Collapsed);
 
         this.contextValue = this._buildContextValue(
             originName,
