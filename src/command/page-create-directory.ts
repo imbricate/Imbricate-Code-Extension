@@ -72,10 +72,10 @@ export const registerPageCreateDirectoryCommand = (
             prompt: "Page Title...",
             validateInput: (value: string) => {
 
-                if (!validateFilename(value)) {
-                    return "Invalid page title";
+                const validateResult: string | null = validateFilename(value);
+                if (typeof validateResult === "string") {
+                    return validateResult;
                 }
-
                 return undefined;
             },
         });
@@ -84,8 +84,9 @@ export const registerPageCreateDirectoryCommand = (
             return;
         }
 
-        if (!validateFilename(pageTitle)) {
-            showErrorMessage(`Invalid page title: ${pageTitle}`);
+        const validateResult: string | null = validateFilename(pageTitle);
+        if (typeof validateResult === "string") {
+            showErrorMessage(`Invalid page title: ${pageTitle}, reason: ${validateResult}`);
             return;
         }
 

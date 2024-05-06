@@ -63,15 +63,22 @@ export const registerScriptCreateCommand = (
             prompt: "Script Title...",
             validateInput: (value: string) => {
 
-                if (validateFilename(value)) {
-                    return "Script title should not be empty";
+                const validateResult: string | null = validateFilename(value);
+                if (typeof validateResult === "string") {
+                    return validateResult;
                 }
-
                 return undefined;
             },
         });
 
         if (!scriptTitle) {
+            return;
+        }
+
+        const alreadyExist: boolean = await origin.hasScript(scriptTitle);
+
+        if (alreadyExist) {
+            showErrorMessage(`Script: ${scriptTitle} Already Exist`);
             return;
         }
 

@@ -49,10 +49,10 @@ export const registerPageCreateCommand = (
             prompt: "Page Title...",
             validateInput: (value: string) => {
 
-                if (!validateFilename(value)) {
-                    return "Invalid page title";
+                const validateResult: string | null = validateFilename(value);
+                if (typeof validateResult === "string") {
+                    return validateResult;
                 }
-
                 return undefined;
             },
         });

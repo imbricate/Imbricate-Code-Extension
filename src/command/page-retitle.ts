@@ -45,10 +45,10 @@ export const registerPageRetitleCommand = (
                     return "New page title should not be the same as the old one";
                 }
 
-                if (!validateFilename(value)) {
-                    return "Invalid page title";
+                const validateResult: string | null = validateFilename(value);
+                if (typeof validateResult === "string") {
+                    return validateResult;
                 }
-
                 return undefined;
             },
             placeHolder: "New Page Title...",
@@ -58,11 +58,20 @@ export const registerPageRetitleCommand = (
             return;
         }
 
+        const alreadyExist: boolean = await pageItem.collection.hasPage(
+            pageItem.pageSnapshot.directories,
+            newTitle,
+        );
+
+        if (alreadyExist) {
+            showErrorMessage("Page Already Exist");
+            return;
+        }
+
         await pageItem.collection.retitlePage(
             pageItem.pageSnapshot.identifier,
             newTitle,
         );
-
 
         const currentFavorites: PagePersistanceData[] | undefined =
             context.globalState.get(PAGES_FAVORITES_KEY);
