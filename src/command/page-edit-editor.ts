@@ -23,7 +23,7 @@ export const registerPageEditEditorCommand = (
 
         const [
             originName,
-            collectionName,
+            collectionUniqueIdentifier,
             pageIdentifier,
         ] = dividePageMarkdownUrl(uri);
 
@@ -36,10 +36,10 @@ export const registerPageEditEditorCommand = (
         }
 
         const collection: IImbricateOriginCollection | null =
-            await origin.getCollection(collectionName);
+            await origin.getCollection(collectionUniqueIdentifier);
 
         if (!collection) {
-            showErrorMessage(`Cannot find collection: ${collectionName}`);
+            showErrorMessage(`Cannot find collection: ${collectionUniqueIdentifier}`);
             return;
         }
 
@@ -53,7 +53,7 @@ export const registerPageEditEditorCommand = (
 
         const savingTarget = createPageSavingTarget(
             originName,
-            collectionName,
+            collectionUniqueIdentifier,
             pageIdentifier,
         );
 

@@ -23,7 +23,7 @@ export const registerPageRetitleCommand = (
 
         const savingTarget = createPageSavingTarget(
             pageItem.originName,
-            pageItem.collection.collectionName,
+            pageItem.collection.uniqueIdentifier,
             pageItem.pageSnapshot.identifier,
         );
 

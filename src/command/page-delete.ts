@@ -20,7 +20,7 @@ export const registerPageDeleteCommand = (
 
         const savingTarget = createPageSavingTarget(
             item.originName,
-            item.collection.collectionName,
+            item.collection.uniqueIdentifier,
             item.pageSnapshot.identifier,
         );
 

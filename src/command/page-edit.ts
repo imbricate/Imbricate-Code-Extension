@@ -24,7 +24,7 @@ export const registerPageEditCommand = (
 
         const savingTarget = createPageSavingTarget(
             item.originName,
-            item.collection.collectionName,
+            item.collection.uniqueIdentifier,
             item.pageSnapshot.identifier,
         );
 

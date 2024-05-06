@@ -71,7 +71,7 @@ export const registerPageCreateCommand = (
 
         const savingTarget = createPageSavingTarget(
             originName,
-            collection.collectionName,
+            collection.uniqueIdentifier,
             page.identifier,
         );
 

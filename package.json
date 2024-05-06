@@ -175,6 +175,12 @@
         "icon": "$(edit)"
       },
       {
+        "command": "imbricate.page.favorite.clear",
+        "title": "Clear Favorite Pages",
+        "category": "Imbricate",
+        "icon": "$(delete)"
+      },
+      {
         "command": "imbricate.origin.create",
         "title": "Create Imbricate Origin",
         "category": "Imbricate",

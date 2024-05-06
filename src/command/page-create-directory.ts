@@ -99,10 +99,9 @@ export const registerPageCreateDirectoryCommand = (
 
         const savingTarget = createPageSavingTarget(
             originName,
-            collection.collectionName,
+            collection.uniqueIdentifier,
             page.identifier,
         );
-
 
         const activeEditing: ActiveEditing = await establishImbricateSavingTarget(
             savingTarget,

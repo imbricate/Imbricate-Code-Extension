@@ -39,7 +39,7 @@ export class PageMarkdownContentProvider implements vscode.TextDocumentContentPr
         const splited: string[] = path.split("/");
 
         const originName: string = splited[0];
-        const collectionName: string = splited[1];
+        const collectionUniqueIdentifier: string = splited[1];
         const identifier: string = splited[2];
 
         const origin: IImbricateOrigin | null = this._originManager.getOrigin(originName);
@@ -48,7 +48,7 @@ export class PageMarkdownContentProvider implements vscode.TextDocumentContentPr
             return "[ERROR] Origin Not Found!";
         }
 
-        const collection: IImbricateOriginCollection | null = await origin.getCollection(collectionName);
+        const collection: IImbricateOriginCollection | null = await origin.getCollection(collectionUniqueIdentifier);
 
         if (!collection) {
             return "[ERROR] Collection Not Found!";
