@@ -4,7 +4,7 @@
  * @description Create File System
  */
 
-import { IRawImbricateConfiguration, ImbricateOriginManager, persistImbricateConfiguration, readOrCreateRawImbricateConfiguration, resolveImbricateHomeDirectory } from "@imbricate/local-fundamental";
+import { IRawImbricateConfiguration, ImbricateOriginManager, digestString, persistImbricateConfiguration, readOrCreateRawImbricateConfiguration, resolveImbricateHomeDirectory } from "@imbricate/local-fundamental";
 import { FileSystemImbricateOrigin, FileSystemOriginPayload } from "@imbricate/origin-file-system";
 import * as vscode from "vscode";
 import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
@@ -62,12 +62,16 @@ export const gatherAndCreateFileSystemOrigin = async (
         basePath,
     };
 
+    const hashedPath = digestString(basePath);
+    const uniqueIdentifier: string = `file-system-${hashedPath}`;
+
     const updatedRawConfig: IRawImbricateConfiguration = {
         ...rawConfig,
         origins: [
             ...rawConfig.origins,
             {
-                type: "file-system",
+                originType: "file-system",
+                uniqueIdentifier,
                 originName,
                 payloads,
             },

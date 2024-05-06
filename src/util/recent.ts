@@ -29,7 +29,7 @@ export const recordRecentPage = async (
 
     const filteredItems: PagePersistanceData[] = currentRecents.filter((current: PagePersistanceData) => {
         return current.originName !== persistanceData.originName
-            || current.collectionName !== persistanceData.collectionName
+            || current.collectionUniqueIdentifier !== persistanceData.collectionUniqueIdentifier
             || current.pageSnapshot.identifier !== persistanceData.pageSnapshot.identifier;
     });
 

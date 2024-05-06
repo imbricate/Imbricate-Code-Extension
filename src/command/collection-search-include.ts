@@ -35,6 +35,7 @@ export const registerCollectionSearchIncludeCommand = (
             configurationPath,
             collectionItem.originName,
             collectionItem.collection.collectionName,
+            collectionItem.collection.uniqueIdentifier,
         );
 
         pagesDataProvider.refresh();

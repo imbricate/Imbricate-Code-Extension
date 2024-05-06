@@ -23,6 +23,7 @@ export const registerPagePreviewCommand = (
         const uri = concatPageMarkdownUrl(
             item.originName,
             item.collection.collectionName,
+            item.collection.uniqueIdentifier,
             item.pageSnapshot.identifier,
         );
 
@@ -33,7 +34,7 @@ export const registerPagePreviewCommand = (
 
         const persistanceData: PagePersistanceData = {
             originName: item.originName,
-            collectionName: item.collection.collectionName,
+            collectionUniqueIdentifier: item.collection.uniqueIdentifier,
             pageSnapshot: item.pageSnapshot,
         };
 

@@ -12,6 +12,6 @@ export const PAGES_RECENTS_KEY: string = "imbricate.page.recents";
 export type PagePersistanceData = {
 
     readonly originName: string;
-    readonly collectionName: string;
+    readonly collectionUniqueIdentifier: string;
     readonly pageSnapshot: ImbricatePageSnapshot;
 };

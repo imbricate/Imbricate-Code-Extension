@@ -36,7 +36,8 @@ export class PagesOriginItem extends vscode.TreeItem {
 
         const tooltipLines: string[] = [
             `Origin: ${this._originName}`,
-            `Type: ${this._origin.metadata.type}`,
+            `Type: ${this._origin.originType}`,
+            `Unique Identifier: ${this._origin.uniqueIdentifier}`,
         ];
 
         this.tooltip = tooltipLines.join("\n");

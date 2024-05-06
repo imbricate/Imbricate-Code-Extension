@@ -52,7 +52,7 @@ export const renderPageFavoriteItem = async (
             continue;
         }
 
-        const collection: IImbricateOriginCollection | null = await origin.getCollection(favorite.collectionName);
+        const collection: IImbricateOriginCollection | null = await origin.getCollection(favorite.collectionUniqueIdentifier);
 
         if (!collection) {
 

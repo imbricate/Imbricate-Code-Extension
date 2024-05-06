@@ -88,7 +88,7 @@ export const registerPageCreateCommand = (
 
         const persistanceData: PagePersistanceData = {
             originName: item.originName,
-            collectionName: item.collection.collectionName,
+            collectionUniqueIdentifier: item.collection.uniqueIdentifier,
             pageSnapshot: {
                 identifier: page.identifier,
                 title: page.title,

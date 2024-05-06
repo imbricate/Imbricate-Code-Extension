@@ -51,7 +51,7 @@ export const registerPageEditCommand = (
 
         const persistanceData: PagePersistanceData = {
             originName: item.originName,
-            collectionName: item.collection.collectionName,
+            collectionUniqueIdentifier: item.collection.uniqueIdentifier,
             pageSnapshot: item.pageSnapshot,
         };
 

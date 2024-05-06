@@ -10,10 +10,11 @@ import { showErrorMessage } from "../../util/show-message";
 export const concatPageMarkdownUrl = (
     originName: string,
     collectionName: string,
+    collectionUniqueIdentifier: string,
     identifier: string,
 ): vscode.Uri => {
 
-    const uri = vscode.Uri.parse(`imbricate-page-markdown:${originName}/${collectionName}/${identifier}/preview.md`);
+    const uri = vscode.Uri.parse(`imbricate-page-markdown:${originName}/${collectionUniqueIdentifier}/${identifier}/preview.md`);
 
     return uri;
 };

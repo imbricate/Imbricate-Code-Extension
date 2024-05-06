@@ -72,7 +72,7 @@ export const registerPageRetitleCommand = (
             const newFavorites: PagePersistanceData[] = currentFavorites.map((current: PagePersistanceData) => {
 
                 if (current.originName === pageItem.originName
-                    && current.collectionName === pageItem.collection.collectionName
+                    && current.collectionUniqueIdentifier === pageItem.collection.uniqueIdentifier
                     && current.pageSnapshot.identifier === pageItem.pageSnapshot.identifier) {
 
                     return {

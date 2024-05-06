@@ -22,7 +22,7 @@ export const registerPageFavoriteCommand = (
 
         const persistanceData: PagePersistanceData = {
             originName: pageItem.originName,
-            collectionName: pageItem.collection.collectionName,
+            collectionUniqueIdentifier: pageItem.collection.uniqueIdentifier,
             pageSnapshot: pageItem.pageSnapshot,
         };
 
@@ -40,7 +40,7 @@ export const registerPageFavoriteCommand = (
         for (const current of currentFavorites) {
 
             if (current.originName === persistanceData.originName
-                && current.collectionName === persistanceData.collectionName
+                && current.collectionUniqueIdentifier === persistanceData.collectionUniqueIdentifier
                 && current.pageSnapshot.identifier === persistanceData.pageSnapshot.identifier) {
 
                 showInformationMessage("Already favorited");

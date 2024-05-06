@@ -20,7 +20,7 @@ export const registerPageRecentRemoveCommand = (
 
         const persistanceData: PagePersistanceData = {
             originName: item.originName,
-            collectionName: item.collection.collectionName,
+            collectionUniqueIdentifier: item.collection.uniqueIdentifier,
             pageSnapshot: item.pageSnapshot,
         };
 
@@ -31,7 +31,7 @@ export const registerPageRecentRemoveCommand = (
 
             const newRecents: PagePersistanceData[] = currentRecents.filter((current: PagePersistanceData) => {
                 return current.originName !== persistanceData.originName
-                    || current.collectionName !== persistanceData.collectionName
+                    || current.collectionUniqueIdentifier !== persistanceData.collectionUniqueIdentifier
                     || current.pageSnapshot.identifier !== persistanceData.pageSnapshot.identifier;
             });
 
