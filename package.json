@@ -45,7 +45,7 @@
   "dependencies": {
     "@imbricate/core": "1.18.0",
     "@imbricate/local-fundamental": "1.6.0",
-    "@imbricate/origin-file-system": "1.13.1",
+    "@imbricate/origin-file-system": "1.14.0",
     "@sudoo/io": "^1.8.0"
   },
   "devDependencies": {
