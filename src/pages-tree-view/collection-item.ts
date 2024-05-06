@@ -49,6 +49,7 @@ export class PagesCollectionItem extends vscode.TreeItem {
 
         const tooltipLines: string[] = [
             `Collection: ${this._originName} - ${collection.collectionName}`,
+            `Unique Identifier: ${collection.uniqueIdentifier}`,
         ];
 
         if (this._collection.description) {

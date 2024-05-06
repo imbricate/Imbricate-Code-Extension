@@ -49,8 +49,17 @@ export const registerCollectionRenameCommand = (
             return;
         }
 
+        const alreadyExist: boolean = await origin.hasCollection(
+            newCollectionName,
+        );
+
+        if (alreadyExist) {
+            showErrorMessage("Collection Already Exist");
+            return;
+        }
+
         await origin.renameCollection(
-            collectionItem.collection.collectionName,
+            collectionItem.collection.uniqueIdentifier,
             newCollectionName,
         );
 
