@@ -54,7 +54,7 @@ export const registerSearchCommand = (
 
                 const includedInSearch = searchPreference.included.some((item: IncludedSearchPreference) => {
                     return item.originName === origin.originName &&
-                        item.collectionName === collection.collectionName;
+                        item.collectionUniqueIdentifier === collection.uniqueIdentifier;
                 });
 
                 if (!includedInSearch) {

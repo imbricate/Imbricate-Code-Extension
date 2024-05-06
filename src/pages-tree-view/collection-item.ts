@@ -74,7 +74,7 @@ export class PagesCollectionItem extends vscode.TreeItem {
 
         const includedInSearch = searchPreference.included.some((item: IncludedSearchPreference) => {
             return item.originName === originName &&
-                item.collectionName === collection.collectionName;
+                item.collectionUniqueIdentifier === collection.uniqueIdentifier;
         });
 
         if (includedInSearch) {
