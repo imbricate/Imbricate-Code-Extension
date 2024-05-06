@@ -26,7 +26,6 @@ export const searchItemPreview = async (
             const uri = concatPageMarkdownUrl(
                 fixedResult.originName,
                 fixedResult.scope,
-                fixedResult.scope,
                 fixedResult.identifier,
             );
 

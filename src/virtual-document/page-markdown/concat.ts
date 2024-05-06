@@ -9,7 +9,6 @@ import { showErrorMessage } from "../../util/show-message";
 
 export const concatPageMarkdownUrl = (
     originName: string,
-    collectionName: string,
     collectionUniqueIdentifier: string,
     identifier: string,
 ): vscode.Uri => {

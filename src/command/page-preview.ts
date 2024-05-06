@@ -22,7 +22,6 @@ export const registerPagePreviewCommand = (
 
         const uri = concatPageMarkdownUrl(
             item.originName,
-            item.collection.collectionName,
             item.collection.uniqueIdentifier,
             item.pageSnapshot.identifier,
         );

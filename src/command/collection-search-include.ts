@@ -34,7 +34,6 @@ export const registerCollectionSearchIncludeCommand = (
         await includeCollectionInSearch(
             configurationPath,
             collectionItem.originName,
-            collectionItem.collection.collectionName,
             collectionItem.collection.uniqueIdentifier,
         );
 

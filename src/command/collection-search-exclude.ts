@@ -34,7 +34,6 @@ export const registerCollectionSearchExcludeCommand = (
         await excludeCollectionInSearch(
             configurationPath,
             collectionItem.originName,
-            collectionItem.collection.collectionName,
             collectionItem.collection.uniqueIdentifier,
         );
 

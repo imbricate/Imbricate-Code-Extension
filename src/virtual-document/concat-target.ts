@@ -21,7 +21,6 @@ export const concatSavingTargetUrl = (
             const uri = concatPageMarkdownUrl(
                 fixedTarget.payload.origin,
                 fixedTarget.payload.collection,
-                fixedTarget.payload.collection,
                 fixedTarget.payload.identifier,
             );
 
