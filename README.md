@@ -8,6 +8,8 @@
 └───────┘
 ```
 
+[![VSCode Marketplace Version](https://vsmarketplacebadges.dev/version/imbricate.imbricate.svg)](https://marketplace.visualstudio.com/items?itemName=imbricate.imbricate)
+
 Yes to accountable notes, no to external hosting. Free, for everyone.
 
 [Github](https://github.com/imbricate/Imbricate-Code-Extension)
