@@ -1,6 +1,6 @@
 {
   "name": "imbricate",
-  "version": "1.11.0",
+  "version": "1.12.0",
   "displayName": "Imbricate",
   "icon": "images/imbricate.png",
   "author": "WMXPY",
@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@imbricate/core": "1.18.2",
-    "@imbricate/local-fundamental": "1.7.2",
+    "@imbricate/local-fundamental": "1.7.3",
     "@imbricate/origin-file-system": "1.14.4",
     "@sudoo/io": "^1.8.0"
   },
