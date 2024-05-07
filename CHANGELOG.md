@@ -1,5 +1,32 @@
 # Change Log
 
+## 1.12.0
+
+- Add Source control support
+- Add Imbricate quick diff operations
+- Add editing original virtual document provider
+- Use cache for virtual document provider
+- Use latest local fundamental
+- Fix Known Issues
+
+## 1.11.0
+
+- Major Refactor on Unique Identifier for Origin
+- Major Refactor on Unique Identifier for Collection
+- Use unique identifier for origin selections
+- Use unique identifier for collection folders
+- Use unique identifier for active editings
+- Use latest local fundamental
+- Fix Known Issues
+
+## 1.10.0
+
+- Major Refactor on Search collection inclusion operation
+- Refactor folder path for collection
+- Add Search preference feature
+- Use latest local fundamental
+- Fix Known Issues
+
 ## 1.9.2
 
 - Add Documents
