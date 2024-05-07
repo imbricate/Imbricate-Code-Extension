@@ -12,7 +12,8 @@ import { EditingEditingItem } from "../editing-tree-view/editing-item";
 import { closeEditor } from "../util/close-editor";
 import { showInformationMessage } from "../util/show-message";
 import { concatSavingTargetUrl } from "../virtual-document/concat-target";
-import { onChangeEmitter } from "../virtual-document/on-change-emitter";
+import { concatEditingOriginalUrl } from "../virtual-document/editing-original/concat";
+import { editingOnChangeEmitter, onChangeEmitter } from "../virtual-document/on-change-emitter";
 
 export const registerEditingPerformCommand = (
     originManager: ImbricateOriginManager,
@@ -41,8 +42,10 @@ export const registerEditingPerformCommand = (
         editingDataProvider.refresh();
 
         const url = concatSavingTargetUrl(activeEditing.target);
-
         onChangeEmitter.fire(url);
+
+        const editingUrl = concatEditingOriginalUrl(activeEditing.identifier);
+        editingOnChangeEmitter.fire(editingUrl);
 
         for (const visibleEditor of vscode.window.visibleTextEditors) {
             if (visibleEditor.document.uri.path === activeEditing.path) {

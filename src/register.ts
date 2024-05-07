@@ -41,6 +41,8 @@ import { PagesTreeViewDataProvider } from "./pages-tree-view/data-provider";
 import { registerPagesTreeView } from "./pages-tree-view/register";
 import { ScriptsTreeViewDataProvider } from "./scripts-tree-view/data-provider";
 import { registerScriptsTreeView } from "./scripts-tree-view/register";
+import { registerSourceControl } from "./source-control/register";
+import { registerEditingOriginalProvider } from "./virtual-document/editing-original/editing-original";
 import { registerPageMarkdownContentProvider } from "./virtual-document/page-markdown/page-markdown";
 import { registerScriptJavascriptContentProvider } from "./virtual-document/script-javascript/script-javascript";
 
@@ -65,8 +67,11 @@ export const registerOperations = async (
         context,
     );
 
+    registerEditingOriginalProvider(originManager, context);
     registerPageMarkdownContentProvider(originManager, context);
     registerScriptJavascriptContentProvider(originManager, context);
+
+    registerSourceControl(context);
 
     const collectionCreateCommand = registerCollectionCreateCommand(
         pagesDataProvider,
