@@ -1,20 +1,21 @@
 /**
  * @author WMXPY
- * @namespace VirtualDocument_PageMarkdown
+ * @namespace VirtualDocument_EditingOriginal
  * @description Register
  */
 
 import { ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
-import { PageMarkdownContentProvider } from "./provider";
+import { IMBRICATE_EDITING_ORIGINAL_SCHEME } from "./concat";
+import { EditingOriginalProvider } from "./provider";
 
-export const registerPageMarkdownContentProvider = (
+export const registerEditingOriginalProvider = (
     originManager: ImbricateOriginManager,
     context: vscode.ExtensionContext,
 ) => {
 
-    const scheme = "imbricate-page-markdown";
-    const provider = PageMarkdownContentProvider.create(
+    const scheme = IMBRICATE_EDITING_ORIGINAL_SCHEME;
+    const provider = EditingOriginalProvider.create(
         originManager,
     );
 

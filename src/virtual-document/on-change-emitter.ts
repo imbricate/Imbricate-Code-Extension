@@ -6,3 +6,4 @@
 import * as vscode from "vscode";
 
 export const onChangeEmitter = new vscode.EventEmitter<vscode.Uri>();
+export const editingOnChangeEmitter = new vscode.EventEmitter<vscode.Uri>();
