@@ -389,19 +389,19 @@
       ],
       "editor/title": [
         {
-          "command": "imbricate.editing.perform-editor",
-          "when": "resourceDirname =~ /.imbricate/ && editorLangId == markdown",
-          "group": "navigation"
-        },
-        {
           "command": "imbricate.editing.save-editor",
           "when": "resourceDirname =~ /.imbricate/ && editorLangId == markdown",
-          "group": "navigation"
+          "group": "navigation@1"
+        },
+        {
+          "command": "imbricate.editing.perform-editor",
+          "when": "resourceDirname =~ /.imbricate/ && editorLangId == markdown",
+          "group": "navigation@2"
         },
         {
           "command": "imbricate.page.edit-editor",
           "when": "resourceScheme == imbricate-page-markdown",
-          "group": "navigation"
+          "group": "navigation@1"
         }
       ],
       "view/title": [
