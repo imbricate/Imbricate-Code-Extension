@@ -182,7 +182,7 @@
       },
       {
         "command": "imbricate.page.favorite.clear",
-        "title": "Clear Favorite Pages",
+        "title": "Unfavorite All Pages",
         "category": "Imbricate",
         "icon": "$(delete)"
       },
