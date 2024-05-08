@@ -452,6 +452,11 @@
           "group": "inline"
         },
         {
+          "command": "imbricate.page.favorite.clear",
+          "when": "view == imbricate-pages && viewItem == page-favorite-item",
+          "group": "favorite-context-1@1"
+        },
+        {
           "command": "imbricate.page.create",
           "when": "view == imbricate-pages && viewItem =~ /^page-collection-item/",
           "group": "collection-context-1@1"
