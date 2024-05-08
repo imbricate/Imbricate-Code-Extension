@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@imbricate/core": "1.18.2",
-    "@imbricate/local-fundamental": "1.7.3",
+    "@imbricate/local-fundamental": "1.7.4",
     "@imbricate/origin-file-system": "1.14.4",
     "@sudoo/io": "^1.8.0"
   },
@@ -56,7 +56,7 @@
     "@typescript-eslint/parser": "^7.8.0",
     "@vscode/test-cli": "^0.0.9",
     "@vscode/test-electron": "^2.3.9",
-    "esbuild": "^0.21.0",
+    "esbuild": "^0.21.1",
     "eslint": "^8.57.0",
     "typescript": "^5.4.5"
   },
@@ -161,6 +161,12 @@
         "title": "Perform Editing",
         "category": "Imbricate",
         "icon": "$(save)"
+      },
+      {
+        "command": "imbricate.editing.save-editor",
+        "title": "Save Editing in Editor",
+        "category": "Imbricate",
+        "icon": "$(save-as)"
       },
       {
         "command": "imbricate.editings.refresh",
@@ -321,7 +327,15 @@
           "when": "false"
         },
         {
+          "command": "imbricate.editing.save-editor",
+          "when": "false"
+        },
+        {
           "command": "imbricate.editing.perform",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.editing.perform-editor",
           "when": "false"
         },
         {
@@ -376,6 +390,11 @@
       "editor/title": [
         {
           "command": "imbricate.editing.perform-editor",
+          "when": "resourceDirname =~ /.imbricate/ && editorLangId == markdown",
+          "group": "navigation"
+        },
+        {
+          "command": "imbricate.editing.save-editor",
           "when": "resourceDirname =~ /.imbricate/ && editorLangId == markdown",
           "group": "navigation"
         },
