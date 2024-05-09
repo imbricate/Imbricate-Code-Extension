@@ -15,6 +15,7 @@ import { registerEditingPerformAllCommand } from "./command/editing-perform-all"
 import { registerEditingPerformEditorCommand } from "./command/editing-perform-editor";
 import { registerEditingsRefreshCommand } from "./command/editing-refresh";
 import { registerEditingResumeCommand } from "./command/editing-resume";
+import { registerEditingSaveEditorCommand } from "./command/editing-save-editor";
 import { registerPageFavoriteClearCommand } from "./command/favorite-clear";
 import { registerOriginCreateCommand } from "./command/origin-create";
 import { registerPageCreateCommand } from "./command/page-create";
@@ -118,6 +119,12 @@ export const registerOperations = async (
         editingsDataProvider,
     );
     context.subscriptions.push(editingsRefreshCommand);
+
+    const editingSaveEditorCommand = registerEditingSaveEditorCommand(
+        originManager,
+        editingsDataProvider,
+    );
+    context.subscriptions.push(editingSaveEditorCommand);
 
     const editingResumeDisposable = registerEditingResumeCommand();
     context.subscriptions.push(editingResumeDisposable);
