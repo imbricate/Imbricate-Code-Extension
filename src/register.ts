@@ -38,6 +38,7 @@ import { registerScriptsRefreshCommand } from "./command/script-refresh";
 import { registerSearchCommand } from "./command/search";
 import { EditingTreeViewDataProvider } from "./editing-tree-view/data-provider";
 import { registerEditingTreeView } from "./editing-tree-view/register";
+import { registerPreCodeLensProvider } from "./lens/register";
 import { PagesTreeViewDataProvider } from "./pages-tree-view/data-provider";
 import { registerPagesTreeView } from "./pages-tree-view/register";
 import { ScriptsTreeViewDataProvider } from "./scripts-tree-view/data-provider";
@@ -73,6 +74,8 @@ export const registerOperations = async (
     registerScriptJavascriptContentProvider(originManager, context);
 
     registerSourceControl(context);
+
+    registerPreCodeLensProvider(context);
 
     const collectionCreateCommand = registerCollectionCreateCommand(
         pagesDataProvider,
