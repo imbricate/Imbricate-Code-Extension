@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.12.2
+
+- Fix editing save issue within editor
+- Fix origin onboarding information missing issue
+- Add submenus for script edit
+
 ## 1.12.1
 
 - Add Document and logs
