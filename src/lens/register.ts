@@ -17,12 +17,21 @@ export const registerPreCodeLensProvider = (
     const rootFolder = resolveImbricateTempDirectory();
     const rootUri = vscode.Uri.parse(rootFolder);
 
-    const disposable = vscode.languages.registerCodeLensProvider(
+    const editingDisposable = vscode.languages.registerCodeLensProvider(
         {
             language: "markdown",
             pattern: `${rootUri.fsPath}/**/*`,
         },
         provider,
     );
-    context.subscriptions.push(disposable);
+    context.subscriptions.push(editingDisposable);
+
+    const previewDisposable = vscode.languages.registerCodeLensProvider(
+        {
+            language: "markdown",
+            scheme: "imbricate-page-markdown",
+        },
+        provider,
+    );
+    context.subscriptions.push(previewDisposable);
 };
