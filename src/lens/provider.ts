@@ -57,7 +57,8 @@ export class CopyPreCodeProvider implements vscode.CodeLensProvider {
     public resolveCodeLens(codeLens: vscode.CodeLens): vscode.CodeLens {
 
         codeLens.command = {
-            title: "Copy Pre Code",
+            title: "Copy",
+            tooltip: "Copy this block",
             command: "imbricate.document.copy.code-block",
             arguments: [
                 codeLens.range,

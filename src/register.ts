@@ -10,6 +10,7 @@ import { registerCollectionCreateCommand } from "./command/collection-create";
 import { registerCollectionRenameCommand } from "./command/collection-rename";
 import { registerCollectionSearchExcludeCommand } from "./command/collection-search-exclude";
 import { registerCollectionSearchIncludeCommand } from "./command/collection-search-include";
+import { registerDocumentCopyCodeBlockCommand } from "./command/document-copy-code-block";
 import { registerEditingPerformCommand } from "./command/editing-perform";
 import { registerEditingPerformAllCommand } from "./command/editing-perform-all";
 import { registerEditingPerformEditorCommand } from "./command/editing-perform-editor";
@@ -99,6 +100,9 @@ export const registerOperations = async (
         originManager,
     );
     context.subscriptions.push(collectionSearchExcludeCommand);
+
+    const documentCopyCodeBlockCommand = registerDocumentCopyCodeBlockCommand();
+    context.subscriptions.push(documentCopyCodeBlockCommand);
 
     const editingPerformAllCommand = registerEditingPerformAllCommand(
         originManager,
