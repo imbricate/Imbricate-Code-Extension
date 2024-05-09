@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.12.1
+
+- Add Document and logs
+- Add Change log
+
 ## 1.12.0
 
 - Add Source control support
