@@ -38,6 +38,11 @@ export class CopyPreCodeProvider implements vscode.CodeLensProvider {
 
             if (lineText === "```") {
 
+                if (i === startLine + 1) {
+                    startLine = null;
+                    continue lines;
+                }
+
                 const range = new vscode.Range(
                     new vscode.Position(startLine, 0),
                     new vscode.Position(i, line.range.end.character),

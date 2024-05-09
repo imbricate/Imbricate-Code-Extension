@@ -20,8 +20,24 @@ export const registerDocumentCopyCodeBlockCommand = (): vscode.Disposable => {
 
         const text: string = editor.document.getText(range);
 
-        console.log(text);
-        await vscode.env.clipboard.writeText(text);
+        const result: string[] = [];
+        const lines: string[] = text.split("\n");
+
+        for (let i = 0; i < lines.length; i++) {
+
+            if (i === 0 && lines[i].startsWith("```")) {
+                continue;
+            }
+            if (i === lines.length - 1 && lines[i].startsWith("```")) {
+                continue;
+            }
+
+            result.push(lines[i]);
+        }
+
+        await vscode.env.clipboard.writeText(
+            result.join("\n"),
+        );
     });
 
     return disposable;
