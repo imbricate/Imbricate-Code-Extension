@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.13.1
+
+- Fix Code block Copy Function for Editing
+- Fix Known Issues
+
 ## 1.13.0
 
 - Add Code block Copy Function for Editing
