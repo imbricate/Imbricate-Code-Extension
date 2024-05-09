@@ -20,7 +20,12 @@ export const registerPreCodeLensProvider = (
     const editingDisposable = vscode.languages.registerCodeLensProvider(
         {
             language: "markdown",
-            pattern: `${rootUri.fsPath}/**/*`,
+            scheme: "file",
+            pattern: {
+                baseUri: rootUri,
+                base: rootUri.fsPath,
+                pattern: "**/*.md",
+            },
         },
         provider,
     );
