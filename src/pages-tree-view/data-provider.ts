@@ -67,12 +67,6 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
 
             const items: vscode.TreeItem[] = [];
 
-            items.push(PagesFavoriteItem.create());
-
-            if (enableRecent) {
-                items.push(PagesRecentItem.create());
-            }
-
             const originItems: vscode.TreeItem[] = this._originManager.origins.map((
                 originConfig: ImbricateOriginManagerOriginResponse,
             ) => {
@@ -90,7 +84,16 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
                 );
             });
 
-            items.push(...originItems);
+            if (originItems.length > 0) {
+
+                items.push(PagesFavoriteItem.create());
+
+                if (enableRecent) {
+                    items.push(PagesRecentItem.create());
+                }
+
+                items.push(...originItems);
+            }
 
             if (!this._loaded) {
 
