@@ -528,6 +528,11 @@
         {
           "command": "imbricate.script.edit",
           "when": "view == imbricate-scripts && viewItem == script-item",
+          "group": "script-context-1@1"
+        },
+        {
+          "command": "imbricate.script.edit",
+          "when": "view == imbricate-scripts && viewItem == script-item",
           "group": "inline"
         }
       ]
