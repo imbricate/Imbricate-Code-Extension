@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.14.0
+
+- Use latest local fundamental
+- Use latest file system origin
+- Use binary host version of imbricate core
+- Add Binary content upload feature
+- Fix Known Issues
+
 ## 1.13.1
 
 - Fix Code block Copy Function for Editing
