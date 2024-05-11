@@ -1,22 +1,28 @@
 /**
  * @author WMXPY
  * @namespace Origin
- * @description Gather Origin Type
+ * @description Gather Origin Input
  */
 
+import { IImbricateOrigin } from "@imbricate/core";
+import { ImbricateOriginManager, ImbricateOriginManagerOriginResponse } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 
 type OriginTypeItem = {
-    readonly originType: string;
+    readonly origin: IImbricateOrigin;
 } & vscode.QuickPickItem;
 
-export const gatherOriginTypeInput = async (): Promise<string | null> => {
+export const gatherOriginInput = async (
+    originManager: ImbricateOriginManager,
+): Promise<IImbricateOrigin | null> => {
 
     const disposables: vscode.Disposable[] = [];
     try {
 
-        return await new Promise<string | null>((
-            resolve: (value: string | null) => void,
+        const origins = originManager.origins;
+
+        return await new Promise<IImbricateOrigin | null>((
+            resolve: (value: IImbricateOrigin | null) => void,
         ) => {
 
             let current: OriginTypeItem | null = null;
@@ -24,11 +30,17 @@ export const gatherOriginTypeInput = async (): Promise<string | null> => {
             const quickPick = vscode.window.createQuickPick();
             quickPick.title = "Create Imbricate Origin";
 
-            const items: OriginTypeItem[] = [{
-                label: "File System",
-                detail: "Create a file system origin",
-                originType: "file-system",
-            }];
+            const items: OriginTypeItem[] = origins.map((
+                origin: ImbricateOriginManagerOriginResponse,
+            ) => {
+
+                return {
+                    label: origin.originName,
+                    detail: origin.origin.originType,
+                    origin: origin.origin,
+                };
+            });
+
             quickPick.items = items;
 
             disposables.push(
@@ -51,7 +63,7 @@ export const gatherOriginTypeInput = async (): Promise<string | null> => {
                         return;
                     }
 
-                    resolve(current.originType);
+                    resolve(current.origin);
                     quickPick.hide();
                 }),
             );
