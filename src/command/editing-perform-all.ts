@@ -4,7 +4,7 @@
  * @description Editing Perform
  */
 
-import { ActiveEditing, ImbricateOriginManager, performImbricateSavingTarget, readActiveEditing } from "@imbricate/local-fundamental";
+import { ActiveEditing, ImbricateOriginManager, digestString, performImbricateSavingTarget, readActiveEditing, retrieveImbricateSavingTarget } from "@imbricate/local-fundamental";
 import { readTextFile } from "@sudoo/io";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
@@ -28,8 +28,17 @@ export const registerEditingPerformAllCommand = (
 
             const updateContent: string = await readTextFile(activeEditing.path);
 
+            const originalContent = await retrieveImbricateSavingTarget(
+                activeEditing.target,
+                originManager,
+                "[ERROR] Content Not Found!",
+            );
+
+            const originalDigest: string = digestString(originalContent);
+
             const isPerformed: boolean = await performImbricateSavingTarget(
                 activeEditing.target,
+                originalDigest,
                 updateContent,
                 originManager,
             );
