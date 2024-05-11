@@ -18,6 +18,7 @@ import { registerEditingsRefreshCommand } from "./command/editing-refresh";
 import { registerEditingResumeCommand } from "./command/editing-resume";
 import { registerEditingSaveEditorCommand } from "./command/editing-save-editor";
 import { registerPageFavoriteClearCommand } from "./command/favorite-clear";
+import { registerOriginBinaryUploadCommand } from "./command/origin-binary-upload";
 import { registerOriginCreateCommand } from "./command/origin-create";
 import { registerPageCreateCommand } from "./command/page-create";
 import { registerPageCreateDirectoryCommand } from "./command/page-create-directory";
@@ -141,6 +142,12 @@ export const registerOperations = async (
         context,
     );
     context.subscriptions.push(favoriteClearDisposable);
+
+    const originBinaryUploadDisposable = registerOriginBinaryUploadCommand(
+        originManager,
+        context,
+    );
+    context.subscriptions.push(originBinaryUploadDisposable);
 
     const originCreateDisposable = registerOriginCreateCommand(
         pagesDataProvider,
