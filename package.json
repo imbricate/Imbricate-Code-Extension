@@ -43,9 +43,9 @@
     "publish": "yarn clean && vsce publish --no-yarn"
   },
   "dependencies": {
-    "@imbricate/core": "1.18.2",
-    "@imbricate/local-fundamental": "1.7.4",
-    "@imbricate/origin-file-system": "1.14.4",
+    "@imbricate/core": "1.19.2",
+    "@imbricate/local-fundamental": "1.8.0",
+    "@imbricate/origin-file-system": "1.15.0",
     "@sudoo/io": "^1.8.0"
   },
   "devDependencies": {
@@ -185,6 +185,12 @@
         "title": "Unfavorite All Pages",
         "category": "Imbricate",
         "icon": "$(delete)"
+      },
+      {
+        "command": "imbricate.origin.binary.upload",
+        "title": "Upload Binary File to Origin Binary Storage",
+        "category": "Imbricate",
+        "icon": "$(cloud-upload)"
       },
       {
         "command": "imbricate.origin.create",
