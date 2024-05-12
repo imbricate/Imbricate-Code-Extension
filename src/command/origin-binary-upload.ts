@@ -38,6 +38,13 @@ export const registerOriginBinaryUploadCommand = (
         const file: Buffer = await readBufferFile(targetFile);
         const base64: string = file.toString("base64");
 
+        const validationResult: boolean = await binaryStorage.validateBinaryBase64(base64);
+
+        if (!validationResult) {
+            vscode.window.showErrorMessage("Invalid binary file");
+            return;
+        }
+
         const fileName: string = getFileNameAndExtension(targetFile);
 
         const resultUrl: string = await binaryStorage.putBinaryBase64(base64, fileName);
