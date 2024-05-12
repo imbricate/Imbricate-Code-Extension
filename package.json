@@ -43,9 +43,9 @@
     "publish": "yarn clean && vsce publish --no-yarn"
   },
   "dependencies": {
-    "@imbricate/core": "1.19.2",
+    "@imbricate/core": "1.20.1",
     "@imbricate/local-fundamental": "1.8.0",
-    "@imbricate/origin-file-system": "1.15.0",
+    "@imbricate/origin-file-system": "1.16.0",
     "@sudoo/io": "^1.8.0"
   },
   "devDependencies": {
