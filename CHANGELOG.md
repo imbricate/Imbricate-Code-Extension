@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.15.2
+
+- Add delete confirmation for pages
+- Add delete confirmation for scripts
+- Add recent refresh to reflect page retitle
+- Improve menu message prompts
+- Fix Known Issues
+
 ## 1.15.1
 
 - Use latest esbuild
