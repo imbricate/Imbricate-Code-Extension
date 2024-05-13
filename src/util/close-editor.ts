@@ -11,7 +11,8 @@ export const closeEditor = async (editor: vscode.TextEditor): Promise<void> => {
     await vscode.window.showTextDocument(
         editor.document.uri,
         {
-            preview: false,
+            preview: true,
+            preserveFocus: false,
             viewColumn: editor.viewColumn,
         });
 
