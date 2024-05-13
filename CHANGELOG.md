@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.14.1
+
+- Use file parser for source control pattern
+- Use file parser for lens pattern
+- Use file parser for document resolver
+- Fix Known Issues
+
 ## 1.14.0
 
 - Use latest local fundamental
