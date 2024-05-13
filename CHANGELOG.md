@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.15.1
+
+- Use latest esbuild
+- Improve vscode message prompts
+
 ## 1.15.0
 
 - Use file parser for source control pattern
