@@ -9,6 +9,7 @@ import { readTextFile } from "@sudoo/io";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
 import { closeEditor } from "../util/close-editor";
+import { compareFilePath } from "../util/path";
 import { showErrorMessage, showInformationMessage } from "../util/show-message";
 import { concatSavingTargetUrl } from "../virtual-document/concat-target";
 import { concatEditingOriginalUrl } from "../virtual-document/editing-original/concat";
@@ -79,12 +80,10 @@ export const registerEditingPerformEditorCommand = (
 
         for (const visibleEditor of vscode.window.visibleTextEditors) {
 
-            const reParsedDocumentPath: vscode.Uri =
-                vscode.Uri.file(visibleEditor.document.uri.fsPath);
-            const reParsedEditingPath: vscode.Uri =
-                vscode.Uri.file(targetEditing.path);
-
-            if (reParsedDocumentPath.fsPath === reParsedEditingPath.fsPath) {
+            if (compareFilePath(
+                visibleEditor.document.uri.fsPath,
+                targetEditing.path,
+            )) {
 
                 closeEditor(visibleEditor);
             }

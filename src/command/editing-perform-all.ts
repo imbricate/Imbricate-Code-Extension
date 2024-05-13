@@ -9,6 +9,7 @@ import { readTextFile } from "@sudoo/io";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
 import { closeEditor } from "../util/close-editor";
+import { compareFilePath } from "../util/path";
 import { showInformationMessage } from "../util/show-message";
 import { concatSavingTargetUrl } from "../virtual-document/concat-target";
 import { concatEditingOriginalUrl } from "../virtual-document/editing-original/concat";
@@ -65,7 +66,10 @@ export const registerEditingPerformAllCommand = (
             const included: boolean = activeEditings.some((
                 each: ActiveEditing,
             ) => {
-                return each.path === visibleEditor.document.uri.path;
+                return compareFilePath(
+                    visibleEditor.document.uri.fsPath,
+                    each.path,
+                );
             });
 
             if (included) {

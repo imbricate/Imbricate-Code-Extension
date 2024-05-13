@@ -10,6 +10,7 @@ import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
 import { EditingEditingItem } from "../editing-tree-view/editing-item";
 import { closeEditor } from "../util/close-editor";
+import { compareFilePath } from "../util/path";
 import { showInformationMessage } from "../util/show-message";
 import { concatSavingTargetUrl } from "../virtual-document/concat-target";
 import { concatEditingOriginalUrl } from "../virtual-document/editing-original/concat";
@@ -57,7 +58,11 @@ export const registerEditingPerformCommand = (
         editingOnChangeEmitter.fire(editingUrl);
 
         for (const visibleEditor of vscode.window.visibleTextEditors) {
-            if (visibleEditor.document.uri.path === activeEditing.path) {
+
+            if (compareFilePath(
+                visibleEditor.document.uri.fsPath,
+                activeEditing.path,
+            )) {
 
                 closeEditor(visibleEditor);
             }
