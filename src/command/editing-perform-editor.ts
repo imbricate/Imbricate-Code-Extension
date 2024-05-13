@@ -84,8 +84,7 @@ export const registerEditingPerformEditorCommand = (
             const reParsedEditingPath: vscode.Uri =
                 vscode.Uri.file(targetEditing.path);
 
-            console.log(reParsedDocumentPath.fsPath, reParsedEditingPath.fsPath);
-            if (visibleEditor.document.uri.path === targetEditing.path) {
+            if (reParsedDocumentPath.fsPath === reParsedEditingPath.fsPath) {
 
                 closeEditor(visibleEditor);
             }

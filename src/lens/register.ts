@@ -15,7 +15,7 @@ export const registerPreCodeLensProvider = (
     const provider = CopyPreCodeProvider.create();
 
     const rootFolder = resolveImbricateTempDirectory();
-    const rootUri = vscode.Uri.parse(rootFolder);
+    const rootUri = vscode.Uri.file(rootFolder);
 
     const editingDisposable = vscode.languages.registerCodeLensProvider(
         {
