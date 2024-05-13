@@ -6,7 +6,6 @@
 
 import { resolveImbricateTempDirectory } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
-import { buildFileUri } from "../util/path";
 import { ImbricateQuickDiffProvider } from "./quick-diff-provider";
 
 export const registerSourceControl = (
@@ -14,7 +13,7 @@ export const registerSourceControl = (
 ): void => {
 
     const rootFolder = resolveImbricateTempDirectory();
-    const rootUri = buildFileUri(rootFolder);
+    const rootUri = vscode.Uri.file(rootFolder);
 
     const sourceControl: vscode.SourceControl =
         vscode.scm.createSourceControl(
