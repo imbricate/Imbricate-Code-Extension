@@ -13,7 +13,7 @@ export const getFileNameAndExtension = (filePath: string): string => {
     return parsedPath.base;
 };
 
-export const buildPatternUri = (path: string): vscode.Uri => {
+export const buildFileUri = (path: string): vscode.Uri => {
 
     if (path.startsWith("file://")) {
 
