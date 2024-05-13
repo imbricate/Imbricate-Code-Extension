@@ -16,6 +16,24 @@ export const registerScriptDeleteCommand = (
 
     const disposable = vscode.commands.registerCommand("imbricate.script.delete", async (item: ScriptScriptItem) => {
 
+        const result: vscode.MessageItem | undefined = await vscode.window.showInformationMessage(
+            `Deleting script\n[${item.scriptSnapshot.scriptName}]`,
+            {
+                modal: true,
+            },
+            {
+                title: "Delete",
+            },
+        );
+
+        if (!result) {
+            return;
+        }
+
+        if (result.title !== "Delete") {
+            return;
+        }
+
         const savingTarget = createScriptSavingTarget(
             item.originName,
             item.scriptSnapshot.identifier,

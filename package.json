@@ -213,7 +213,7 @@
       },
       {
         "command": "imbricate.page.delete",
-        "title": "Delete Page",
+        "title": "Delete Page...",
         "shortTitle": "Delete",
         "category": "Imbricate",
         "icon": "$(trash)"
@@ -280,7 +280,7 @@
       },
       {
         "command": "imbricate.script.delete",
-        "title": "Delete Script",
+        "title": "Delete Script...",
         "shortTitle": "Delete",
         "category": "Imbricate",
         "icon": "$(trash)"

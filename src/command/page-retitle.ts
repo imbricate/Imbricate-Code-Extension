@@ -7,7 +7,7 @@
 import { checkSavingTargetActive, createPageSavingTarget, validateFilename } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
-import { PAGES_FAVORITES_KEY, PagePersistanceData } from "../pages-tree-view/page-data";
+import { PAGES_FAVORITES_KEY, PAGES_RECENTS_KEY, PagePersistanceData } from "../pages-tree-view/page-data";
 import { PagePageItem } from "../pages-tree-view/page-item";
 import { showErrorMessage } from "../util/show-message";
 
@@ -99,6 +99,34 @@ export const registerPageRetitleCommand = (
             await context.globalState.update(
                 PAGES_FAVORITES_KEY,
                 newFavorites,
+            );
+        }
+
+        const currentRecents: PagePersistanceData[] | undefined =
+            context.globalState.get(PAGES_RECENTS_KEY);
+
+        if (Array.isArray(currentRecents)) {
+
+            const newRecents: PagePersistanceData[] = currentRecents.map((current: PagePersistanceData) => {
+
+                if (current.originName === pageItem.originName
+                    && current.collectionUniqueIdentifier === pageItem.collection.uniqueIdentifier
+                    && current.pageSnapshot.identifier === pageItem.pageSnapshot.identifier) {
+
+                    return {
+                        ...current,
+                        pageSnapshot: {
+                            ...current.pageSnapshot,
+                            title: newTitle,
+                        },
+                    };
+                }
+                return current;
+            });
+
+            await context.globalState.update(
+                PAGES_RECENTS_KEY,
+                newRecents,
             );
         }
 

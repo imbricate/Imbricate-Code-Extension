@@ -18,6 +18,24 @@ export const registerPageDeleteCommand = (
 
     const disposable = vscode.commands.registerCommand("imbricate.page.delete", async (item: PagePageItem) => {
 
+        const result: vscode.MessageItem | undefined = await vscode.window.showInformationMessage(
+            `Deleting page\n[${item.pageSnapshot.title}]`,
+            {
+                modal: true,
+            },
+            {
+                title: "Delete",
+            },
+        );
+
+        if (!result) {
+            return;
+        }
+
+        if (result.title !== "Delete") {
+            return;
+        }
+
         const savingTarget = createPageSavingTarget(
             item.originName,
             item.collection.uniqueIdentifier,
