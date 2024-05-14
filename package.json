@@ -43,19 +43,19 @@
     "publish": "yarn clean && vsce publish --no-yarn"
   },
   "dependencies": {
-    "@imbricate/core": "1.20.1",
-    "@imbricate/local-fundamental": "1.8.0",
-    "@imbricate/origin-file-system": "1.16.0",
+    "@imbricate/core": "1.24.4",
+    "@imbricate/local-fundamental": "1.9.0",
+    "@imbricate/origin-file-system": "1.17.0",
     "@sudoo/io": "^1.8.0"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.6",
-    "@types/node": "^20.12.11",
-    "@types/vscode": "^1.76.0",
-    "@typescript-eslint/eslint-plugin": "^7.8.0",
-    "@typescript-eslint/parser": "^7.8.0",
+    "@types/node": "^20.12.12",
+    "@types/vscode": "^1.89.0",
+    "@typescript-eslint/eslint-plugin": "^7.9.0",
+    "@typescript-eslint/parser": "^7.9.0",
     "@vscode/test-cli": "^0.0.9",
-    "@vscode/test-electron": "^2.3.9",
+    "@vscode/test-electron": "^2.3.10",
     "esbuild": "^0.21.2",
     "eslint": "^8.57.0",
     "typescript": "^5.4.5"
