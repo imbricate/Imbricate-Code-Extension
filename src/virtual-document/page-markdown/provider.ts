@@ -4,7 +4,7 @@
  * @description Provider
  */
 
-import { IImbricateOrigin, IImbricateOriginCollection, IImbricatePage } from "@imbricate/core";
+import { IImbricateCollection, IImbricateOrigin, IImbricatePage } from "@imbricate/core";
 import { ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { onChangeEmitter } from "../on-change-emitter";
@@ -48,7 +48,7 @@ export class PageMarkdownContentProvider implements vscode.TextDocumentContentPr
             return "[ERROR] Origin Not Found!";
         }
 
-        const collection: IImbricateOriginCollection | null = await origin.getCollection(collectionUniqueIdentifier);
+        const collection: IImbricateCollection | null = await origin.getCollection(collectionUniqueIdentifier);
 
         if (!collection) {
             return "[ERROR] Collection Not Found!";

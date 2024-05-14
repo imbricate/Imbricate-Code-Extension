@@ -4,7 +4,7 @@
  * @description Directory Item
  */
 
-import { IImbricateOriginCollection, ImbricatePageSnapshot } from "@imbricate/core";
+import { IImbricateCollection, ImbricatePageSnapshot } from "@imbricate/core";
 import * as vscode from "vscode";
 import { PagePageItem } from "./page-item";
 
@@ -12,7 +12,7 @@ export class PageDirectoryItem extends vscode.TreeItem {
 
     public static withDirectories(
         originName: string,
-        collection: IImbricateOriginCollection,
+        collection: IImbricateCollection,
         directories: string[],
     ) {
 
@@ -24,13 +24,13 @@ export class PageDirectoryItem extends vscode.TreeItem {
     }
 
     private readonly _originName: string;
-    private readonly _collection: IImbricateOriginCollection;
+    private readonly _collection: IImbricateCollection;
 
     private readonly _directories: string[];
 
     private constructor(
         originName: string,
-        collection: IImbricateOriginCollection,
+        collection: IImbricateCollection,
         directories: string[],
     ) {
 
@@ -52,7 +52,7 @@ export class PageDirectoryItem extends vscode.TreeItem {
         return this._originName;
     }
 
-    public get collection(): IImbricateOriginCollection {
+    public get collection(): IImbricateCollection {
         return this._collection;
     }
 

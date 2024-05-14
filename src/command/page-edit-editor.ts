@@ -4,7 +4,7 @@
  * @description Page Edit Editor
  */
 
-import { IImbricateOrigin, IImbricateOriginCollection, IImbricatePage } from "@imbricate/core";
+import { IImbricateCollection, IImbricateOrigin, IImbricatePage } from "@imbricate/core";
 import { ActiveEditing, ImbricateOriginManager, createPageSavingTarget, establishImbricateSavingTarget } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
@@ -35,7 +35,7 @@ export const registerPageEditEditorCommand = (
             return;
         }
 
-        const collection: IImbricateOriginCollection | null =
+        const collection: IImbricateCollection | null =
             await origin.getCollection(collectionUniqueIdentifier);
 
         if (!collection) {

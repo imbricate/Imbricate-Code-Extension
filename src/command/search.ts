@@ -4,7 +4,7 @@
  * @description Search
  */
 
-import { IImbricateOriginCollection, IMBRICATE_SEARCH_RESULT_TYPE, ImbricatePageSearchResult, ImbricateScriptSearchResult } from "@imbricate/core";
+import { IImbricateCollection, IMBRICATE_SEARCH_RESULT_TYPE, ImbricatePageSearchResult, ImbricateScriptSearchResult } from "@imbricate/core";
 import { ImbricateOriginManager, ImbricateOriginManagerOriginResponse, ImbricateSearchPreference, IncludedSearchPreference, readOrCreateSearchPreferenceConfiguration, resolveImbricateHomeDirectory } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
@@ -48,7 +48,7 @@ export const registerSearchCommand = (
 
         for (const origin of origins) {
 
-            const collections: IImbricateOriginCollection[] = await origin.origin.listCollections();
+            const collections: IImbricateCollection[] = await origin.origin.listCollections();
 
             collections: for (const collection of collections) {
 

@@ -4,14 +4,14 @@
  * @description Page Item
  */
 
-import { IImbricateOriginCollection, ImbricatePageSnapshot } from "@imbricate/core";
+import { IImbricateCollection, ImbricatePageSnapshot } from "@imbricate/core";
 import * as vscode from "vscode";
 
 export class PagePageItem extends vscode.TreeItem {
 
     public static withSnapshot(
         originName: string,
-        collection: IImbricateOriginCollection,
+        collection: IImbricateCollection,
         pageSnapshot: ImbricatePageSnapshot,
         variant?: string,
     ) {
@@ -25,13 +25,13 @@ export class PagePageItem extends vscode.TreeItem {
     }
 
     private readonly _originName: string;
-    private readonly _collection: IImbricateOriginCollection;
+    private readonly _collection: IImbricateCollection;
 
     private readonly _pageSnapshot: ImbricatePageSnapshot;
 
     private constructor(
         originName: string,
-        collection: IImbricateOriginCollection,
+        collection: IImbricateCollection,
         pageSnapshot: ImbricatePageSnapshot,
         variant?: string,
     ) {
@@ -62,7 +62,7 @@ export class PagePageItem extends vscode.TreeItem {
         return this._originName;
     }
 
-    public get collection(): IImbricateOriginCollection {
+    public get collection(): IImbricateCollection {
         return this._collection;
     }
 

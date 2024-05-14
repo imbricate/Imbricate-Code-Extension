@@ -4,7 +4,7 @@
  * @description Collection Item
  */
 
-import { IImbricateOriginCollection } from "@imbricate/core";
+import { IImbricateCollection } from "@imbricate/core";
 import { ImbricateSearchPreference, IncludedSearchPreference } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 
@@ -12,7 +12,7 @@ export class PagesCollectionItem extends vscode.TreeItem {
 
     public static withCollection(
         originName: string,
-        collection: IImbricateOriginCollection,
+        collection: IImbricateCollection,
         searchPreference: ImbricateSearchPreference,
     ) {
 
@@ -25,11 +25,11 @@ export class PagesCollectionItem extends vscode.TreeItem {
 
     private readonly _originName: string;
 
-    private readonly _collection: IImbricateOriginCollection;
+    private readonly _collection: IImbricateCollection;
 
     private constructor(
         originName: string,
-        collection: IImbricateOriginCollection,
+        collection: IImbricateCollection,
         searchPreference: ImbricateSearchPreference,
     ) {
 
@@ -63,13 +63,13 @@ export class PagesCollectionItem extends vscode.TreeItem {
         return this._originName;
     }
 
-    public get collection(): IImbricateOriginCollection {
+    public get collection(): IImbricateCollection {
         return this._collection;
     }
 
     private _buildContextValue(
         originName: string,
-        collection: IImbricateOriginCollection,
+        collection: IImbricateCollection,
         searchPreference: ImbricateSearchPreference,
     ): string {
 

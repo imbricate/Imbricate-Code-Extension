@@ -4,7 +4,7 @@
  * @description Page Create Directory
  */
 
-import { IImbricateOriginCollection, IImbricatePage } from "@imbricate/core";
+import { IImbricateCollection, IImbricatePage } from "@imbricate/core";
 import { ActiveEditing, createPageSavingTarget, establishImbricateSavingTarget, validateFilename } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
@@ -21,7 +21,7 @@ export const registerPageCreateDirectoryCommand = (
     const disposable = vscode.commands.registerCommand("imbricate.page.create.directory", async (item: PagesCollectionItem | PageDirectoryItem) => {
 
         let originName: string | null = null;
-        let collection: IImbricateOriginCollection | null = null;
+        let collection: IImbricateCollection | null = null;
         let directories: string[] = [];
 
         if (item instanceof PageDirectoryItem) {

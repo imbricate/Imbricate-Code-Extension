@@ -4,7 +4,7 @@
  * @description Data Provider
  */
 
-import { IImbricateOrigin, IImbricateOriginCollection, ImbricatePageSnapshot } from "@imbricate/core";
+import { IImbricateCollection, IImbricateOrigin, ImbricatePageSnapshot } from "@imbricate/core";
 import { ImbricateOriginManager, ImbricateOriginManagerOriginResponse, ImbricateSearchPreference, readOrCreateSearchPreferenceConfiguration, resolveImbricateHomeDirectory } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { CONFIG_KEY, getConfiguration } from "../configuration/get-config";
@@ -122,7 +122,7 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
                 );
 
             return collections.map((
-                collection: IImbricateOriginCollection,
+                collection: IImbricateCollection,
             ) => {
                 return PagesCollectionItem.withCollection(
                     element.originName,

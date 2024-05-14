@@ -4,7 +4,7 @@
  * @description Recent Item
  */
 
-import { IImbricateOrigin, IImbricateOriginCollection } from "@imbricate/core";
+import { IImbricateCollection, IImbricateOrigin } from "@imbricate/core";
 import { ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { PAGES_RECENTS_KEY, PagePersistanceData } from "./page-data";
@@ -54,7 +54,7 @@ export const renderPageRecentItem = async (
             continue;
         }
 
-        const collection: IImbricateOriginCollection | null = await origin.getCollection(recent.collectionUniqueIdentifier);
+        const collection: IImbricateCollection | null = await origin.getCollection(recent.collectionUniqueIdentifier);
 
         if (!collection) {
 
