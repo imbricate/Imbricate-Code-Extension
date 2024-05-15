@@ -45,6 +45,7 @@
   "dependencies": {
     "@imbricate/core": "1.24.4",
     "@imbricate/local-fundamental": "1.9.0",
+    "@imbricate/markdown-render": "1.2.0",
     "@imbricate/origin-file-system": "1.17.0",
     "@sudoo/io": "^1.8.0"
   },
@@ -108,6 +109,11 @@
       ]
     },
     "viewsWelcome": [
+      {
+        "view": "imbricate-editings",
+        "contents": "No Active Editings.\n[Learn More](https://imbricate.io)",
+        "when": "imbricate.context.editings.loaded"
+      },
       {
         "view": "imbricate-pages",
         "contents": "No Imbricate Origin found\n[Create Origin](command:imbricate.origin.create)\n[Learn More](https://imbricate.io)",
