@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.15.3
+
+- Add welcome page for editing view
+- Use latest imbricate core
+- Fix page initial line copying issue
+- Fix Known Issues
+
 ## 1.15.2
 
 - Add delete confirmation for pages
