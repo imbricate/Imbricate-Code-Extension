@@ -8,13 +8,18 @@ import { IImbricateOrigin, IImbricateScript, IMBRICATE_SEARCH_RESULT_TYPE } from
 import { ActiveEditing, ImbricateOriginManager, createPageSavingTarget, createScriptSavingTarget, establishImbricateSavingTarget } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
+import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
+import { PagePersistanceData } from "../pages-tree-view/page-data";
+import { recordRecentPage } from "../util/recent";
 import { showErrorMessage } from "../util/show-message";
 import { OriginMappedSearchResult, SearchResultItem } from "./definition";
 
 export const searchItemEdit = async (
     item: SearchResultItem,
-    originManager: ImbricateOriginManager,
+    pagesDataProvider: PagesTreeViewDataProvider,
     editingsDataProvider: EditingTreeViewDataProvider,
+    originManager: ImbricateOriginManager,
+    context: vscode.ExtensionContext,
 ): Promise<void> => {
 
     const result: OriginMappedSearchResult<IMBRICATE_SEARCH_RESULT_TYPE> = item.result;
@@ -59,6 +64,22 @@ export const searchItemEdit = async (
                 savingTarget,
                 `${page.title}.md`,
                 content,
+            );
+
+            const persistanceData: PagePersistanceData = {
+                originName: fixedResult.originName,
+                collectionUniqueIdentifier: fixedResult.scope,
+                pageSnapshot: {
+                    directories: page.directories,
+                    title: page.title,
+                    identifier: page.identifier,
+                },
+            };
+
+            await recordRecentPage(
+                persistanceData,
+                pagesDataProvider,
+                context,
             );
 
             const textDocument: vscode.TextDocument =

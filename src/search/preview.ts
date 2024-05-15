@@ -4,17 +4,32 @@
  * @description Preview
  */
 
-import { IMBRICATE_SEARCH_RESULT_TYPE } from "@imbricate/core";
+import { IImbricateOrigin, IMBRICATE_SEARCH_RESULT_TYPE } from "@imbricate/core";
+import { ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
+import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
+import { PagePersistanceData } from "../pages-tree-view/page-data";
+import { recordRecentPage } from "../util/recent";
+import { showErrorMessage } from "../util/show-message";
 import { concatPageMarkdownUrl } from "../virtual-document/page-markdown/concat";
 import { concatScriptJavascriptUrl } from "../virtual-document/script-javascript/concat";
 import { OriginMappedSearchResult, SearchResultItem } from "./definition";
 
 export const searchItemPreview = async (
     item: SearchResultItem,
+    pagesDataProvider: PagesTreeViewDataProvider,
+    originManager: ImbricateOriginManager,
+    context: vscode.ExtensionContext,
 ): Promise<void> => {
 
     const result: OriginMappedSearchResult<IMBRICATE_SEARCH_RESULT_TYPE> = item.result;
+
+    const origin: IImbricateOrigin | null = originManager.getOrigin(result.originName);
+
+    if (!origin) {
+        showErrorMessage(`Cannot find origin: ${result.originName}`);
+        return;
+    }
 
     switch (result.type) {
 
@@ -27,6 +42,36 @@ export const searchItemPreview = async (
                 fixedResult.originName,
                 fixedResult.scope,
                 fixedResult.identifier,
+            );
+
+            const collection = await origin.getCollection(fixedResult.scope);
+
+            if (!collection) {
+                showErrorMessage(`Cannot find collection: ${fixedResult.scope}`);
+                return;
+            }
+
+            const page = await collection.getPage(fixedResult.identifier);
+
+            if (!page) {
+                showErrorMessage(`Cannot find page: ${fixedResult.headline}`);
+                return;
+            }
+
+            const persistanceData: PagePersistanceData = {
+                originName: fixedResult.originName,
+                collectionUniqueIdentifier: fixedResult.scope,
+                pageSnapshot: {
+                    directories: page.directories,
+                    title: page.title,
+                    identifier: page.identifier,
+                },
+            };
+
+            await recordRecentPage(
+                persistanceData,
+                pagesDataProvider,
+                context,
             );
 
             const textDocument: vscode.TextDocument =

@@ -8,14 +8,17 @@ import { IImbricateCollection, IMBRICATE_SEARCH_RESULT_TYPE, ImbricatePageSearch
 import { ImbricateOriginManager, ImbricateOriginManagerOriginResponse, ImbricateSearchPreference, IncludedSearchPreference, readOrCreateSearchPreferenceConfiguration, resolveImbricateHomeDirectory } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
+import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
 import { OriginMappedSearchResult, SearchResultItem } from "../search/definition";
 import { searchItemEdit } from "../search/edit";
 import { createSearchQuickViewItem } from "../search/item";
 import { searchItemPreview } from "../search/preview";
 
 export const registerSearchCommand = (
-    originManager: ImbricateOriginManager,
+    pagesDataProvider: PagesTreeViewDataProvider,
     editingsDataProvider: EditingTreeViewDataProvider,
+    originManager: ImbricateOriginManager,
+    context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 
     const disposable = vscode.commands.registerCommand("imbricate.search", async () => {
@@ -116,13 +119,18 @@ export const registerSearchCommand = (
                     }),
                 );
                 disposables.push(
-                    quickPick.onDidTriggerItemButton((item) => {
+                    quickPick.onDidTriggerItemButton(async (item) => {
                         if (item.button.tooltip === "Edit") {
 
+                            const fixedItem: SearchResultItem =
+                                item.item as SearchResultItem;
+
                             searchItemEdit(
-                                item.item as SearchResultItem,
-                                originManager,
+                                fixedItem,
+                                pagesDataProvider,
                                 editingsDataProvider,
+                                originManager,
+                                context,
                             );
                             quickPick.hide();
                         }
@@ -142,7 +150,12 @@ export const registerSearchCommand = (
                             return;
                         }
 
-                        searchItemPreview(current);
+                        searchItemPreview(
+                            current,
+                            pagesDataProvider,
+                            originManager,
+                            context,
+                        );
                         quickPick.hide();
                     }),
                 );
