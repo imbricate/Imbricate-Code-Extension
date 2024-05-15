@@ -35,6 +35,10 @@ export const registerDocumentCopyCodeBlockCommand = (): vscode.Disposable => {
             result.push(lines[i]);
         }
 
+        if (lines[lines.length - 1].length === 0) {
+            result.pop();
+        }
+
         await vscode.env.clipboard.writeText(
             result.join("\n"),
         );
