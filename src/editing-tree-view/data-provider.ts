@@ -21,6 +21,8 @@ export class EditingTreeViewDataProvider implements vscode.TreeDataProvider<vsco
 
     private readonly _configuration: IImbricateConfiguration;
 
+    private _loaded: boolean = false;
+
     private _onDidChangeTreeData:
         vscode.EventEmitter<vscode.TreeItem | undefined | void> =
         new vscode.EventEmitter<vscode.TreeItem | undefined | void>();
@@ -50,9 +52,20 @@ export class EditingTreeViewDataProvider implements vscode.TreeDataProvider<vsco
 
             const activeEditings: ActiveEditing[] = await readActiveEditing();
 
-            return activeEditings.map((activeEditing: ActiveEditing) => {
-                return EditingEditingItem.withActiveEditing(activeEditing);
-            });
+            const items: EditingEditingItem[] =
+                activeEditings.map((activeEditing: ActiveEditing) => {
+                    return EditingEditingItem.withActiveEditing(activeEditing);
+                });
+
+            if (!this._loaded) {
+
+                this._loaded = true;
+
+                console.log("Editings Tree Data Provider Loaded");
+                vscode.commands.executeCommand("setContext", "imbricate.context.editings.loaded", true);
+            }
+
+            return Promise.resolve(items);
         }
 
         return Promise.resolve([

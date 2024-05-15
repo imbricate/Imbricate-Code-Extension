@@ -19,7 +19,7 @@ export class PagesFavoriteItem extends vscode.TreeItem {
 
     private constructor() {
 
-        super("Favorites", vscode.TreeItemCollapsibleState.Collapsed);
+        super("Favorites", vscode.TreeItemCollapsibleState.Expanded);
 
         this.contextValue = "page-favorites-item";
 

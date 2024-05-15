@@ -184,7 +184,9 @@ export const registerOperations = async (
 
     const pageEditEditorDisposable = registerPageEditEditorCommand(
         editingsDataProvider,
+        pagesDataProvider,
         originManager,
+        context,
     );
     context.subscriptions.push(pageEditEditorDisposable);
 
@@ -255,8 +257,10 @@ export const registerOperations = async (
     context.subscriptions.push(scriptsRefreshDisposable);
 
     const searchDisposable = registerSearchCommand(
-        originManager,
+        pagesDataProvider,
         editingsDataProvider,
+        originManager,
+        context,
     );
     context.subscriptions.push(searchDisposable);
 };
