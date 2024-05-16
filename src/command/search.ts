@@ -67,7 +67,7 @@ export const registerSearchCommand = (
                 const pageResults: ImbricatePageSearchResult[] =
                     await collection.searchPages(prompt, {
                         exact: false,
-                        limit: 1,
+                        snippetLimit: 1,
                     });
 
                 originMappedResults.push(...pageResults.map(
@@ -83,7 +83,7 @@ export const registerSearchCommand = (
             const scriptResults: ImbricateScriptSearchResult[] =
                 await origin.origin.searchScripts(prompt, {
                     exact: false,
-                    limit: 1,
+                    snippetLimit: 1,
                 });
 
             originMappedResults.push(...scriptResults.map(
