@@ -28,6 +28,10 @@ export const gatherOriginTypeInput = async (): Promise<string | null> => {
                 label: "File System",
                 detail: "Create a file system origin",
                 originType: "file-system",
+            }, {
+                label: "Mongo",
+                detail: "Create a mongodb origin",
+                originType: "mongo",
             }];
             quickPick.items = items;
 

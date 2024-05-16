@@ -50,7 +50,7 @@ export const gatherAndCreateMongoOrigin = async (
         origins: [
             ...rawConfig.origins,
             {
-                originType: "file-system",
+                originType: "mongo",
                 uniqueIdentifier: hashed,
                 originName,
                 payloads,
