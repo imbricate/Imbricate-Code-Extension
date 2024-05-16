@@ -6,10 +6,11 @@
 
 import { IImbricateConfiguration, IImbricateConfigurationOrigin, ImbricateOriginInitializer, ImbricateOriginManager } from "@imbricate/local-fundamental";
 import { FileSystemImbricateOrigin, FileSystemOriginPayload } from "@imbricate/origin-file-system";
+import { MongoImbricateOrigin } from "@imbricate/origin-mongo";
 
-export const initializeOriginManager = (
+export const initializeOriginManager = async (
     configuration: IImbricateConfiguration,
-): ImbricateOriginManager => {
+): Promise<ImbricateOriginManager> => {
 
     const originInitializer: ImbricateOriginInitializer = ImbricateOriginInitializer.create();
 
@@ -22,7 +23,15 @@ export const initializeOriginManager = (
         },
     );
 
-    const originManager = originInitializer.initializeOrigins(configuration.origins);
+    originInitializer.registerOriginConstructor(
+        "mongo",
+        async (origin: IImbricateConfigurationOrigin) => {
+            return await MongoImbricateOrigin.create(
+                origin.payloads.connectionString as string,
+            );
+        },
+    );
 
+    const originManager = await originInitializer.initializeOrigins(configuration.origins);
     return originManager;
 };

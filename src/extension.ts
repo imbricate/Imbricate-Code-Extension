@@ -15,7 +15,7 @@ export const activate = async (context: vscode.ExtensionContext) => {
 	const configurationPath: string = resolveImbricateHomeDirectory();
 	const configuration = await readOrCreateImbricateConfiguration(configurationPath);
 
-	const originManager = initializeOriginManager(configuration);
+	const originManager = await initializeOriginManager(configuration);
 
 	await registerOperations(
 		configuration,
