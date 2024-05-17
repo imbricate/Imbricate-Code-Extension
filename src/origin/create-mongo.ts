@@ -60,7 +60,7 @@ export const gatherAndCreateMongoOrigin = async (
 
     await persistImbricateConfiguration(configurationPath, updatedRawConfig);
 
-    const newOrigin = await MongoImbricateOrigin.create(
+    const newOrigin = MongoImbricateOrigin.create(
         mongoConnectionString,
     );
 

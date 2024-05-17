@@ -25,13 +25,13 @@ export const initializeOriginManager = async (
 
     originInitializer.registerOriginConstructor(
         "mongo",
-        async (origin: IImbricateConfigurationOrigin) => {
-            return await MongoImbricateOrigin.create(
+        (origin: IImbricateConfigurationOrigin) => {
+            return MongoImbricateOrigin.create(
                 origin.payloads.connectionString as string,
             );
         },
     );
 
-    const originManager = await originInitializer.initializeOrigins(configuration.origins);
+    const originManager = originInitializer.initializeOrigins(configuration.origins);
     return originManager;
 };
