@@ -20,7 +20,9 @@ export const registerPageEditCommand = (
     context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.page.edit", async (item: PagePageItem) => {
+    const disposable = vscode.commands.registerCommand("imbricate.page.edit", async (
+        item: PagePageItem,
+    ) => {
 
         const savingTarget = createPageSavingTarget(
             item.originName,
