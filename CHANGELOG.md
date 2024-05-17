@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.16.0
+
+- Use the latest imbricate core
+- Add Mongo origin to supported origin list
+- Fix digest comparison issue
+- Fix local origin issue
+
 ## 1.15.3
 
 - Add welcome page for editing view
