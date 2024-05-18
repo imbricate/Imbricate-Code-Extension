@@ -4,13 +4,14 @@
  * @description Editing Discard
  */
 
-import { ActiveEditing, cleanupImbricateSavingTarget } from "@imbricate/local-fundamental";
+import { ActiveEditing, cleanupImbricateSavingTarget, digestString } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
 import { EditingEditingItem } from "../editing-tree-view/editing-item";
 import { closeEditor } from "../util/close-editor";
 import { compareFilePath } from "../util/path";
 import { showErrorMessage } from "../util/show-message";
+import { readTextFile } from "@sudoo/io";
 
 export const registerEditingDiscardCommand = (
     editingDataProvider: EditingTreeViewDataProvider,
@@ -22,6 +23,30 @@ export const registerEditingDiscardCommand = (
         ) => {
 
         const activeEditing: ActiveEditing = item.activeEditing;
+
+        const updateContent: string = await readTextFile(activeEditing.path);
+        const updatedDigest: string = digestString(updateContent);
+
+        if (activeEditing.digest !== updatedDigest) {
+
+            const result: vscode.MessageItem | undefined = await vscode.window.showInformationMessage(
+                `Editing has been modified\n[${activeEditing.hash}]`,
+                {
+                    modal: true,
+                },
+                {
+                    title: "Discard",
+                },
+            );
+
+            if (!result) {
+                return;
+            }
+
+            if (result.title !== "Discard") {
+                return;
+            }
+        }
 
         const isDiscarded: boolean = await cleanupImbricateSavingTarget(
             activeEditing.target,
