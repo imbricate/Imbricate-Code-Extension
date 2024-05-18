@@ -158,6 +158,12 @@
         "icon": "$(save-all)"
       },
       {
+        "command": "imbricate.editing.discard",
+        "title": "Discard Editing",
+        "category": "Imbricate",
+        "icon": "$(trash)"
+      },
+      {
         "command": "imbricate.editing.perform-editor",
         "title": "Perform Editing in Editor",
         "category": "Imbricate",
@@ -336,6 +342,10 @@
           "when": "false"
         },
         {
+          "command": "imbricate.editing.discard",
+          "when": "false"
+        },
+        {
           "command": "imbricate.editing.resume",
           "when": "false"
         },
@@ -458,6 +468,11 @@
           "command": "imbricate.collection.search.exclude",
           "when": "view == imbricate-pages && viewItem == page-collection-item-include",
           "group": "collection-context-3@1"
+        },
+        {
+          "command": "imbricate.editing.discard",
+          "when": "view == imbricate-editings && viewItem == editing-item",
+          "group": "editing-context-1@1"
         },
         {
           "command": "imbricate.editing.perform",

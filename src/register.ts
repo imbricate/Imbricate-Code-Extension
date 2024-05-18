@@ -11,6 +11,7 @@ import { registerCollectionRenameCommand } from "./command/collection-rename";
 import { registerCollectionSearchExcludeCommand } from "./command/collection-search-exclude";
 import { registerCollectionSearchIncludeCommand } from "./command/collection-search-include";
 import { registerDocumentCopyCodeBlockCommand } from "./command/document-copy-code-block";
+import { registerEditingDiscardCommand } from "./command/editing-discard";
 import { registerEditingPerformCommand } from "./command/editing-perform";
 import { registerEditingPerformAllCommand } from "./command/editing-perform-all";
 import { registerEditingPerformEditorCommand } from "./command/editing-perform-editor";
@@ -104,6 +105,11 @@ export const registerOperations = async (
 
     const documentCopyCodeBlockCommand = registerDocumentCopyCodeBlockCommand();
     context.subscriptions.push(documentCopyCodeBlockCommand);
+
+    const editingDiscardCommand = registerEditingDiscardCommand(
+        editingsDataProvider,
+    );
+    context.subscriptions.push(editingDiscardCommand);
 
     const editingPerformAllCommand = registerEditingPerformAllCommand(
         originManager,
