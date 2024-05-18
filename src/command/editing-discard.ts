@@ -5,13 +5,13 @@
  */
 
 import { ActiveEditing, cleanupImbricateSavingTarget, digestString } from "@imbricate/local-fundamental";
+import { readTextFile } from "@sudoo/io";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
 import { EditingEditingItem } from "../editing-tree-view/editing-item";
 import { closeEditor } from "../util/close-editor";
 import { compareFilePath } from "../util/path";
 import { showErrorMessage } from "../util/show-message";
-import { readTextFile } from "@sudoo/io";
 
 export const registerEditingDiscardCommand = (
     editingDataProvider: EditingTreeViewDataProvider,
