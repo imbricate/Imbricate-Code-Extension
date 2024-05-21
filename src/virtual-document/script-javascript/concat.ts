@@ -22,11 +22,11 @@ export const divideScriptMarkdownUrl = (uri: vscode.Uri): [string, string] => {
     const path: string = uri.path;
     const parts: string[] = path.split("/");
 
-    if (parts.length !== 4) {
+    if (parts.length !== 3) {
 
         showErrorMessage(`Invalid URI, unable to divide: ${uri.path}`);
         return ["", ""];
     }
 
-    return [parts[0], parts[2]];
+    return [parts[0], parts[1]];
 };
