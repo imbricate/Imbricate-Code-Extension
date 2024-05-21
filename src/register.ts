@@ -44,6 +44,7 @@ import { registerScriptExecuteEditorCommand } from "./command/script-execute-edi
 import { registerScriptExecuteSaveEditorCommand } from "./command/script-execute-save-editor";
 import { registerScriptPreviewCommand } from "./command/script-preview";
 import { registerScriptsRefreshCommand } from "./command/script-refresh";
+import { registerScriptRenameCommand } from "./command/script-rename";
 import { registerSearchCommand } from "./command/search";
 import { EditingTreeViewDataProvider } from "./editing-tree-view/data-provider";
 import { registerEditingTreeView } from "./editing-tree-view/register";
@@ -304,6 +305,11 @@ export const registerOperations = async (
         scriptsDataProvider,
     );
     context.subscriptions.push(scriptsRefreshDisposable);
+
+    const scriptRenameDisposable = registerScriptRenameCommand(
+        scriptsDataProvider,
+    );
+    context.subscriptions.push(scriptRenameDisposable);
 
     const searchDisposable = registerSearchCommand(
         pagesDataProvider,

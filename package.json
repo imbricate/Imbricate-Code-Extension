@@ -364,6 +364,12 @@
         "icon": "$(refresh)"
       },
       {
+        "command": "imbricate.script.rename",
+        "title": "Rename Script...",
+        "category": "Imbricate",
+        "icon": "$(edit)"
+      },
+      {
         "command": "imbricate.search",
         "title": "Search",
         "category": "Imbricate",
@@ -474,6 +480,10 @@
         },
         {
           "command": "imbricate.script.preview",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.script.rename",
           "when": "false"
         }
       ],
@@ -679,6 +689,11 @@
           "command": "imbricate.script.preview",
           "when": "view == imbricate-scripts && viewItem == script-item",
           "group": "script-context-2@1"
+        },
+        {
+          "command": "imbricate.script.rename",
+          "when": "view == imbricate-scripts && viewItem == script-item",
+          "group": "script-context-2@3"
         }
       ]
     }
