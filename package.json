@@ -323,6 +323,12 @@
         "icon": "$(play)"
       },
       {
+        "command": "imbricate.script.execute-save-editor",
+        "title": "Perform and Execute Script",
+        "category": "Imbricate",
+        "icon": "$(run-all)"
+      },
+      {
         "command": "imbricate.script.preview",
         "title": "Preview Script",
         "category": "Imbricate",
@@ -436,6 +442,10 @@
           "when": "false"
         },
         {
+          "command": "imbricate.script.execute-save-editor",
+          "when": "false"
+        },
+        {
           "command": "imbricate.script.preview",
           "when": "false"
         }
@@ -475,6 +485,11 @@
           "command": "imbricate.script.execute-editor",
           "when": "resourceScheme == imbricate-script-javascript",
           "group": "navigation@2"
+        },
+        {
+          "command": "imbricate.script.execute-save-editor",
+          "when": "resourceDirname =~ /.imbricate/ && editorLangId == javascript",
+          "group": "navigation@3"
         }
       ],
       "view/title": [

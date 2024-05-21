@@ -39,6 +39,7 @@ import { registerScriptEditCommand } from "./command/script-edit";
 import { registerScriptEditEditorCommand } from "./command/script-edit-editor";
 import { registerScriptExecuteCommand } from "./command/script-execute";
 import { registerScriptExecuteEditorCommand } from "./command/script-execute-editor";
+import { registerScriptExecuteSaveEditorCommand } from "./command/script-execute-save-editor";
 import { registerScriptPreviewCommand } from "./command/script-preview";
 import { registerScriptsRefreshCommand } from "./command/script-refresh";
 import { registerSearchCommand } from "./command/search";
@@ -139,7 +140,6 @@ export const registerOperations = async (
 
     const editingSaveEditorCommand = registerEditingSaveEditorCommand(
         originManager,
-        editingsDataProvider,
     );
     context.subscriptions.push(editingSaveEditorCommand);
 
@@ -272,6 +272,11 @@ export const registerOperations = async (
         originManager,
     );
     context.subscriptions.push(scriptExecuteEditorDisposable);
+
+    const scriptExecuteSaveEditorDisposable = registerScriptExecuteSaveEditorCommand(
+        originManager,
+    );
+    context.subscriptions.push(scriptExecuteSaveEditorDisposable);
 
     const scriptPreviewDisposable = registerScriptPreviewCommand();
     context.subscriptions.push(scriptPreviewDisposable);

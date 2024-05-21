@@ -7,7 +7,6 @@
 import { ActiveEditing, ImbricateOriginManager, digestString, performImbricateSavingTarget, readActiveEditing, retrieveImbricateSavingTarget } from "@imbricate/local-fundamental";
 import { readTextFile } from "@sudoo/io";
 import * as vscode from "vscode";
-import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
 import { showErrorMessage, showInformationMessage } from "../util/show-message";
 import { concatSavingTargetUrl } from "../virtual-document/concat-target";
 import { concatEditingOriginalUrl } from "../virtual-document/editing-original/concat";
@@ -15,7 +14,6 @@ import { editingOnChangeEmitter, onChangeEmitter } from "../virtual-document/on-
 
 export const registerEditingSaveEditorCommand = (
     originManager: ImbricateOriginManager,
-    editingDataProvider: EditingTreeViewDataProvider,
 ): vscode.Disposable => {
 
     const disposable = vscode.commands.registerCommand(
@@ -71,8 +69,6 @@ export const registerEditingSaveEditorCommand = (
         if (!isPerformed) {
             showInformationMessage(`Document ${targetEditing.hash} has not been modified`);
         }
-
-        editingDataProvider.refresh();
 
         const url = concatSavingTargetUrl(targetEditing.target);
         onChangeEmitter.fire(url);

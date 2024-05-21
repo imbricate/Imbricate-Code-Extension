@@ -4,9 +4,15 @@
  * @description Script Execute Save Editor
  */
 
-import { ActiveEditing, ImbricateOriginManager, SAVING_TARGET_TYPE, readActiveEditing } from "@imbricate/local-fundamental";
+import { IImbricateOrigin, IImbricateScript } from "@imbricate/core";
+import { ActiveEditing, ImbricateOriginManager, SAVING_TARGET_TYPE, digestString, performImbricateSavingTarget, readActiveEditing } from "@imbricate/local-fundamental";
+import { readTextFile } from "@sudoo/io";
 import * as vscode from "vscode";
-import { showErrorMessage } from "../util/show-message";
+import { executeImbricateScript } from "../execute/execute";
+import { showErrorMessage, showInformationMessage } from "../util/show-message";
+import { concatSavingTargetUrl } from "../virtual-document/concat-target";
+import { concatEditingOriginalUrl } from "../virtual-document/editing-original/concat";
+import { editingOnChangeEmitter, onChangeEmitter } from "../virtual-document/on-change-emitter";
 
 export const registerScriptExecuteSaveEditorCommand = (
     originManager: ImbricateOriginManager,
@@ -45,22 +51,51 @@ export const registerScriptExecuteSaveEditorCommand = (
             return;
         }
 
-        const origin = originManager.getOrigin(targetEditing.target.payload.origin);
+        const origin: IImbricateOrigin | null = originManager.getOrigin(targetEditing.target.payload.origin);
 
-        console.log(origin);
+        if (!origin) {
+            showErrorMessage(`Cannot find origin: ${targetEditing.target.payload.origin}`);
+            return;
+        }
 
-        // const script: IImbricateScript | null =
-        //     await item.origin.getScript(item.scriptSnapshot.identifier);
+        const script: IImbricateScript | null =
+            await origin.getScript(targetEditing.target.payload.identifier);
 
-        // if (!script) {
-        //     showErrorMessage(`Cannot find script: ${item.scriptSnapshot.scriptName}`);
-        //     return;
-        // }
+        if (!script) {
+            showErrorMessage(`Cannot find script: ${targetEditing.target.payload.identifier}`);
+            return;
+        }
 
-        // await executeImbricateScript(
-        //     item.origin,
-        //     script,
-        // );
+        const updateContent: string = await readTextFile(targetEditing.path);
+        const originalContent: string = await script.readScript();
+
+        const originalDigest: string = digestString(originalContent);
+
+        const isPerformed: boolean = await performImbricateSavingTarget(
+            targetEditing.target,
+            originalDigest,
+            updateContent,
+            originManager,
+            {
+                cancelIfNoChange: true,
+                cleanup: false,
+            },
+        );
+
+        if (!isPerformed) {
+            showInformationMessage(`Document ${targetEditing.hash} has not been modified`);
+        }
+
+        const url = concatSavingTargetUrl(targetEditing.target);
+        onChangeEmitter.fire(url);
+
+        const editingUrl = concatEditingOriginalUrl(targetEditing.identifier);
+        editingOnChangeEmitter.fire(editingUrl);
+
+        await executeImbricateScript(
+            origin,
+            script,
+        );
     });
 
     return disposable;
