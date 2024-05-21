@@ -96,6 +96,12 @@
           "contextualTitle": "Imbricate Editings"
         },
         {
+          "id": "imbricate-histories",
+          "name": "Imbricate History Records",
+          "icon": "$(history)",
+          "contextualTitle": "Imbricate History Records"
+        },
+        {
           "id": "imbricate-pages",
           "name": "Imbricate Pages",
           "icon": "$(book)",
@@ -114,6 +120,11 @@
         "view": "imbricate-editings",
         "contents": "No Active Editings.\n[Learn More](https://imbricate.io)",
         "when": "imbricate.context.editings.loaded"
+      },
+      {
+        "view": "imbricate-histories",
+        "contents": "History Records view not activated, start one by selecting a Page or Script",
+        "when": "imbricate.context.histories.loaded"
       },
       {
         "view": "imbricate-pages",
@@ -268,6 +279,12 @@
         "icon": "$(edit)"
       },
       {
+        "command": "imbricate.page.show-history",
+        "title": "Show Page History",
+        "category": "Imbricate",
+        "icon": "$(history)"
+      },
+      {
         "command": "imbricate.page.unfavorite",
         "title": "Unmark Page as Favorite",
         "category": "Imbricate",
@@ -411,6 +428,10 @@
         },
         {
           "command": "imbricate.page.retitle",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.page.show-history",
           "when": "false"
         },
         {
@@ -593,6 +614,11 @@
           "command": "imbricate.page.retitle",
           "when": "view == imbricate-pages && viewItem =~ /^page-item/",
           "group": "page-context-1@3"
+        },
+        {
+          "command": "imbricate.page.show-history",
+          "when": "view == imbricate-pages && viewItem =~ /^page-item/",
+          "group": "page-context-2@2"
         },
         {
           "command": "imbricate.page.favorite",

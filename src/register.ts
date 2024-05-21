@@ -30,6 +30,7 @@ import { registerPageFavoriteCommand } from "./command/page-favorite";
 import { registerPagePreviewCommand } from "./command/page-preview";
 import { registerPagesRefreshCommand } from "./command/page-refresh";
 import { registerPageRetitleCommand } from "./command/page-retitle";
+import { registerPageShowHistoryCommand } from "./command/page-show-history";
 import { registerPageUnfavoriteCommand } from "./command/page-unfavorite";
 import { registerPageRecentClearCommand } from "./command/recent-clear";
 import { registerPageRecentRemoveCommand } from "./command/recent-remove";
@@ -45,6 +46,8 @@ import { registerScriptsRefreshCommand } from "./command/script-refresh";
 import { registerSearchCommand } from "./command/search";
 import { EditingTreeViewDataProvider } from "./editing-tree-view/data-provider";
 import { registerEditingTreeView } from "./editing-tree-view/register";
+import { HistoryTreeViewDataProvider } from "./history-tree-view/data-provider";
+import { registerHistoryTreeView } from "./history-tree-view/register";
 import { registerPreCodeLensProvider } from "./lens/register";
 import { PagesTreeViewDataProvider } from "./pages-tree-view/data-provider";
 import { registerPagesTreeView } from "./pages-tree-view/register";
@@ -62,6 +65,11 @@ export const registerOperations = async (
 ): Promise<void> => {
 
     const editingsDataProvider: EditingTreeViewDataProvider = await registerEditingTreeView(
+        configuration,
+        context,
+    );
+
+    const historiesDataProvider: HistoryTreeViewDataProvider = await registerHistoryTreeView(
         configuration,
         context,
     );
@@ -221,6 +229,11 @@ export const registerOperations = async (
         context,
     );
     context.subscriptions.push(pageRetitleDisposable);
+
+    const pageShowHistoryDisposable = registerPageShowHistoryCommand(
+        historiesDataProvider,
+    );
+    context.subscriptions.push(pageShowHistoryDisposable);
 
     const pageUnfavoriteDisposable = registerPageUnfavoriteCommand(
         pagesDataProvider,
