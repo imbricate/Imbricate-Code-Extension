@@ -6,6 +6,7 @@
 
 import { ActiveEditing, IImbricateConfiguration, readActiveEditing } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
+import { logVerbose } from "../util/output-channel";
 import { EditingEditingItem } from "./editing-item";
 
 export class EditingTreeViewDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
@@ -61,7 +62,7 @@ export class EditingTreeViewDataProvider implements vscode.TreeDataProvider<vsco
 
                 this._loaded = true;
 
-                console.log("Editings Tree Data Provider Loaded");
+                logVerbose("Editings Tree Data Provider Loaded");
                 vscode.commands.executeCommand("setContext", "imbricate.context.editings.loaded", true);
             }
 

@@ -7,6 +7,7 @@
 import { IImbricateOrigin, ImbricateScriptSnapshot } from "@imbricate/core";
 import { ImbricateOriginManager, ImbricateOriginManagerOriginResponse } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
+import { logVerbose } from "../util/output-channel";
 import { ScriptsOriginItem } from "./origin-item";
 import { ScriptScriptItem } from "./script-item";
 
@@ -73,7 +74,7 @@ export class ScriptsTreeViewDataProvider implements vscode.TreeDataProvider<vsco
 
                 this._loaded = true;
 
-                console.log("Scripts Tree Data Provider Loaded");
+                logVerbose("Scripts Tree Data Provider Loaded");
                 vscode.commands.executeCommand("setContext", "imbricate.context.scripts.loaded", true);
             }
 

@@ -8,6 +8,7 @@ import { IImbricateCollection, IImbricateOrigin, ImbricatePageSnapshot } from "@
 import { ImbricateOriginManager, ImbricateOriginManagerOriginResponse, ImbricateSearchPreference, readOrCreateSearchPreferenceConfiguration, resolveImbricateHomeDirectory } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { CONFIG_KEY, getConfiguration } from "../configuration/get-config";
+import { logVerbose } from "../util/output-channel";
 import { PagesCollectionItem } from "./collection-item";
 import { PageDirectoryItem, renderPageDirectoryItem } from "./directory-item";
 import { PagesFavoriteItem, renderPageFavoriteItem } from "./favorite-item";
@@ -99,7 +100,7 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
 
                 this._loaded = true;
 
-                console.log("Pages Tree Data Provider Loaded");
+                logVerbose("Pages Tree Data Provider Loaded");
                 vscode.commands.executeCommand("setContext", "imbricate.context.pages.loaded", true);
             }
 
