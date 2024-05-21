@@ -36,6 +36,7 @@ import { registerPageRecentRemoveCommand } from "./command/recent-remove";
 import { registerScriptCreateCommand } from "./command/script-create";
 import { registerScriptDeleteCommand } from "./command/script-delete";
 import { registerScriptEditCommand } from "./command/script-edit";
+import { registerScriptExecuteCommand } from "./command/script-execute";
 import { registerScriptPreviewCommand } from "./command/script-preview";
 import { registerScriptsRefreshCommand } from "./command/script-refresh";
 import { registerSearchCommand } from "./command/search";
@@ -253,6 +254,9 @@ export const registerOperations = async (
         editingsDataProvider,
     );
     context.subscriptions.push(scriptEditDisposable);
+
+    const scriptExecuteDisposable = registerScriptExecuteCommand();
+    context.subscriptions.push(scriptExecuteDisposable);
 
     const scriptPreviewDisposable = registerScriptPreviewCommand();
     context.subscriptions.push(scriptPreviewDisposable);

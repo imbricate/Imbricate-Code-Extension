@@ -7,10 +7,11 @@ import { readOrCreateImbricateConfiguration, resolveImbricateHomeDirectory } fro
 import * as vscode from "vscode";
 import { initializeOriginManager } from "./configuration/initialize";
 import { registerOperations } from "./register";
+import { logVerbose } from "./util/output-channel";
 
 export const activate = async (context: vscode.ExtensionContext) => {
 
-	console.log("Imbricate Activities");
+	logVerbose("Imbricate Activated");
 
 	const configurationPath: string = resolveImbricateHomeDirectory();
 	const configuration = await readOrCreateImbricateConfiguration(configurationPath);
@@ -26,5 +27,5 @@ export const activate = async (context: vscode.ExtensionContext) => {
 
 export const deactivate = () => {
 
-	console.log("Imbricate Deactivated");
+	logVerbose("Imbricate Deactivated");
 };
