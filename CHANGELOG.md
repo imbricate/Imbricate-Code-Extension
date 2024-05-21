@@ -1,5 +1,18 @@
 # Change Log
 
+## 1.17.0
+
+- Support Script Execute
+- Add IO Script Features
+- Add new history records view
+- Add history records tree view for pages
+- Add Script rename feature
+- Add Script inline editing feature
+- Add Script in editor perform and save feature
+- Add Script execute in preview
+- Add Script execute in editor
+- Fix Known Issues
+
 ## 1.16.0
 
 - Use the latest imbricate core
