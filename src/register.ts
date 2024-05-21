@@ -19,6 +19,7 @@ import { registerEditingsRefreshCommand } from "./command/editing-refresh";
 import { registerEditingResumeCommand } from "./command/editing-resume";
 import { registerEditingSaveEditorCommand } from "./command/editing-save-editor";
 import { registerPageFavoriteClearCommand } from "./command/favorite-clear";
+import { registerHistoryResetCommand } from "./command/history-reset";
 import { registerOriginBinaryUploadCommand } from "./command/origin-binary-upload";
 import { registerOriginCreateCommand } from "./command/origin-create";
 import { registerPageCreateCommand } from "./command/page-create";
@@ -159,6 +160,11 @@ export const registerOperations = async (
         context,
     );
     context.subscriptions.push(favoriteClearDisposable);
+
+    const historyResetDisposable = registerHistoryResetCommand(
+        historiesDataProvider,
+    );
+    context.subscriptions.push(historyResetDisposable);
 
     const originBinaryUploadDisposable = registerOriginBinaryUploadCommand(
         originManager,

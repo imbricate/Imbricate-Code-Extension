@@ -42,9 +42,17 @@ export class HistoryTreeViewDataProvider implements vscode.TreeDataProvider<vsco
         this._currentRecords = null;
     }
 
-    public showRecords(records: Array<ImbricatePageHistoryRecord | ImbricateScriptHistoryRecord>): void {
+    public showRecords(
+        records: Array<ImbricatePageHistoryRecord | ImbricateScriptHistoryRecord>,
+    ): void {
 
         this._currentRecords = records;
+        this.refresh();
+    }
+
+    public resetRecords(): void {
+
+        this._currentRecords = null;
         this.refresh();
     }
 

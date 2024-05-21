@@ -211,6 +211,12 @@
         "icon": "$(delete)"
       },
       {
+        "command": "imbricate.history.reset",
+        "title": "Reset Imbricate History Records View",
+        "category": "Imbricate",
+        "icon": "$(clear-all)"
+      },
+      {
         "command": "imbricate.origin.binary.upload",
         "title": "Upload Binary File to Origin Binary Storage",
         "category": "Imbricate",
@@ -517,6 +523,11 @@
         {
           "command": "imbricate.editings.perform-all",
           "when": "view == imbricate-editings",
+          "group": "navigation"
+        },
+        {
+          "command": "imbricate.history.reset",
+          "when": "view == imbricate-histories",
           "group": "navigation"
         },
         {

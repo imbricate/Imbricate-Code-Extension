@@ -25,13 +25,6 @@ export class HistoryRecordItem extends vscode.TreeItem {
         super(record.updatedAt.toLocaleString(), vscode.TreeItemCollapsibleState.None);
         this.contextValue = "history-record-item";
 
-        this.iconPath = new vscode.ThemeIcon("settings-edit");
-        // this.command = {
-        //     command: "imbricate.editing.resume",
-        //     title: "Resume Editing",
-        //     arguments: [activeEditing],
-        // };
-
         this._record = record;
     }
 
