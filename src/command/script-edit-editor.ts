@@ -11,11 +11,11 @@ import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider"
 import { ScriptScriptItem } from "../scripts-tree-view/script-item";
 import { showErrorMessage } from "../util/show-message";
 
-export const registerScriptEditCommand = (
+export const registerScriptEditEditorCommand = (
     editingsDataProvider: EditingTreeViewDataProvider,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.script.edit", async (
+    const disposable = vscode.commands.registerCommand("imbricate.script.edit-editor", async (
         item: ScriptScriptItem,
     ) => {
 

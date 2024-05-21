@@ -432,6 +432,16 @@
           "group": "navigation@2"
         },
         {
+          "command": "imbricate.editing.save-editor",
+          "when": "resourceDirname =~ /.imbricate/ && editorLangId == javascript",
+          "group": "navigation@1"
+        },
+        {
+          "command": "imbricate.editing.perform-editor",
+          "when": "resourceDirname =~ /.imbricate/ && editorLangId == javascript",
+          "group": "navigation@2"
+        },
+        {
           "command": "imbricate.page.edit-editor",
           "when": "resourceScheme == imbricate-page-markdown",
           "group": "navigation@1"
