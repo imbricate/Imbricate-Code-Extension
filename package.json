@@ -287,7 +287,7 @@
       },
       {
         "command": "imbricate.script.create",
-        "title": "Create Imbricate Script",
+        "title": "Create Script...",
         "category": "Imbricate",
         "icon": "$(add)"
       },
@@ -300,13 +300,19 @@
       },
       {
         "command": "imbricate.script.edit",
-        "title": "Script Edit",
+        "title": "Edit Script",
         "category": "Imbricate",
         "icon": "$(edit)"
       },
       {
+        "command": "imbricate.script.execute",
+        "title": "Execute Script",
+        "category": "Imbricate",
+        "icon": "$(play)"
+      },
+      {
         "command": "imbricate.script.preview",
-        "title": "Script Preview",
+        "title": "Preview Script",
         "category": "Imbricate",
         "icon": "$(preview)"
       },
@@ -403,6 +409,10 @@
         },
         {
           "command": "imbricate.script.edit",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.script.execute",
           "when": "false"
         },
         {
@@ -552,7 +562,7 @@
         {
           "command": "imbricate.script.create",
           "when": "view == imbricate-scripts && viewItem == script-origin-item",
-          "group": "inline"
+          "group": "origin-context@1"
         },
         {
           "command": "imbricate.script.delete",
@@ -561,12 +571,22 @@
         {
           "command": "imbricate.script.edit",
           "when": "view == imbricate-scripts && viewItem == script-item",
-          "group": "script-context-1@1"
+          "group": "script-context-2@2"
         },
         {
           "command": "imbricate.script.edit",
           "when": "view == imbricate-scripts && viewItem == script-item",
           "group": "inline"
+        },
+        {
+          "command": "imbricate.script.execute",
+          "when": "view == imbricate-scripts && viewItem == script-item",
+          "group": "script-context-1@1"
+        },
+        {
+          "command": "imbricate.script.preview",
+          "when": "view == imbricate-scripts && viewItem == script-item",
+          "group": "script-context-2@1"
         }
       ]
     }
