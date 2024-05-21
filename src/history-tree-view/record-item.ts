@@ -22,8 +22,13 @@ export class HistoryRecordItem extends vscode.TreeItem {
         record: ImbricatePageHistoryRecord | ImbricateScriptHistoryRecord,
     ) {
 
-        super(record.updatedAt.toLocaleString(), vscode.TreeItemCollapsibleState.None);
+        super(
+            record.updatedAt.toLocaleString(),
+            vscode.TreeItemCollapsibleState.None,
+        );
+
         this.contextValue = "history-record-item";
+        this.tooltip = record.digest;
 
         this._record = record;
     }
