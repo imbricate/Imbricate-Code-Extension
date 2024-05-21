@@ -317,6 +317,12 @@
         "icon": "$(play)"
       },
       {
+        "command": "imbricate.script.execute-editor",
+        "title": "Execute Script",
+        "category": "Imbricate",
+        "icon": "$(play)"
+      },
+      {
         "command": "imbricate.script.preview",
         "title": "Preview Script",
         "category": "Imbricate",
@@ -426,6 +432,10 @@
           "when": "false"
         },
         {
+          "command": "imbricate.script.execute-editor",
+          "when": "false"
+        },
+        {
           "command": "imbricate.script.preview",
           "when": "false"
         }
@@ -460,6 +470,11 @@
           "command": "imbricate.script.edit-editor",
           "when": "resourceScheme == imbricate-script-javascript",
           "group": "navigation@1"
+        },
+        {
+          "command": "imbricate.script.execute-editor",
+          "when": "resourceScheme == imbricate-script-javascript",
+          "group": "navigation@2"
         }
       ],
       "view/title": [
