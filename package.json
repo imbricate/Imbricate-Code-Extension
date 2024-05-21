@@ -305,6 +305,12 @@
         "icon": "$(edit)"
       },
       {
+        "command": "imbricate.script.edit-editor",
+        "title": "Edit Script",
+        "category": "Imbricate",
+        "icon": "$(edit)"
+      },
+      {
         "command": "imbricate.script.execute",
         "title": "Execute Script",
         "category": "Imbricate",
@@ -412,6 +418,10 @@
           "when": "false"
         },
         {
+          "command": "imbricate.script.edit-editor",
+          "when": "false"
+        },
+        {
           "command": "imbricate.script.execute",
           "when": "false"
         },
@@ -444,6 +454,11 @@
         {
           "command": "imbricate.page.edit-editor",
           "when": "resourceScheme == imbricate-page-markdown",
+          "group": "navigation@1"
+        },
+        {
+          "command": "imbricate.script.edit-editor",
+          "when": "resourceScheme == imbricate-script-javascript",
           "group": "navigation@1"
         }
       ],

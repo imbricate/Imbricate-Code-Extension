@@ -4,39 +4,57 @@
  * @description Script Edit
  */
 
-import { IImbricateScript } from "@imbricate/core";
-import { ActiveEditing, createScriptSavingTarget, establishImbricateSavingTarget } from "@imbricate/local-fundamental";
+import { IImbricateOrigin, IImbricateScript } from "@imbricate/core";
+import { ActiveEditing, ImbricateOriginManager, createScriptSavingTarget, establishImbricateSavingTarget } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
-import { ScriptScriptItem } from "../scripts-tree-view/script-item";
+import { ScriptsTreeViewDataProvider } from "../scripts-tree-view/data-provider";
 import { showErrorMessage } from "../util/show-message";
+import { divideScriptMarkdownUrl } from "../virtual-document/script-javascript/concat";
 
 export const registerScriptEditEditorCommand = (
     editingsDataProvider: EditingTreeViewDataProvider,
+    _scriptsDataProvider: ScriptsTreeViewDataProvider,
+    originManager: ImbricateOriginManager,
+    _context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.script.edit-editor", async (
-        item: ScriptScriptItem,
-    ) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.script.edit-editor", async (
+            uri: vscode.Uri,
+        ) => {
 
-        const savingTarget = createScriptSavingTarget(
-            item.originName,
-            item.scriptSnapshot.identifier,
-        );
+        const [
+            originName,
+            identifier,
+        ] = divideScriptMarkdownUrl(uri);
 
-        const script: IImbricateScript | null =
-            await item.origin.getScript(item.scriptSnapshot.identifier);
+        const origin: IImbricateOrigin | null =
+            originManager.getOrigin(originName);
 
-        if (!script) {
-            showErrorMessage(`Cannot find script: ${item.scriptSnapshot.scriptName}`);
+        if (!origin) {
+            showErrorMessage(`Cannot find origin: ${originName}`);
             return;
         }
+
+        const script: IImbricateScript | null =
+            await origin.getScript(identifier);
+
+        if (!script) {
+            showErrorMessage(`Cannot find script: ${identifier}`);
+            return;
+        }
+
+        const savingTarget = createScriptSavingTarget(
+            originName,
+            identifier,
+        );
 
         const content: string = await script.readScript();
 
         const activeEditing: ActiveEditing = await establishImbricateSavingTarget(
             savingTarget,
-            `${item.scriptSnapshot.scriptName}.js`,
+            `${script.scriptName}.js`,
             content,
         );
 
