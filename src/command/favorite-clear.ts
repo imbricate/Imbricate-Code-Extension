@@ -13,7 +13,9 @@ export const registerPageFavoriteClearCommand = (
     context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.page.favorite.clear", async () => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.page.favorite.clear", async (
+    ) => {
 
         await context.globalState.update(
             PAGES_FAVORITES_KEY,

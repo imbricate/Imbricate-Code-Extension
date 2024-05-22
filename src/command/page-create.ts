@@ -21,7 +21,10 @@ export const registerPageCreateCommand = (
     context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.page.create", async (item: PagesCollectionItem | PageDirectoryItem) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.page.create", async (
+            item: PagesCollectionItem | PageDirectoryItem,
+        ) => {
 
         let originName: string | null = null;
         let collection: IImbricateCollection | null = null;

@@ -11,7 +11,9 @@ export const registerMarkdownPasteCommand = (
     _context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.markdown.paste", async () => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.markdown.paste", async (
+    ) => {
 
         const proceedRegularPaste = (): void => {
             vscode.commands.executeCommand("editor.action.clipboardPasteAction");

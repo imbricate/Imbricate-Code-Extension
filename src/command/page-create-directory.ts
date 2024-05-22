@@ -18,7 +18,10 @@ export const registerPageCreateDirectoryCommand = (
     pagesDataProvider: PagesTreeViewDataProvider,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.page.create.directory", async (item: PagesCollectionItem | PageDirectoryItem) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.page.create.directory", async (
+            item: PagesCollectionItem | PageDirectoryItem,
+        ) => {
 
         let originName: string | null = null;
         let collection: IImbricateCollection | null = null;

@@ -11,7 +11,9 @@ export const registerPagesRefreshCommand = (
     pagesDataProvider: PagesTreeViewDataProvider,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.pages.refresh", () => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.pages.refresh", (
+    ) => {
         pagesDataProvider.refresh();
     });
 

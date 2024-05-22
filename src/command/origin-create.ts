@@ -19,7 +19,9 @@ export const registerOriginCreateCommand = (
     originManager: ImbricateOriginManager,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.origin.create", async () => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.origin.create", async (
+    ) => {
 
         const originName: string | undefined = await vscode.window.showInputBox({
             title: "Create File System Origin",

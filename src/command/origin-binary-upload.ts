@@ -17,7 +17,9 @@ export const registerOriginBinaryUploadCommand = (
     _context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.origin.binary.upload", async () => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.origin.binary.upload", async (
+    ) => {
 
         const targetOrigin: IImbricateOrigin | null = await gatherOriginInput(
             originManager,

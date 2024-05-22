@@ -11,7 +11,9 @@ export const registerHistoryResetCommand = (
     historiesDataProvider: HistoryTreeViewDataProvider,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.history.reset", async () => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.history.reset", async (
+    ) => {
 
         historiesDataProvider.resetRecords();
     });

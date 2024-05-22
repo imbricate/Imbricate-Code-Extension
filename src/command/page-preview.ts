@@ -16,9 +16,10 @@ export const registerPagePreviewCommand = (
     context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.page.preview", async (
-        item: PagePageItem,
-    ) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.page.preview", async (
+            item: PagePageItem,
+        ) => {
 
         const uri = concatPageMarkdownUrl(
             item.originName,

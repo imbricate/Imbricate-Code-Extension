@@ -16,7 +16,10 @@ export const registerPageDeleteCommand = (
     context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.page.delete", async (item: PagePageItem) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.page.delete", async (
+            item: PagePageItem,
+        ) => {
 
         const result: vscode.MessageItem | undefined = await vscode.window.showInformationMessage(
             `Deleting page\n[${item.pageSnapshot.title}]`,

@@ -18,7 +18,10 @@ export const registerPageEditCommand = (
     context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.page.render", async (item: PagePageItem) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.page.render", async (
+            item: PagePageItem,
+        ) => {
 
         const page: IImbricatePage | null =
             await item.collection.getPage(item.pageSnapshot.identifier);
