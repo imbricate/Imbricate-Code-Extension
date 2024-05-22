@@ -20,7 +20,9 @@ export const registerEditingPerformAllCommand = (
     editingDataProvider: EditingTreeViewDataProvider,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.editings.perform-all", async () => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.editings.perform-all", async (
+    ) => {
 
         const activeEditings: ActiveEditing[] = await readActiveEditing();
 

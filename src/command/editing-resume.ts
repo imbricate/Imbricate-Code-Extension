@@ -9,7 +9,10 @@ import * as vscode from "vscode";
 
 export const registerEditingResumeCommand = (): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.editing.resume", async (activeEditing: ActiveEditing) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.editing.resume", async (
+            activeEditing: ActiveEditing,
+        ) => {
 
         const textDocument: vscode.TextDocument =
             await vscode.workspace.openTextDocument(activeEditing.path);

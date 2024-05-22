@@ -11,7 +11,9 @@ export const registerEditingsRefreshCommand = (
     editingsDataProvider: EditingTreeViewDataProvider,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.editings.refresh", () => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.editings.refresh", (
+    ) => {
         editingsDataProvider.refresh();
     });
 
