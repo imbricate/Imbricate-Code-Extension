@@ -14,7 +14,10 @@ export const registerPageUnfavoriteCommand = (
     context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.page.unfavorite", async (item: PagePageItem) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.page.unfavorite", async (
+            item: PagePageItem,
+        ) => {
 
         const persistanceData: PagePersistanceData = {
             originName: item.originName,

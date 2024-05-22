@@ -18,7 +18,10 @@ export const registerScriptCreateCommand = (
     originManager: ImbricateOriginManager,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.script.create", async (item?: ScriptsOriginItem) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.script.create", async (
+            item?: ScriptsOriginItem,
+        ) => {
 
         let originName: string | null = null;
         let origin: IImbricateOrigin | null = null;

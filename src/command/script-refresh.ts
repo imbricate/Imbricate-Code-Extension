@@ -11,7 +11,9 @@ export const registerScriptsRefreshCommand = (
     scriptsDataProvider: ScriptsTreeViewDataProvider,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.scripts.refresh", () => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.scripts.refresh", (
+    ) => {
         scriptsDataProvider.refresh();
     });
 

@@ -14,9 +14,10 @@ export const registerPageRecentRemoveCommand = (
     context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.page.recent.remove", async (
-        item: PagePageItem,
-    ) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.page.recent.remove", async (
+            item: PagePageItem,
+        ) => {
 
         const persistanceData: PagePersistanceData = {
             originName: item.originName,

@@ -14,9 +14,10 @@ export const registerScriptRenameCommand = (
     scriptsDataProvider: ScriptsTreeViewDataProvider,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.script.rename", async (
-        item: ScriptScriptItem,
-    ) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.script.rename", async (
+            item: ScriptScriptItem,
+        ) => {
 
         const savingTarget = createScriptSavingTarget(
             item.originName,

@@ -14,9 +14,10 @@ export const registerPageShowHistoryCommand = (
     historiesDataProvider: HistoryTreeViewDataProvider,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.page.show-history", async (
-        item: PagePageItem,
-    ) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.page.show-history", async (
+            item: PagePageItem,
+        ) => {
 
         const page: IImbricatePage | null =
             await item.collection.getPage(item.pageSnapshot.identifier);

@@ -14,9 +14,10 @@ export const registerScriptShowHistoryCommand = (
     historiesDataProvider: HistoryTreeViewDataProvider,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.script.show-history", async (
-        item: ScriptScriptItem,
-    ) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.script.show-history", async (
+            item: ScriptScriptItem,
+        ) => {
 
         const script: IImbricateScript | null =
             await item.origin.getScript(item.scriptSnapshot.identifier);

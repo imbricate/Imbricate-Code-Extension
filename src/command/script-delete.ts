@@ -14,7 +14,10 @@ export const registerScriptDeleteCommand = (
     scriptsDataProvider: ScriptsTreeViewDataProvider,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.script.delete", async (item: ScriptScriptItem) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.script.delete", async (
+            item: ScriptScriptItem,
+        ) => {
 
         const result: vscode.MessageItem | undefined = await vscode.window.showInformationMessage(
             `Deleting script\n[${item.scriptSnapshot.scriptName}]`,

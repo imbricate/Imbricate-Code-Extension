@@ -10,9 +10,10 @@ import { concatScriptJavascriptUrl } from "../virtual-document/script-javascript
 
 export const registerScriptPreviewCommand = (): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.script.preview", async (
-        item: ScriptScriptItem,
-    ) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.script.preview", async (
+            item: ScriptScriptItem,
+        ) => {
 
         const uri = concatScriptJavascriptUrl(
             item.originName,

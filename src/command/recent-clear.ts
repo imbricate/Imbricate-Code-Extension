@@ -13,7 +13,9 @@ export const registerPageRecentClearCommand = (
     context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.page.recent.clear", async () => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.page.recent.clear", async (
+    ) => {
 
         await context.globalState.update(
             PAGES_RECENTS_KEY,

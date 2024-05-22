@@ -15,9 +15,10 @@ export const registerScriptExecuteEditorCommand = (
     originManager: ImbricateOriginManager,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.script.execute-editor", async (
-        uri: vscode.Uri,
-    ) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.script.execute-editor", async (
+            uri: vscode.Uri,
+        ) => {
 
         const [
             originName,

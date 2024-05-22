@@ -15,9 +15,10 @@ export const registerScriptEditCommand = (
     editingsDataProvider: EditingTreeViewDataProvider,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.script.edit", async (
-        item: ScriptScriptItem,
-    ) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.script.edit", async (
+            item: ScriptScriptItem,
+        ) => {
 
         const savingTarget = createScriptSavingTarget(
             item.originName,

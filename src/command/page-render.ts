@@ -35,7 +35,6 @@ export const registerPageEditCommand = (
 
         const parsed: string = await renderMarkdownToHtml(content);
 
-
         const persistanceData: PagePersistanceData = {
             originName: item.originName,
             collectionUniqueIdentifier: item.collection.uniqueIdentifier,

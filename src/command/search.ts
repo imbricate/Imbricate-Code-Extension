@@ -21,7 +21,9 @@ export const registerSearchCommand = (
     context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.search", async () => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.search", async (
+    ) => {
 
         const prompt: string | undefined = await vscode.window.showInputBox({
             title: "Search",

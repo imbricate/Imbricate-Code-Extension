@@ -18,9 +18,10 @@ export const registerScriptExecuteSaveEditorCommand = (
     originManager: ImbricateOriginManager,
 ): vscode.Disposable => {
 
-    const disposable = vscode.commands.registerCommand("imbricate.script.execute-save-editor", async (
-        item: vscode.Uri,
-    ) => {
+    const disposable = vscode.commands.registerCommand(
+        "imbricate.script.execute-save-editor", async (
+            item: vscode.Uri,
+        ) => {
 
         const activeEditings: ActiveEditing[] = await readActiveEditing();
 
