@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.17.1
+
+- Add history records tree view for scripts
+- Add auto focus for history records tree view
+- Fix Known Issues
+
 ## 1.17.0
 
 - Support Script Execute
