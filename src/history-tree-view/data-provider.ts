@@ -46,6 +46,8 @@ export class HistoryTreeViewDataProvider implements vscode.TreeDataProvider<vsco
         records: Array<ImbricatePageHistoryRecord | ImbricateScriptHistoryRecord>,
     ): void {
 
+        vscode.commands.executeCommand("imbricate-histories.focus");
+
         this._currentRecords = records;
         this.refresh();
     }
