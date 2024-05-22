@@ -10,6 +10,7 @@ import * as vscode from "vscode";
 import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
 import { PagePersistanceData } from "../pages-tree-view/page-data";
 import { PagePageItem } from "../pages-tree-view/page-item";
+import { logVerbose } from "../util/output-channel";
 import { recordRecentPage } from "../util/recent";
 import { showErrorMessage } from "../util/show-message";
 
@@ -34,6 +35,8 @@ export const registerPageEditCommand = (
         const content: string = await page.readContent();
 
         const parsed: string = await renderMarkdownToHtml(content);
+
+        logVerbose(parsed);
 
         const persistanceData: PagePersistanceData = {
             originName: item.originName,
