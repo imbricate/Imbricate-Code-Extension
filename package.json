@@ -1,6 +1,6 @@
 {
   "name": "imbricate",
-  "version": "1.17.0",
+  "version": "1.17.1",
   "displayName": "Imbricate",
   "icon": "images/imbricate.png",
   "author": "WMXPY",
@@ -370,6 +370,12 @@
         "icon": "$(edit)"
       },
       {
+        "command": "imbricate.script.show-history",
+        "title": "Show Script History",
+        "category": "Imbricate",
+        "icon": "$(history)"
+      },
+      {
         "command": "imbricate.search",
         "title": "Search",
         "category": "Imbricate",
@@ -480,6 +486,10 @@
         },
         {
           "command": "imbricate.script.preview",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.script.show-history",
           "when": "false"
         },
         {
@@ -668,7 +678,8 @@
         },
         {
           "command": "imbricate.script.delete",
-          "when": "view == imbricate-scripts && viewItem == script-item"
+          "when": "view == imbricate-scripts && viewItem == script-item",
+          "group": "script-context-4@1"
         },
         {
           "command": "imbricate.script.edit",
@@ -694,6 +705,11 @@
           "command": "imbricate.script.rename",
           "when": "view == imbricate-scripts && viewItem == script-item",
           "group": "script-context-2@3"
+        },
+        {
+          "command": "imbricate.script.show-history",
+          "when": "view == imbricate-scripts && viewItem == script-item",
+          "group": "script-context-3@1"
         }
       ]
     }
