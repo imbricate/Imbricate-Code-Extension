@@ -41,7 +41,9 @@ export const registerPageEditEditorCommand = (
         }
 
         const collection: IImbricateCollection | null =
-            await origin.getCollection(collectionUniqueIdentifier);
+            await origin
+                .getCollectionManager()
+                .getCollection(collectionUniqueIdentifier);
 
         if (!collection) {
             showErrorMessage(`Cannot find collection: ${collectionUniqueIdentifier}`);

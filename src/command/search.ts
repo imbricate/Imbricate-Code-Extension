@@ -53,7 +53,9 @@ export const registerSearchCommand = (
 
         for (const origin of origins) {
 
-            const collections: IImbricateCollection[] = await origin.origin.listCollections();
+            const collections: IImbricateCollection[] = await origin.origin
+                .getCollectionManager()
+                .listCollections();
 
             collections: for (const collection of collections) {
 
@@ -83,10 +85,12 @@ export const registerSearchCommand = (
             }
 
             const scriptResults: ImbricateScriptSearchResult[] =
-                await origin.origin.searchScripts(prompt, {
-                    exact: false,
-                    snippetLimit: 1,
-                });
+                await origin.origin
+                    .getScriptManager()
+                    .searchScripts(prompt, {
+                        exact: false,
+                        snippetLimit: 1,
+                    });
 
             originMappedResults.push(...scriptResults.map(
                 (result: ImbricateScriptSearchResult) => {

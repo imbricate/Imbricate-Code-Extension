@@ -49,7 +49,9 @@ export const registerScriptDeleteCommand = (
             return;
         }
 
-        await item.origin.deleteScript(item.scriptSnapshot.identifier);
+        await item.origin
+            .getScriptManager()
+            .deleteScript(item.scriptSnapshot.identifier);
 
         scriptsDataProvider.refresh();
     });

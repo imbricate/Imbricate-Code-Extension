@@ -35,9 +35,11 @@ export const registerCollectionCreateCommand = (
             return;
         }
 
-        await originItem.origin.createCollection(
-            collectionName,
-        );
+        await originItem.origin
+            .getCollectionManager()
+            .createCollection(
+                collectionName,
+            );
 
         pagesDataProvider.refresh();
     });

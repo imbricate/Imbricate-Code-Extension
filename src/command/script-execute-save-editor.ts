@@ -60,7 +60,9 @@ export const registerScriptExecuteSaveEditorCommand = (
         }
 
         const script: IImbricateScript | null =
-            await origin.getScript(targetEditing.target.payload.identifier);
+            await origin
+                .getScriptManager()
+                .getScript(targetEditing.target.payload.identifier);
 
         if (!script) {
             showErrorMessage(`Cannot find script: ${targetEditing.target.payload.identifier}`);

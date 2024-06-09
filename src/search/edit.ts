@@ -44,7 +44,9 @@ export const searchItemEdit = async (
                 fixedResult.identifier,
             );
 
-            const collection = await origin.getCollection(fixedResult.scope);
+            const collection = await origin
+                .getCollectionManager()
+                .getCollection(fixedResult.scope);
 
             if (!collection) {
                 showErrorMessage(`Cannot find collection: ${fixedResult.scope}`);
@@ -101,7 +103,9 @@ export const searchItemEdit = async (
             );
 
             const script: IImbricateScript | null =
-                await origin.getScript(fixedResult.identifier);
+                await origin
+                    .getScriptManager()
+                    .getScript(fixedResult.identifier);
 
             if (!script) {
                 showErrorMessage(`Cannot find script: ${fixedResult.headline}`);

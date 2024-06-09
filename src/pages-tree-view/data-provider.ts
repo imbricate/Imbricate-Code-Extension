@@ -114,7 +114,9 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
 
         if (element instanceof PagesOriginItem) {
 
-            const collections = await element.origin.listCollections();
+            const collections = await element.origin
+                .getCollectionManager()
+                .listCollections();
 
             const configurationPath: string = resolveImbricateHomeDirectory();
             const searchPreference: ImbricateSearchPreference =

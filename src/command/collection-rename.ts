@@ -49,19 +49,23 @@ export const registerCollectionRenameCommand = (
             return;
         }
 
-        const alreadyExist: boolean = await origin.hasCollection(
-            newCollectionName,
-        );
+        const alreadyExist: boolean = await origin
+            .getCollectionManager()
+            .hasCollection(
+                newCollectionName,
+            );
 
         if (alreadyExist) {
             showErrorMessage("Collection Already Exist");
             return;
         }
 
-        await origin.renameCollection(
-            collectionItem.collection.uniqueIdentifier,
-            newCollectionName,
-        );
+        await origin
+            .getCollectionManager()
+            .renameCollection(
+                collectionItem.collection.uniqueIdentifier,
+                newCollectionName,
+            );
 
         pagesDataProvider.refresh();
     });

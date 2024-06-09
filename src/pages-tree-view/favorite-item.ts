@@ -54,7 +54,9 @@ export const renderPageFavoriteItem = async (
             continue;
         }
 
-        const collection: IImbricateCollection | null = await origin.getCollection(favorite.collectionUniqueIdentifier);
+        const collection: IImbricateCollection | null = await origin
+            .getCollectionManager()
+            .getCollection(favorite.collectionUniqueIdentifier);
 
         if (!collection) {
 

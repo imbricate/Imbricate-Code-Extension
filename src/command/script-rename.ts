@@ -55,10 +55,12 @@ export const registerScriptRenameCommand = (
             return;
         }
 
-        await item.origin.renameScript(
-            item.scriptSnapshot.identifier,
-            newTitle,
-        );
+        await item.origin
+            .getScriptManager()
+            .renameScript(
+                item.scriptSnapshot.identifier,
+                newTitle,
+            );
 
         scriptsDataProvider.refresh();
     });

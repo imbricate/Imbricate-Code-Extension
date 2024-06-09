@@ -48,7 +48,9 @@ export class PageMarkdownContentProvider implements vscode.TextDocumentContentPr
             return "[ERROR] Origin Not Found!";
         }
 
-        const collection: IImbricateCollection | null = await origin.getCollection(collectionUniqueIdentifier);
+        const collection: IImbricateCollection | null = await origin
+            .getCollectionManager()
+            .getCollection(collectionUniqueIdentifier);
 
         if (!collection) {
             return "[ERROR] Collection Not Found!";

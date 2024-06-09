@@ -34,7 +34,9 @@ export const registerScriptExecuteEditorCommand = (
         }
 
         const script: IImbricateScript | null =
-            await origin.getScript(identifier);
+            await origin
+                .getScriptManager()
+                .getScript(identifier);
 
         if (!script) {
             showErrorMessage(`Cannot find script: ${identifier}`);

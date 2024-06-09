@@ -44,7 +44,9 @@ export const searchItemPreview = async (
                 fixedResult.identifier,
             );
 
-            const collection = await origin.getCollection(fixedResult.scope);
+            const collection = await origin
+                .getCollectionManager()
+                .getCollection(fixedResult.scope);
 
             if (!collection) {
                 showErrorMessage(`Cannot find collection: ${fixedResult.scope}`);

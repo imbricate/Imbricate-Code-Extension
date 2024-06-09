@@ -26,7 +26,9 @@ export const registerScriptEditCommand = (
         );
 
         const script: IImbricateScript | null =
-            await item.origin.getScript(item.scriptSnapshot.identifier);
+            await item.origin
+                .getScriptManager()
+                .getScript(item.scriptSnapshot.identifier);
 
         if (!script) {
             showErrorMessage(`Cannot find script: ${item.scriptSnapshot.scriptName}`);

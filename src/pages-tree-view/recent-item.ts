@@ -54,7 +54,9 @@ export const renderPageRecentItem = async (
             continue;
         }
 
-        const collection: IImbricateCollection | null = await origin.getCollection(recent.collectionUniqueIdentifier);
+        const collection: IImbricateCollection | null = await origin
+            .getCollectionManager()
+            .getCollection(recent.collectionUniqueIdentifier);
 
         if (!collection) {
 

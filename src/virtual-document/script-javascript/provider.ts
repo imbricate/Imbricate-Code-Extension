@@ -47,7 +47,9 @@ export class ScriptJavascriptContentProvider implements vscode.TextDocumentConte
             return "[ERROR] Origin Not Found!";
         }
 
-        const script: IImbricateScript | null = await origin.getScript(identifier);
+        const script: IImbricateScript | null = await origin
+            .getScriptManager()
+            .getScript(identifier);
 
         if (!script) {
             return "[ERROR] Script Not Found!";

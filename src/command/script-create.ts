@@ -78,7 +78,9 @@ export const registerScriptCreateCommand = (
             return;
         }
 
-        const alreadyExist: boolean = await origin.hasScript(scriptTitle);
+        const alreadyExist: boolean = await origin
+            .getScriptManager()
+            .hasScript(scriptTitle);
 
         if (alreadyExist) {
             showErrorMessage(`Script: ${scriptTitle} Already Exist`);
@@ -87,10 +89,12 @@ export const registerScriptCreateCommand = (
 
         const initialScript: string = "";
 
-        const script: IImbricateScript = await origin.createScript(
-            scriptTitle,
-            initialScript,
-        );
+        const script: IImbricateScript = await origin
+            .getScriptManager()
+            .createScript(
+                scriptTitle,
+                initialScript,
+            );
 
         const savingTarget = createScriptSavingTarget(
             originName,
