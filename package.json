@@ -12,7 +12,7 @@
     "vscode": "^1.76.0"
   },
   "bugs": {
-    "url": "https://github.com/Imbricate/Imbricate/issues"
+    "url": "https://github.com/Imbricate/Imbricate-Code-Extension/issues"
   },
   "homepage": "https://imbricate.io",
   "categories": [
@@ -20,7 +20,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Imbricate/Imbricate.git"
+    "url": "git+https://github.com/Imbricate/Imbricate-Code-Extension.git"
   },
   "keywords": [
     "imbricate",
@@ -47,7 +47,7 @@
     "@imbricate/local-fundamental": "1.15.0",
     "@imbricate/markdown-render": "1.2.0",
     "@imbricate/origin-file-system": "1.21.0",
-    "@imbricate/origin-mongo": "^1.4.0",
+    "@imbricate/origin-mongo": "1.4.0",
     "@sudoo/io": "^1.8.0"
   },
   "devDependencies": {

@@ -297,7 +297,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@imbricate/origin-mongo@npm:^1.4.0":
+"@imbricate/origin-mongo@npm:1.4.0":
   version: 1.4.0
   resolution: "@imbricate/origin-mongo@npm:1.4.0"
   dependencies:
@@ -2049,7 +2049,7 @@ __metadata:
     "@imbricate/local-fundamental": "npm:1.15.0"
     "@imbricate/markdown-render": "npm:1.2.0"
     "@imbricate/origin-file-system": "npm:1.21.0"
-    "@imbricate/origin-mongo": "npm:^1.4.0"
+    "@imbricate/origin-mongo": "npm:1.4.0"
     "@sudoo/io": "npm:^1.8.0"
     "@types/mocha": "npm:^10.0.6"
     "@types/node": "npm:^20.14.2"
