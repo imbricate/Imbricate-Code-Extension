@@ -1,6 +1,6 @@
 /**
  * @author WMXPY
- * @namespace EditingTreeView
+ * @namespace PagesTreeView
  * @description Editing Item
  */
 
