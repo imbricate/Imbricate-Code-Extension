@@ -61,9 +61,12 @@ export const registerPageCreateDirectoryCommand = (
             return;
         }
 
-        const splitedDirectories: string[] = pageDirectories
-            .split("/")
-            .filter((splited: string) => splited.trim().length > 0);
+        const splitedDirectories: string[] =
+            pageDirectories === "/"
+                ? []
+                : pageDirectories
+                    .split("/")
+                    .filter((splited: string) => splited.trim().length > 0);
 
         const fixedDirectories: string[] = [
             ...directories,
