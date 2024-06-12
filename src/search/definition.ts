@@ -8,6 +8,8 @@ import { IMBRICATE_SEARCH_RESULT_TYPE, ImbricateSearchResult } from "@imbricate/
 import * as vscode from "vscode";
 
 export type OriginMappedSearchResult<T extends IMBRICATE_SEARCH_RESULT_TYPE> = ImbricateSearchResult<T> & {
+
+    readonly originUniqueIdentifier: string;
     readonly originName: string;
 };
 

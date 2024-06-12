@@ -78,6 +78,7 @@ export const registerSearchCommand = (
                     (result: ImbricatePageSearchResult) => {
                         return {
                             ...result,
+                            originUniqueIdentifier: origin.origin.uniqueIdentifier,
                             originName: origin.originName,
                         };
                     },
@@ -96,6 +97,7 @@ export const registerSearchCommand = (
                 (result: ImbricateScriptSearchResult) => {
                     return {
                         ...result,
+                        originUniqueIdentifier: origin.origin.uniqueIdentifier,
                         originName: origin.originName,
                     };
                 },

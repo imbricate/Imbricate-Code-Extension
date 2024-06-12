@@ -16,8 +16,11 @@ export const createSearchQuickViewItem = (
 
         case IMBRICATE_SEARCH_RESULT_TYPE.PAGE: {
 
-            const fixedResult: OriginMappedSearchResult<IMBRICATE_SEARCH_RESULT_TYPE.PAGE> =
-                result as OriginMappedSearchResult<IMBRICATE_SEARCH_RESULT_TYPE.PAGE>;
+            const fixedResult: OriginMappedSearchResult<
+                IMBRICATE_SEARCH_RESULT_TYPE.PAGE
+            > = result as OriginMappedSearchResult<
+                IMBRICATE_SEARCH_RESULT_TYPE.PAGE
+            >;
 
             const snippet = fixedResult.snippets[0]!;
 
