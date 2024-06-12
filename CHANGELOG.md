@@ -4,6 +4,8 @@
 
 - Add new Origin Tree View Data Provider
 - Add collection delete function support
+- Add Page move through directory support
+- Add root directory support
 - Separate Imbricate and Imbricate Compose views
 - Move Imbricate Compose to a new side bar menu
 
