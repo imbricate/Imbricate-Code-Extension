@@ -104,7 +104,9 @@ export const registerSearchCommand = (
             ));
         }
 
-        const quickPickItems: SearchResultItem[] = originMappedResults.map((result: OriginMappedSearchResult<IMBRICATE_SEARCH_RESULT_TYPE>) => {
+        const quickPickItems: SearchResultItem[] = originMappedResults.map((
+            result: OriginMappedSearchResult<IMBRICATE_SEARCH_RESULT_TYPE>,
+        ) => {
 
             return createSearchQuickViewItem(result);
         });
