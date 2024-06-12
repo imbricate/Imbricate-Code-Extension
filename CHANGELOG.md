@@ -3,6 +3,7 @@
 ## 1.19.0
 
 - Add new Origin Tree View Data Provider
+- Add collection delete function support
 - Separate Imbricate and Imbricate Compose views
 - Move Imbricate Compose to a new side bar menu
 
