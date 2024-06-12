@@ -287,6 +287,12 @@
         "icon": "$(star)"
       },
       {
+        "command": "imbricate.page.move.directory",
+        "title": "Move Page to Directory...",
+        "category": "Imbricate",
+        "icon": "$(folder-library)"
+      },
+      {
         "command": "imbricate.page.preview",
         "title": "Preview Page",
         "category": "Imbricate",
@@ -462,6 +468,10 @@
         },
         {
           "command": "imbricate.page.favorite",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.page.move.directory",
           "when": "false"
         },
         {
