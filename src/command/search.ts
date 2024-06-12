@@ -153,12 +153,15 @@ export const registerSearchCommand = (
                     }),
                 );
                 disposables.push(
-                    quickPick.onDidAccept(() => {
+                    quickPick.onDidAccept(async () => {
 
                         if (!current) {
                             quickPick.hide();
                             return;
                         }
+
+                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                        const snippet = current.result.snippets[0]!;
 
                         searchItemPreview(
                             current,
