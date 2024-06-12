@@ -598,7 +598,7 @@
         {
           "command": "imbricate.collection.delete",
           "when": "view == imbricate-pages && viewItem =~ /^page-collection-item/",
-          "group": "collection-context-2@2"
+          "group": "collection-context-4@1"
         },
         {
           "command": "imbricate.collection.rename",

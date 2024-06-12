@@ -4,7 +4,7 @@
  * @description Collection Delete
  */
 
-import { IImbricateOrigin } from "@imbricate/core";
+import { IImbricateCollection, IImbricateOrigin, ImbricatePageSnapshot } from "@imbricate/core";
 import { ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { PagesCollectionItem } from "../pages-tree-view/collection-item";
@@ -26,6 +26,22 @@ export const registerCollectionDeleteCommand = (
 
         if (!origin) {
             showErrorMessage("Origin Not Found");
+            return;
+        }
+
+        const collection: IImbricateCollection | null = await origin
+            .getCollectionManager()
+            .getCollection(collectionItem.collection.uniqueIdentifier);
+
+        if (!collection) {
+            showErrorMessage(`Collection [${collectionItem.collection.collectionName}] Not Found`);
+            return;
+        }
+
+        const pages: ImbricatePageSnapshot[] = await collection.listPages([], true);
+
+        if (pages.length > 0) {
+            showErrorMessage(`Collection [${collectionItem.collection.collectionName}] is not empty`);
             return;
         }
 
