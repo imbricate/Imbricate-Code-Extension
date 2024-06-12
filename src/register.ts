@@ -52,6 +52,8 @@ import { registerEditingTreeView } from "./editing-tree-view/register";
 import { HistoryTreeViewDataProvider } from "./history-tree-view/data-provider";
 import { registerHistoryTreeView } from "./history-tree-view/register";
 import { registerPreCodeLensProvider } from "./lens/register";
+import { OriginsTreeViewDataProvider } from "./origins-tree-view/data-provider";
+import { registerOriginsTreeView } from "./origins-tree-view/register";
 import { PagesTreeViewDataProvider } from "./pages-tree-view/data-provider";
 import { registerPagesTreeView } from "./pages-tree-view/register";
 import { ScriptsTreeViewDataProvider } from "./scripts-tree-view/data-provider";
@@ -74,6 +76,12 @@ export const registerOperations = async (
 
     const historiesDataProvider: HistoryTreeViewDataProvider = await registerHistoryTreeView(
         configuration,
+        context,
+    );
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const originsDataProvider: OriginsTreeViewDataProvider = await registerOriginsTreeView(
+        originManager,
         context,
     );
 

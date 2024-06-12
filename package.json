@@ -84,23 +84,22 @@
         {
           "id": "imbricate",
           "title": "Imbricate",
-          "icon": "$(library)"
+          "icon": "$(note)"
+        },
+        {
+          "id": "imbricate-compose",
+          "title": "Imbricate Compose",
+          "icon": "$(sparkle)"
         }
       ]
     },
     "views": {
       "imbricate": [
         {
-          "id": "imbricate-editings",
-          "name": "Imbricate Editings",
-          "icon": "$(edit)",
-          "contextualTitle": "Imbricate Editings"
-        },
-        {
-          "id": "imbricate-histories",
-          "name": "Imbricate History Records",
-          "icon": "$(history)",
-          "contextualTitle": "Imbricate History Records"
+          "id": "imbricate-origins",
+          "name": "Imbricate Origins",
+          "icon": "$(globe)",
+          "contextualTitle": "Imbricate Origins"
         },
         {
           "id": "imbricate-pages",
@@ -113,6 +112,20 @@
           "name": "Imbricate Scripts",
           "icon": "$(terminal)",
           "contextualTitle": "Imbricate Scripts"
+        }
+      ],
+      "imbricate-compose": [
+        {
+          "id": "imbricate-editings",
+          "name": "Imbricate Editings",
+          "icon": "$(edit)",
+          "contextualTitle": "Imbricate Editings"
+        },
+        {
+          "id": "imbricate-histories",
+          "name": "Imbricate History Records",
+          "icon": "$(history)",
+          "contextualTitle": "Imbricate History Records"
         }
       ]
     },
