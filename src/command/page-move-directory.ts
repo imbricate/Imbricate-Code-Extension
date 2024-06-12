@@ -4,7 +4,7 @@
  * @description Page Move Directory
  */
 
-import { IImbricatePage, ImbricatePageAttributes } from "@imbricate/core";
+import { IImbricatePage, ImbricatePageAttributes, ImbricatePageMetadata } from "@imbricate/core";
 import { checkSavingTargetActive, createPageSavingTarget } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
@@ -72,7 +72,7 @@ export const registerPageMoveDirectoryCommand = (
                     .filter((splited: string) => splited.trim().length > 0);
 
         const alreadyExist: boolean = await pageItem.collection.hasPage(
-            pageItem.pageSnapshot.directories,
+            splitedDirectories,
             page.title,
         );
 
@@ -82,20 +82,23 @@ export const registerPageMoveDirectoryCommand = (
         }
 
         const attributes: ImbricatePageAttributes = await page.readAttributes();
+        const metadata: ImbricatePageMetadata = {
+            title: page.title,
+            directories: splitedDirectories,
+            identifier: page.identifier,
+            createdAt: page.createdAt,
+            updatedAt: page.updatedAt,
+            digest: page.digest,
+            attributes,
+            historyRecords: page.historyRecords,
+            description: page.description,
+        };
         const content: string = await page.readContent();
 
+        await pageItem.collection.deletePage(page.identifier);
+
         await pageItem.collection.putPage(
-            {
-                title: page.title,
-                directories: splitedDirectories,
-                identifier: page.identifier,
-                createdAt: page.createdAt,
-                updatedAt: page.updatedAt,
-                digest: page.digest,
-                attributes,
-                historyRecords: page.historyRecords,
-                description: page.description,
-            },
+            metadata,
             content,
         );
 
@@ -105,7 +108,6 @@ export const registerPageMoveDirectoryCommand = (
             pageSnapshot: pageItem.pageSnapshot,
         };
 
-        await pageItem.collection.deletePage(page.identifier);
 
         const currentFavorites: PagePersistanceData[] | undefined =
             context.globalState.get(PAGES_FAVORITES_KEY);
