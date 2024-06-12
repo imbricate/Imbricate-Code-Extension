@@ -159,6 +159,12 @@
         "icon": "$(add)"
       },
       {
+        "command": "imbricate.collection.delete",
+        "title": "Delete Collection...",
+        "category": "Imbricate",
+        "icon": "$(trash)"
+      },
+      {
         "command": "imbricate.collection.rename",
         "title": "Rename Collection...",
         "category": "Imbricate",
@@ -403,6 +409,10 @@
           "when": "false"
         },
         {
+          "command": "imbricate.collection.delete",
+          "when": "false"
+        },
+        {
           "command": "imbricate.collection.rename",
           "when": "false"
         },
@@ -584,6 +594,11 @@
         {
           "command": "imbricate.collection.create",
           "when": "view == imbricate-pages && viewItem == page-origin-item"
+        },
+        {
+          "command": "imbricate.collection.delete",
+          "when": "view == imbricate-pages && viewItem =~ /^page-collection-item/",
+          "group": "collection-context-2@2"
         },
         {
           "command": "imbricate.collection.rename",

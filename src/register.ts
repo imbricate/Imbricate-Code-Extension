@@ -7,6 +7,7 @@
 import { IImbricateConfiguration, ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { registerCollectionCreateCommand } from "./command/collection-create";
+import { registerCollectionDeleteCommand } from "./command/collection-delete";
 import { registerCollectionRenameCommand } from "./command/collection-rename";
 import { registerCollectionSearchExcludeCommand } from "./command/collection-search-exclude";
 import { registerCollectionSearchIncludeCommand } from "./command/collection-search-include";
@@ -107,6 +108,12 @@ export const registerOperations = async (
         pagesDataProvider,
     );
     context.subscriptions.push(collectionCreateCommand);
+
+    const collectionDeleteCommand = registerCollectionDeleteCommand(
+        pagesDataProvider,
+        originManager,
+    );
+    context.subscriptions.push(collectionDeleteCommand);
 
     const collectionRenameCommand = registerCollectionRenameCommand(
         pagesDataProvider,
