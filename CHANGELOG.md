@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.19.0
+
+- Add new Origin Tree View Data Provider
+- Separate Imbricate and Imbricate Compose views
+- Move Imbricate Compose to a new side bar menu
+
+## 1.18.0
+
+- Use new imbricate core with capability support
+- Add capability check for script execute
+- Fix Known Issues
+
 ## 1.17.1
 
 - Add history records tree view for scripts
