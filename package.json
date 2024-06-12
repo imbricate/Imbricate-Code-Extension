@@ -48,6 +48,7 @@
     "@imbricate/markdown-render": "1.2.0",
     "@imbricate/origin-file-system": "1.21.0",
     "@imbricate/origin-mongo": "1.4.0",
+    "@imbricate/origin-simple-file-system": "../Imbricate-Origin-Simple-File-System/app",
     "@sudoo/io": "^1.8.0"
   },
   "devDependencies": {
