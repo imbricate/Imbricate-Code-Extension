@@ -23,3 +23,9 @@ Visit [imbricate.io](https://imbricate.io/).
 To get started, install the extension from the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=imbricate.imbricate).
 
 Open the Imbricate View in the sidebar to get started.
+
+```
+┌───────────────────┐
+│ I M B R I C A T E │
+└───────────────────┘
+```
