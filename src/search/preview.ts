@@ -20,7 +20,7 @@ export const searchItemPreview = async (
     pagesDataProvider: PagesTreeViewDataProvider,
     originManager: ImbricateOriginManager,
     context: vscode.ExtensionContext,
-    line?: number,
+    _line?: number,
 ): Promise<void> => {
 
     const result: OriginMappedSearchResult<IMBRICATE_SEARCH_RESULT_TYPE> = item.result;
@@ -76,10 +76,6 @@ export const searchItemPreview = async (
                 pagesDataProvider,
                 context,
             );
-
-            if (typeof line === "number") {
-                uri.with({ fragment: `L${line}` });
-            }
 
             const textDocument: vscode.TextDocument =
                 await vscode.workspace.openTextDocument(uri);

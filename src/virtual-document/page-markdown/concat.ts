@@ -11,9 +11,16 @@ export const concatPageMarkdownUrl = (
     originName: string,
     collectionUniqueIdentifier: string,
     identifier: string,
+    lineNumber?: number,
 ): vscode.Uri => {
 
-    const uri = vscode.Uri.parse(`imbricate-page-markdown:${originName}/${collectionUniqueIdentifier}/${identifier}/preview.md`);
+    let uriString: string = `imbricate-page-markdown:${originName}/${collectionUniqueIdentifier}/${identifier}/preview.md`;
+
+    if (typeof lineNumber === "number") {
+        uriString += `:${lineNumber}`;
+    }
+
+    const uri = vscode.Uri.parse(uriString, true);
 
     return uri;
 };
