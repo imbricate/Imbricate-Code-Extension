@@ -663,7 +663,7 @@
         {
           "command": "imbricate.page.delete",
           "when": "view == imbricate-pages && viewItem =~ /^page-item/",
-          "group": "page-context-3@1"
+          "group": "page-context-4@1"
         },
         {
           "command": "imbricate.page.preview",
@@ -686,19 +686,24 @@
           "group": "page-context-1@3"
         },
         {
-          "command": "imbricate.page.show-history",
-          "when": "view == imbricate-pages && viewItem =~ /^page-item/",
-          "group": "page-context-2@2"
-        },
-        {
-          "command": "imbricate.page.favorite",
+          "submenu": "imbricate.page.move",
           "when": "view == imbricate-pages && viewItem == page-item",
           "group": "page-context-2@1"
         },
         {
+          "command": "imbricate.page.show-history",
+          "when": "view == imbricate-pages && viewItem =~ /^page-item/",
+          "group": "page-context-3@2"
+        },
+        {
+          "command": "imbricate.page.favorite",
+          "when": "view == imbricate-pages && viewItem == page-item",
+          "group": "page-context-3@1"
+        },
+        {
           "command": "imbricate.page.unfavorite",
           "when": "view == imbricate-pages && viewItem == page-item-favorite",
-          "group": "page-context-2@1"
+          "group": "page-context-3@1"
         },
         {
           "command": "imbricate.page.recent.clear",
@@ -708,7 +713,7 @@
         {
           "command": "imbricate.page.recent.remove",
           "when": "view == imbricate-pages && viewItem == page-item-recent",
-          "group": "page-context-2@1"
+          "group": "page-context-3@1"
         },
         {
           "command": "imbricate.script.create",
@@ -750,7 +755,20 @@
           "when": "view == imbricate-scripts && viewItem == script-item",
           "group": "script-context-3@1"
         }
+      ],
+      "imbricate.page.move": [
+        {
+          "command": "imbricate.page.move.directory",
+          "group": "page-move-context@1"
+        }
       ]
-    }
+    },
+    "submenus": [
+      {
+        "id": "imbricate.page.move",
+        "label": "Move Page",
+        "icon": "$(move)"
+      }
+    ]
   }
 }
