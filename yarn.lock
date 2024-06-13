@@ -309,18 +309,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@imbricate/origin-simple-file-system@file:../Imbricate-Origin-Simple-File-System/app::locator=imbricate%40workspace%3A.":
-  version: 1.0.0
-  resolution: "@imbricate/origin-simple-file-system@file:../Imbricate-Origin-Simple-File-System/app#../Imbricate-Origin-Simple-File-System/app::hash=7a4559&locator=imbricate%40workspace%3A."
-  dependencies:
-    "@sudoo/asynchronous": "npm:^2.4.0"
-    "@sudoo/io": "npm:^1.8.0"
-  peerDependencies:
-    "@imbricate/core": "*"
-  checksum: 10c0/081d8e1d92969e7fcf0b69a297422718becdcb9e0a997e3c4eca6a469a8710baba7f3094868dc57923f0f9f034dd5c2df300a0114d446e3e7912dd2dbf68196e
-  languageName: node
-  linkType: hard
-
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -2062,7 +2050,6 @@ __metadata:
     "@imbricate/markdown-render": "npm:1.2.0"
     "@imbricate/origin-file-system": "npm:1.22.0"
     "@imbricate/origin-mongo": "npm:1.5.0"
-    "@imbricate/origin-simple-file-system": ../Imbricate-Origin-Simple-File-System/app
     "@sudoo/io": "npm:^1.8.0"
     "@types/mocha": "npm:^10.0.6"
     "@types/node": "npm:^20.14.2"
