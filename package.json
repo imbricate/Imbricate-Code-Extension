@@ -286,6 +286,12 @@
         "icon": "$(star)"
       },
       {
+        "command": "imbricate.page.move.collection",
+        "title": "Move Page to Collection...",
+        "category": "Imbricate",
+        "icon": "$(folder-library)"
+      },
+      {
         "command": "imbricate.page.move.directory",
         "title": "Move Page to Directory...",
         "category": "Imbricate",
@@ -467,6 +473,10 @@
         },
         {
           "command": "imbricate.page.favorite",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.page.move.collection",
           "when": "false"
         },
         {
@@ -756,6 +766,10 @@
         }
       ],
       "imbricate.page.move": [
+        {
+          "command": "imbricate.page.move.collection",
+          "group": "page-move-context@2"
+        },
         {
           "command": "imbricate.page.move.directory",
           "group": "page-move-context@1"

@@ -65,19 +65,20 @@ export const registerPageMoveCollectionCommand = (
             return;
         }
 
-        const origin: IImbricateOrigin | null = await originManager.getOrigin(pageItem.originName);
+        const origin: IImbricateOrigin | null =
+            originManager.getOrigin(pageItem.originName);
 
         if (!origin) {
-            showErrorMessage("Cannot find origin");
+            showErrorMessage(`Cannot find origin [${pageItem.originName}]`);
             return;
         }
 
         const targetCollection = await origin
             .getCollectionManager()
-            .getCollection(pageCollection);
+            .findCollection(pageCollection);
 
         if (!targetCollection) {
-            showErrorMessage("Cannot find target collection");
+            showErrorMessage(`Cannot find target collection [${pageCollection}]`);
             return;
         }
 
