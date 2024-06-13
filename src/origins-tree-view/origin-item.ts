@@ -30,6 +30,9 @@ export class OriginOriginItem extends vscode.TreeItem {
         );
 
         this.contextValue = "origin-item";
+
+        this.iconPath = new vscode.ThemeIcon("ports-open-browser-icon");
+
         this.tooltip = originName;
 
         this._origin = origin;

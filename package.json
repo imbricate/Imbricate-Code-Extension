@@ -599,6 +599,11 @@
           "group": "navigation"
         },
         {
+          "command": "imbricate.origin.create",
+          "when": "view == imbricate-origins",
+          "group": "navigation"
+        },
+        {
           "command": "imbricate.pages.refresh",
           "when": "view == imbricate-pages",
           "group": "navigation"
