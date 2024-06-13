@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.20.0
+
+- Use new imbricate core with collection name support on search results
+- Add collection name display for search results
+
 ## 1.19.0
 
 - Add new Origin Tree View Data Provider
