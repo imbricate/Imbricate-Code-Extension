@@ -39,8 +39,8 @@
     "lint": "eslint src --ext ts",
     "test": "vscode-test",
     "clean": "rm -rf out",
-    "package": "yarn clean && vsce package --no-yarn",
-    "publish": "yarn clean && vsce publish --no-yarn"
+    "package": "yarn clean && vsce package --no-yarn --no-dependencies",
+    "publish": "yarn clean && vsce publish --no-yarn --no-dependencies"
   },
   "dependencies": {
     "@imbricate/core": "1.28.0",
