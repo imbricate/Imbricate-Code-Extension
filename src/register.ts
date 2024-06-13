@@ -29,6 +29,7 @@ import { registerPageDeleteCommand } from "./command/page-delete";
 import { registerPageEditCommand } from "./command/page-edit";
 import { registerPageEditEditorCommand } from "./command/page-edit-editor";
 import { registerPageFavoriteCommand } from "./command/page-favorite";
+import { registerPageMoveCollectionCommand } from "./command/page-move-collection";
 import { registerPageMoveDirectoryCommand } from "./command/page-move-directory";
 import { registerPagePreviewCommand } from "./command/page-preview";
 import { registerPagesRefreshCommand } from "./command/page-refresh";
@@ -236,6 +237,13 @@ export const registerOperations = async (
         context,
     );
     context.subscriptions.push(pageFavoriteDisposable);
+
+    const pageMoveCollectionDisposable = registerPageMoveCollectionCommand(
+        originManager,
+        pagesDataProvider,
+        context,
+    );
+    context.subscriptions.push(pageMoveCollectionDisposable);
 
     const pageMoveDirectoryDisposable = registerPageMoveDirectoryCommand(
         pagesDataProvider,

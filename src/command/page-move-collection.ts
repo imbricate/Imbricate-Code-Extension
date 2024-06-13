@@ -1,24 +1,25 @@
 /**
  * @author WMXPY
  * @namespace Command
- * @description Page Move Directory
+ * @description Page Move Collection
  */
 
-import { IImbricatePage, ImbricatePageAttributes, ImbricatePageMetadata } from "@imbricate/core";
-import { checkSavingTargetActive, createPageSavingTarget } from "@imbricate/local-fundamental";
+import { IImbricateOrigin, IImbricatePage, ImbricatePageAttributes, ImbricatePageMetadata } from "@imbricate/core";
+import { ImbricateOriginManager, checkSavingTargetActive, createPageSavingTarget } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
 import { PAGES_FAVORITES_KEY, PAGES_RECENTS_KEY, PagePersistanceData } from "../pages-tree-view/page-data";
 import { PagePageItem } from "../pages-tree-view/page-item";
 import { showErrorMessage } from "../util/show-message";
 
-export const registerPageMoveDirectoryCommand = (
+export const registerPageMoveCollectionCommand = (
+    originManager: ImbricateOriginManager,
     pagesDataProvider: PagesTreeViewDataProvider,
     context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 
     const disposable = vscode.commands.registerCommand(
-        "imbricate.page.move.directory", async (
+        "imbricate.page.move.collection", async (
             pageItem: PagePageItem,
         ) => {
 
@@ -43,13 +44,50 @@ export const registerPageMoveDirectoryCommand = (
             return;
         }
 
-        const initialValue: string = page.directories.join("/");
+        const collectionInitialValue: string = pageItem.collection.collectionName;
+
+        const pageCollection: string | undefined = await vscode.window.showInputBox({
+            prompt: "Target Collection Name",
+            placeHolder: "Collection Name",
+            value: collectionInitialValue,
+            valueSelection: [0, collectionInitialValue.length],
+            validateInput: (value: string) => {
+
+                if (value.trim().length <= 0) {
+                    return "Collection should not be empty";
+                }
+
+                return undefined;
+            },
+        });
+
+        if (!pageCollection) {
+            return;
+        }
+
+        const origin: IImbricateOrigin | null = await originManager.getOrigin(pageItem.originName);
+
+        if (!origin) {
+            showErrorMessage("Cannot find origin");
+            return;
+        }
+
+        const targetCollection = await origin
+            .getCollectionManager()
+            .getCollection(pageCollection);
+
+        if (!targetCollection) {
+            showErrorMessage("Cannot find target collection");
+            return;
+        }
+
+        const directoriesInitialValue: string = page.directories.join("/");
 
         const pageDirectories: string | undefined = await vscode.window.showInputBox({
             prompt: "Target Directories, split by /",
             placeHolder: "split by /",
-            value: initialValue,
-            valueSelection: [0, initialValue.length],
+            value: directoriesInitialValue,
+            valueSelection: [0, directoriesInitialValue.length],
             validateInput: (value: string) => {
 
                 if (value.trim().length <= 0) {
@@ -71,7 +109,7 @@ export const registerPageMoveDirectoryCommand = (
                     .split("/")
                     .filter((splited: string) => splited.trim().length > 0);
 
-        const alreadyExist: boolean = await pageItem.collection.hasPage(
+        const alreadyExist: boolean = await targetCollection.hasPage(
             splitedDirectories,
             page.title,
         );
@@ -97,7 +135,7 @@ export const registerPageMoveDirectoryCommand = (
 
         await pageItem.collection.deletePage(page.identifier);
 
-        await pageItem.collection.putPage(
+        await targetCollection.putPage(
             metadata,
             content,
         );
@@ -107,7 +145,6 @@ export const registerPageMoveDirectoryCommand = (
             collectionUniqueIdentifier: pageItem.collection.uniqueIdentifier,
             pageSnapshot: pageItem.pageSnapshot,
         };
-
 
         const currentFavorites: PagePersistanceData[] | undefined =
             context.globalState.get(PAGES_FAVORITES_KEY);
