@@ -27,7 +27,7 @@ export const createSearchQuickViewItem = (
             const item: SearchResultItem = {
                 label: fixedResult.headline,
                 iconPath: new vscode.ThemeIcon("book"),
-                description: `${fixedResult.originName} - ${fixedResult.scope}`,
+                description: `${fixedResult.originName} - ${fixedResult.collectionName}`,
                 detail: snippet.snippet,
                 buttons: [
                     {

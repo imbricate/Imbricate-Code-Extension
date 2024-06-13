@@ -41,16 +41,16 @@ export const searchItemPreview = async (
 
             const uri = concatPageMarkdownUrl(
                 fixedResult.originName,
-                fixedResult.scope,
+                fixedResult.collectionUniqueIdentifier,
                 fixedResult.identifier,
             );
 
             const collection = await origin
                 .getCollectionManager()
-                .getCollection(fixedResult.scope);
+                .getCollection(fixedResult.collectionUniqueIdentifier);
 
             if (!collection) {
-                showErrorMessage(`Cannot find collection: ${fixedResult.scope}`);
+                showErrorMessage(`Cannot find collection: ${fixedResult.collectionName}`);
                 return;
             }
 
@@ -63,7 +63,7 @@ export const searchItemPreview = async (
 
             const persistanceData: PagePersistanceData = {
                 originName: fixedResult.originName,
-                collectionUniqueIdentifier: fixedResult.scope,
+                collectionUniqueIdentifier: fixedResult.collectionUniqueIdentifier,
                 pageSnapshot: {
                     directories: page.directories,
                     title: page.title,
