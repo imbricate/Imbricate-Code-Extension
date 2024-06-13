@@ -4,6 +4,10 @@
 
 - Use new imbricate core with collection name support on search results
 - Add collection name display for search results
+- Add move page to collection support
+- Add origin creation shortcut
+- Fix a move page to directory issue
+- Fix Known Issues
 
 ## 1.19.0
 
