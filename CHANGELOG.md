@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.21.0
+
+- Support toggle for page tree view between collection and origin
+- Add Origin Tree View collection creating function
+- Fix Known Issues
+
 ## 1.20.0
 
 - Use new imbricate core with collection name support on search results
