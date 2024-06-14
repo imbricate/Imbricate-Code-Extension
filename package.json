@@ -631,6 +631,10 @@
           "when": "view == imbricate-pages && viewItem == page-origin-item"
         },
         {
+          "command": "imbricate.collection.create",
+          "when": "view == imbricate-origins && viewItem == origin-item"
+        },
+        {
           "command": "imbricate.collection.delete",
           "when": "view == imbricate-pages && viewItem =~ /^page-collection-item/",
           "group": "collection-context-4@1"
