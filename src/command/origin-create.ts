@@ -76,6 +76,7 @@ export const registerOriginCreateCommand = (
                     scriptsDataProvider,
                     originManager,
                 );
+                return;
             }
         }
 
