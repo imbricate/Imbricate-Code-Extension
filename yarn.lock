@@ -261,15 +261,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@imbricate/local-fundamental@file:../Imbricate-Local-Fundamental/app::locator=imbricate%40workspace%3A.":
-  version: 1.15.1
-  resolution: "@imbricate/local-fundamental@file:../Imbricate-Local-Fundamental/app#../Imbricate-Local-Fundamental/app::hash=bd9a16&locator=imbricate%40workspace%3A."
+"@imbricate/local-fundamental@npm:1.16.0":
+  version: 1.16.0
+  resolution: "@imbricate/local-fundamental@npm:1.16.0"
   dependencies:
     "@sudoo/io": "npm:^1.8.0"
     "@sudoo/uuid": "npm:^1.1.0"
   peerDependencies:
     "@imbricate/core": "*"
-  checksum: 10c0/235651a399fc27b1d701f40428a212db220e6e468e3e4d61de88f10c7240555461b2b8b577741634ace928fd9129348f17d4b08fca752e765ddbfce502f619cd
+  checksum: 10c0/1b35bc4c9a3af3f4638bf4f223ea8b0abd22cf16862d8ae36372d11a9d8688082fc0c742fc0d4a492475b57d4b721d11473747a6117d26ed1ac4328161923207
   languageName: node
   linkType: hard
 
@@ -309,15 +309,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@imbricate/origin-simple-file-system@file:../Imbricate-Origin-Simple-File-System/app::locator=imbricate%40workspace%3A.":
+"@imbricate/origin-simple-file-system@npm:1.0.0":
   version: 1.0.0
-  resolution: "@imbricate/origin-simple-file-system@file:../Imbricate-Origin-Simple-File-System/app#../Imbricate-Origin-Simple-File-System/app::hash=71ce81&locator=imbricate%40workspace%3A."
+  resolution: "@imbricate/origin-simple-file-system@npm:1.0.0"
   dependencies:
     "@sudoo/asynchronous": "npm:^2.4.0"
     "@sudoo/io": "npm:^1.8.0"
   peerDependencies:
     "@imbricate/core": "*"
-  checksum: 10c0/99da1c5d4c6da0155146cdbe1d35d8e1684d69e329e6c366024a164e9009420d1b6ce4636baa44f7ea2bafce2a89cf01cfebc566d7e17c5cdd7b6c6c8dcce3a3
+  checksum: 10c0/f10f3b0c1f5a7c7742df2c96c9d1a8aac59b4f83ec8f8b41cd998acb615da7ff58312ab4989190c952ce7a509e47d43ede58254922d8633cda55ffceaa00fcfc
   languageName: node
   linkType: hard
 
@@ -2058,11 +2058,11 @@ __metadata:
   resolution: "imbricate@workspace:."
   dependencies:
     "@imbricate/core": "npm:1.29.0"
-    "@imbricate/local-fundamental": ../Imbricate-Local-Fundamental/app
+    "@imbricate/local-fundamental": "npm:1.16.0"
     "@imbricate/markdown-render": "npm:1.2.0"
     "@imbricate/origin-file-system": "npm:1.22.0"
     "@imbricate/origin-mongo": "npm:1.5.0"
-    "@imbricate/origin-simple-file-system": ../Imbricate-Origin-Simple-File-System/app
+    "@imbricate/origin-simple-file-system": "npm:1.0.0"
     "@sudoo/io": "npm:^1.8.0"
     "@types/mocha": "npm:^10.0.6"
     "@types/node": "npm:^20.14.2"
