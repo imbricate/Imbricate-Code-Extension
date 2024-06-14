@@ -261,15 +261,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@imbricate/local-fundamental@npm:1.15.1":
+"@imbricate/local-fundamental@file:../Imbricate-Local-Fundamental/app::locator=imbricate%40workspace%3A.":
   version: 1.15.1
-  resolution: "@imbricate/local-fundamental@npm:1.15.1"
+  resolution: "@imbricate/local-fundamental@file:../Imbricate-Local-Fundamental/app#../Imbricate-Local-Fundamental/app::hash=bd9a16&locator=imbricate%40workspace%3A."
   dependencies:
     "@sudoo/io": "npm:^1.8.0"
     "@sudoo/uuid": "npm:^1.1.0"
   peerDependencies:
     "@imbricate/core": "*"
-  checksum: 10c0/0aff2d29b3440c103bf20c9ade3509fb521b14b2017eed9905251eaa6450897f53b10ffc726eb64c15caa82f96b2353577676704d0990879e308ac086467942b
+  checksum: 10c0/235651a399fc27b1d701f40428a212db220e6e468e3e4d61de88f10c7240555461b2b8b577741634ace928fd9129348f17d4b08fca752e765ddbfce502f619cd
   languageName: node
   linkType: hard
 
@@ -311,13 +311,13 @@ __metadata:
 
 "@imbricate/origin-simple-file-system@file:../Imbricate-Origin-Simple-File-System/app::locator=imbricate%40workspace%3A.":
   version: 1.0.0
-  resolution: "@imbricate/origin-simple-file-system@file:../Imbricate-Origin-Simple-File-System/app#../Imbricate-Origin-Simple-File-System/app::hash=010d0f&locator=imbricate%40workspace%3A."
+  resolution: "@imbricate/origin-simple-file-system@file:../Imbricate-Origin-Simple-File-System/app#../Imbricate-Origin-Simple-File-System/app::hash=71ce81&locator=imbricate%40workspace%3A."
   dependencies:
     "@sudoo/asynchronous": "npm:^2.4.0"
     "@sudoo/io": "npm:^1.8.0"
   peerDependencies:
     "@imbricate/core": "*"
-  checksum: 10c0/0fb61a52ce25b1288730ab7fc4d9955fe7e3653258bccf7e0bf1422669271cf3b06510d539d95705a083d75c5a5d60a95a32f34b41f66105a54077bcf76d4e5b
+  checksum: 10c0/99da1c5d4c6da0155146cdbe1d35d8e1684d69e329e6c366024a164e9009420d1b6ce4636baa44f7ea2bafce2a89cf01cfebc566d7e17c5cdd7b6c6c8dcce3a3
   languageName: node
   linkType: hard
 
@@ -2058,7 +2058,7 @@ __metadata:
   resolution: "imbricate@workspace:."
   dependencies:
     "@imbricate/core": "npm:1.29.0"
-    "@imbricate/local-fundamental": "npm:1.15.1"
+    "@imbricate/local-fundamental": ../Imbricate-Local-Fundamental/app
     "@imbricate/markdown-render": "npm:1.2.0"
     "@imbricate/origin-file-system": "npm:1.22.0"
     "@imbricate/origin-mongo": "npm:1.5.0"

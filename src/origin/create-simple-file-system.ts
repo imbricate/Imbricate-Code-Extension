@@ -57,7 +57,7 @@ export const gatherAndCreateSimpleFileSystemOrigin = async (
         origins: [
             ...rawConfig.origins,
             {
-                originType: "file-system",
+                originType: "simple-file-system",
                 uniqueIdentifier,
                 originName,
                 payloads,
