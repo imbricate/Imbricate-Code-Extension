@@ -8,6 +8,7 @@ import { ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { gatherAndCreateFileSystemOrigin } from "../origin/create-file-system";
 import { gatherAndCreateMongoOrigin } from "../origin/create-mongo";
+import { gatherAndCreateSimpleFileSystemOrigin } from "../origin/create-simple-file-system";
 import { gatherOriginTypeInput } from "../origin/gather-origin-type";
 import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
 import { ScriptsTreeViewDataProvider } from "../scripts-tree-view/data-provider";
@@ -66,6 +67,15 @@ export const registerOriginCreateCommand = (
                     originManager,
                 );
                 return;
+            }
+            case "simple-file-system": {
+
+                await gatherAndCreateSimpleFileSystemOrigin(
+                    originName,
+                    pagesDataProvider,
+                    scriptsDataProvider,
+                    originManager,
+                );
             }
         }
 
