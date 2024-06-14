@@ -411,6 +411,12 @@
         "title": "Search",
         "category": "Imbricate",
         "icon": "$(search)"
+      },
+      {
+        "command": "imbricate.page-tree-view.mode.toggle",
+        "title": "Toggle Page Tree View Mode",
+        "category": "Imbricate",
+        "icon": "$(combine)"
       }
     ],
     "menus": {
@@ -604,9 +610,14 @@
           "group": "navigation"
         },
         {
+          "command": "imbricate.page-tree-view.mode.toggle",
+          "when": "view == imbricate-pages",
+          "group": "navigation@1"
+        },
+        {
           "command": "imbricate.pages.refresh",
           "when": "view == imbricate-pages",
-          "group": "navigation"
+          "group": "navigation@2"
         },
         {
           "command": "imbricate.scripts.refresh",
