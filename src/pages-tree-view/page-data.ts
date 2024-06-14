@@ -6,6 +6,14 @@
 
 import { ImbricatePageSnapshot } from "@imbricate/core";
 
+export const PAGES_TREE_VIEW_MODE_KEY: string = "imbricate.page-tree-view.mode";
+
+export enum PAGES_TREE_VIEW_MODE {
+
+    ORIGIN = "ORIGIN",
+    COLLECTION = "COLLECTION",
+}
+
 export const PAGES_FAVORITES_KEY: string = "imbricate.page.favorites";
 export const PAGES_RECENTS_KEY: string = "imbricate.page.recents";
 

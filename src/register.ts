@@ -50,6 +50,7 @@ import { registerScriptsRefreshCommand } from "./command/script-refresh";
 import { registerScriptRenameCommand } from "./command/script-rename";
 import { registerScriptShowHistoryCommand } from "./command/script-show-history";
 import { registerSearchCommand } from "./command/search";
+import { registerTogglePageTreeViewModeCommand } from "./command/toggle-page-tree-view-mode";
 import { EditingTreeViewDataProvider } from "./editing-tree-view/data-provider";
 import { registerEditingTreeView } from "./editing-tree-view/register";
 import { HistoryTreeViewDataProvider } from "./history-tree-view/data-provider";
@@ -354,4 +355,10 @@ export const registerOperations = async (
         context,
     );
     context.subscriptions.push(searchDisposable);
+
+    const togglePageTreeViewModeDisposable = registerTogglePageTreeViewModeCommand(
+        pagesDataProvider,
+        context,
+    );
+    context.subscriptions.push(togglePageTreeViewModeDisposable);
 };

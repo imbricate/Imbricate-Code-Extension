@@ -13,6 +13,7 @@ import { PagesCollectionItem } from "./collection-item";
 import { PageDirectoryItem, renderPageDirectoryItem } from "./directory-item";
 import { PagesFavoriteItem, renderPageFavoriteItem } from "./favorite-item";
 import { PagesOriginItem } from "./origin-item";
+import { PAGES_TREE_VIEW_MODE, PAGES_TREE_VIEW_MODE_KEY } from "./page-data";
 import { PagePageItem } from "./page-item";
 import { PagesRecentItem, renderPageRecentItem } from "./recent-item";
 
@@ -68,7 +69,7 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
 
             const items: vscode.TreeItem[] = [];
 
-            const originItems: vscode.TreeItem[] = this._originManager.origins.map((
+            const originItems: PagesOriginItem[] = this._originManager.origins.map((
                 originConfig: ImbricateOriginManagerOriginResponse,
             ) => {
 
@@ -76,7 +77,7 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
                     this._originManager.getOrigin(originConfig.originName);
 
                 if (!origin) {
-                    return new vscode.TreeItem("ERROR!");
+                    return new vscode.TreeItem("ERROR!") as unknown as PagesOriginItem;
                 }
 
                 return PagesOriginItem.withOrigin(
@@ -92,6 +93,20 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
                 if (enableRecent) {
                     items.push(PagesRecentItem.create());
                 }
+
+            }
+
+            const currentMode: PAGES_TREE_VIEW_MODE | undefined =
+                this._context.globalState.get(PAGES_TREE_VIEW_MODE_KEY);
+
+            if (currentMode === PAGES_TREE_VIEW_MODE.COLLECTION) {
+
+                for (const originItem of originItems) {
+
+                    const collectionItems: vscode.TreeItem[] = await this.getChildren(originItem);
+                    items.push(...collectionItems);
+                }
+            } else {
 
                 items.push(...originItems);
             }
