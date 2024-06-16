@@ -8,8 +8,7 @@ import { IImbricateConfiguration, IImbricateConfigurationOrigin, ImbricateOrigin
 import { FileSystemImbricateOrigin, FileSystemOriginPayload } from "@imbricate/origin-file-system";
 import { MongoImbricateOrigin } from "@imbricate/origin-mongo";
 import { SimpleFileSystemImbricateOrigin, SimpleFileSystemOriginPayload } from "@imbricate/origin-simple-file-system";
-import { logInfo } from "../util/output-channel";
-import { CONFIG_KEY, getConfiguration } from "./get-config";
+import { initializeOriginManagerDirectories } from "./initialize-directories";
 
 export const initializeOriginManager = async (
     configuration: IImbricateConfiguration,
@@ -46,14 +45,7 @@ export const initializeOriginManager = async (
 
     const originManager = originInitializer.initializeOrigins(configuration.origins);
 
-    const documentDirectories: string[] =
-        getConfiguration(CONFIG_KEY.WORKSPACE_DIRECTORY_DOCUMENT);
-
-    if (documentDirectories.length === 0) {
-        logInfo("No Document Directories");
-    } else {
-        logInfo(`Document Directories: ${documentDirectories.join(", ")}`);
-    }
+    initializeOriginManagerDirectories(originManager);
 
     return originManager;
 };
