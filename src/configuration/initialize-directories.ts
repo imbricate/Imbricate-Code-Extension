@@ -10,6 +10,7 @@ import { SimpleFileSystemImbricateOrigin } from "@imbricate/origin-simple-file-s
 import { joinPath } from "@sudoo/io";
 import * as vscode from "vscode";
 import { logInfo } from "../util/output-channel";
+import { getLastFolderName } from "../util/path";
 import { CONFIG_KEY, getConfiguration } from "./get-config";
 
 export const initializeOriginManagerDirectories = (
@@ -34,17 +35,19 @@ export const initializeOriginManagerDirectories = (
     for (const workspaceFolder of vscode.workspace.workspaceFolders) {
 
         const path: string = workspaceFolder.uri.fsPath;
+        const pathDirName: string = getLastFolderName(path);
 
         for (const documentDirectory of documentDirectories) {
 
             const documentPath: string = joinPath(path, documentDirectory);
 
+            const originName: string = `${pathDirName} - ${documentDirectory}`;
             const origin: IImbricateOrigin = SimpleFileSystemImbricateOrigin.withPayload({
                 basePath: documentPath,
-                collectionName: "imbricate",
+                collectionName: originName,
             });
 
-            originManager.putOrigin(documentPath, origin);
+            originManager.putOrigin(originName, origin);
         }
     }
 };
