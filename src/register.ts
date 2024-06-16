@@ -6,6 +6,7 @@
 
 import { IImbricateConfiguration, ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
+import { registerCollectionCopyIdentifierCommand } from "./command/collection-copy-identifier";
 import { registerCollectionCreateCommand } from "./command/collection-create";
 import { registerCollectionDeleteCommand } from "./command/collection-delete";
 import { registerCollectionRenameCommand } from "./command/collection-rename";
@@ -23,6 +24,8 @@ import { registerPageFavoriteClearCommand } from "./command/favorite-clear";
 import { registerHistoryResetCommand } from "./command/history-reset";
 import { registerOriginBinaryUploadCommand } from "./command/origin-binary-upload";
 import { registerOriginCreateCommand } from "./command/origin-create";
+import { registerPageCopyIdentifierCommand } from "./command/page-copy-identifier";
+import { registerPageCopyTraceCommand } from "./command/page-copy-trace";
 import { registerPageCreateCommand } from "./command/page-create";
 import { registerPageCreateDirectoryCommand } from "./command/page-create-directory";
 import { registerPageDeleteCommand } from "./command/page-delete";
@@ -51,6 +54,7 @@ import { registerScriptRenameCommand } from "./command/script-rename";
 import { registerScriptShowHistoryCommand } from "./command/script-show-history";
 import { registerSearchCommand } from "./command/search";
 import { registerTogglePageTreeViewModeCommand } from "./command/toggle-page-tree-view-mode";
+import { registerPageDocumentLinkProvider } from "./document-link/page/register";
 import { EditingTreeViewDataProvider } from "./editing-tree-view/data-provider";
 import { registerEditingTreeView } from "./editing-tree-view/register";
 import { HistoryTreeViewDataProvider } from "./history-tree-view/data-provider";
@@ -67,7 +71,6 @@ import { registerSourceControl } from "./source-control/register";
 import { registerEditingOriginalProvider } from "./virtual-document/editing-original/editing-original";
 import { registerPageMarkdownContentProvider } from "./virtual-document/page-markdown/page-markdown";
 import { registerScriptJavascriptContentProvider } from "./virtual-document/script-javascript/script-javascript";
-import { registerPageDocumentLinkProvider } from "./document-link/page/register";
 
 export const registerOperations = async (
     configuration: IImbricateConfiguration,
@@ -111,6 +114,9 @@ export const registerOperations = async (
 
     registerCodeLensProvider(context);
     registerPreCodeLensProvider(context);
+
+    const collectionCopyIdentifierCommand = registerCollectionCopyIdentifierCommand();
+    context.subscriptions.push(collectionCopyIdentifierCommand);
 
     const collectionCreateCommand = registerCollectionCreateCommand(
         pagesDataProvider,
@@ -203,6 +209,12 @@ export const registerOperations = async (
         originManager,
     );
     context.subscriptions.push(originCreateDisposable);
+
+    const pageCopyIdentifierDisposable = registerPageCopyIdentifierCommand();
+    context.subscriptions.push(pageCopyIdentifierDisposable);
+
+    const pageCopyTraceDisposable = registerPageCopyTraceCommand();
+    context.subscriptions.push(pageCopyTraceDisposable);
 
     const pageCreateDisposable = registerPageCreateCommand(
         editingsDataProvider,
