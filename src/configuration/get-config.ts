@@ -10,6 +10,13 @@ export enum CONFIG_KEY {
 
     PAGE_RECENT_ENABLE = "page.recent.enable",
     PAGE_RECENT_MAXIMUM = "page.recent.maximum",
+
+    COPY_CODE_BLOCK_ENABLE = "copy.code-block.enable",
+    COPY_SNIPPET_ENABLE = "copy.snippet.enable",
+
+    REDIRECT_INLINE_ENABLE = "redirect.inline.enable",
+
+    RUN_CODE_BLOCK_ENABLE = "run.code-block.enable",
 }
 
 export const getConfiguration = <T>(

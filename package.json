@@ -77,6 +77,26 @@
           "type": "number",
           "default": 10,
           "description": "Maximum number of recent pages"
+        },
+        "imbricate.copy.code-block.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable copy code block"
+        },
+        "imbricate.copy.snippet.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable copy snippet"
+        },
+        "imbricate.redirect.inline.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable redirect inline"
+        },
+        "imbricate.run.code-block.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable run code block"
         }
       }
     },
