@@ -6,6 +6,7 @@
 
 import * as vscode from "vscode";
 import { PageDocumentLinkProvider } from "./provider";
+import { resolveImbricateTempDirectory } from "@imbricate/local-fundamental";
 
 export const registerPageDocumentLinkProvider = (
     context: vscode.ExtensionContext,
@@ -13,9 +14,20 @@ export const registerPageDocumentLinkProvider = (
 
     const provider = PageDocumentLinkProvider.create();
 
+    const rootFolder = resolveImbricateTempDirectory();
+    const rootUri = vscode.Uri.file(rootFolder);
+
     const providerRegistrations = vscode.Disposable.from(
         vscode.languages.registerDocumentLinkProvider(
-            { scheme: "reference" },
+            {
+                language: "markdown",
+                scheme: "file",
+                pattern: {
+                    baseUri: rootUri,
+                    base: rootUri.fsPath,
+                    pattern: "**/*.md",
+                },
+            },
             provider,
         ),
     );
