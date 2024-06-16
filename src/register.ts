@@ -55,6 +55,7 @@ import { EditingTreeViewDataProvider } from "./editing-tree-view/data-provider";
 import { registerEditingTreeView } from "./editing-tree-view/register";
 import { HistoryTreeViewDataProvider } from "./history-tree-view/data-provider";
 import { registerHistoryTreeView } from "./history-tree-view/register";
+import { registerCodeLensProvider } from "./lens/copy-code/register";
 import { registerPreCodeLensProvider } from "./lens/copy-pre-code/register";
 import { OriginsTreeViewDataProvider } from "./origins-tree-view/data-provider";
 import { registerOriginsTreeView } from "./origins-tree-view/register";
@@ -105,6 +106,7 @@ export const registerOperations = async (
 
     registerSourceControl(context);
 
+    registerCodeLensProvider(context);
     registerPreCodeLensProvider(context);
 
     const collectionCreateCommand = registerCollectionCreateCommand(
