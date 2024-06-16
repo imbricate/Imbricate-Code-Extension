@@ -5,8 +5,8 @@
  */
 
 import * as vscode from "vscode";
-import { concatPageMarkdownUrl } from "../../virtual-document/page-markdown/concat";
 import { logVerbose } from "../../util/output-channel";
+import { concatPageMarkdownUrl } from "../../virtual-document/page-markdown/concat";
 
 export class EditingPageDocumentLinkProvider implements vscode.DocumentLinkProvider {
 
@@ -24,8 +24,6 @@ export class EditingPageDocumentLinkProvider implements vscode.DocumentLinkProvi
         document: vscode.TextDocument,
         _token: vscode.CancellationToken,
     ): vscode.ProviderResult<vscode.DocumentLink[]> {
-
-        console.log(document.uri.fsPath);
 
         const result: vscode.DocumentLink[] = [];
 
@@ -70,10 +68,13 @@ export class EditingPageDocumentLinkProvider implements vscode.DocumentLinkProvi
                 new vscode.Position(lineNumber, startIndex + index + nextIndex + 1),
             );
 
+            const fullText: string = restOfText.slice(0, nextIndex);
+            const splitedText: string[] = fullText.split(":");
+
             const uri = concatPageMarkdownUrl(
-                "item.originName",
-                "item.collection.uniqueIdentifier",
-                "item.pageSnapshot.identifier",
+                splitedText[0],
+                splitedText[1],
+                splitedText[2],
             );
 
             const documentLink = new vscode.DocumentLink(range, uri);
@@ -91,11 +92,4 @@ export class EditingPageDocumentLinkProvider implements vscode.DocumentLinkProvi
 
         return results;
     }
-
-    // private _buildTargetUri(
-    //     value: string,
-    // ): vscode.Uri {
-
-
-    // }
 }

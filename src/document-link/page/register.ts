@@ -29,6 +29,14 @@ export const registerPageDocumentLinkProvider = (
         },
         editingProvider,
     );
-
     context.subscriptions.push(editingDisposable);
+
+    const previewDisposable = vscode.languages.registerDocumentLinkProvider(
+        {
+            language: "markdown",
+            scheme: "imbricate-page-markdown",
+        },
+        editingProvider,
+    );
+    context.subscriptions.push(previewDisposable);
 };
