@@ -1,6 +1,6 @@
 /**
  * @author WMXPY
- * @namespace Lens
+ * @namespace Lens_CopyPreCode
  * @description Provider
  */
 
