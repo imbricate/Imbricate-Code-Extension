@@ -17,6 +17,8 @@ export enum CONFIG_KEY {
     REDIRECT_INLINE_ENABLE = "redirect.inline.enable",
 
     RUN_CODE_BLOCK_ENABLE = "run.code-block.enable",
+
+    WORKSPACE_DIRECTORY_DOCUMENT = "workspace.directory.document",
 }
 
 export const getConfiguration = <T>(

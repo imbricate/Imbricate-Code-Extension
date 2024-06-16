@@ -97,6 +97,14 @@
           "type": "boolean",
           "default": true,
           "description": "Enable run code block"
+        },
+        "imbricate.workspace.directory.document": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Workspace directory document"
         }
       }
     },
