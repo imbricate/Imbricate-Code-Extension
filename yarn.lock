@@ -247,17 +247,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@imbricate/core@npm:1.29.0":
-  version: 1.29.0
-  resolution: "@imbricate/core@npm:1.29.0"
+"@imbricate/core@npm:1.30.0":
+  version: 1.30.0
+  resolution: "@imbricate/core@npm:1.30.0"
   dependencies:
-    "@sudoo/marked": "npm:^3.21.4"
-    "@sudoo/marked-mixin-date": "npm:^1.0.0"
-    "@sudoo/marked-mixin-json": "npm:^1.0.0"
-    "@sudoo/marked-mixin-math": "npm:^1.4.0"
-    "@sudoo/marked-mixin-object": "npm:^1.3.0"
-    "@sudoo/marked-mixin-parse": "npm:^1.0.0"
-  checksum: 10c0/b85a9c5b4a6015ff67cf15c895d146759428a04c7df2e357abf3056dc5a1396cd5803679ded45f45f0d4e2ea8756269a54a1008d0bc5b789733feda33e6cbc6b
+    "@sudoo/marked-mixin-date": "npm:1.0.0"
+    "@sudoo/marked-mixin-json": "npm:1.0.0"
+    "@sudoo/marked-mixin-math": "npm:1.4.0"
+    "@sudoo/marked-mixin-object": "npm:1.3.0"
+    "@sudoo/marked-mixin-parse": "npm:1.0.0"
+  peerDependencies:
+    "@sudoo/marked": "*"
+  checksum: 10c0/a3136b3b80b37612191c3abd8956ad807007a87d9ecc1418b5559ad598df1d6baf7457cc135cf6ec577667e1fd122ce1f64a9b31813167c2bb7cd5b0c5099baa
   languageName: node
   linkType: hard
 
@@ -284,16 +285,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@imbricate/origin-file-system@npm:1.22.0":
-  version: 1.22.0
-  resolution: "@imbricate/origin-file-system@npm:1.22.0"
+"@imbricate/origin-file-system@npm:1.23.0":
+  version: 1.23.0
+  resolution: "@imbricate/origin-file-system@npm:1.23.0"
   dependencies:
     "@sudoo/asynchronous": "npm:^2.4.0"
     "@sudoo/io": "npm:^1.8.0"
     "@sudoo/uuid": "npm:^1.1.0"
   peerDependencies:
     "@imbricate/core": "*"
-  checksum: 10c0/2f1030c1f51e6233bda48a1263815ca086deba2404f86b1a5bec497b7a5b2eba9bd830e5282190fe7b1de185abe3d8be20e733623ce75752d652df199e208169
+  checksum: 10c0/8fa17779aab35c80353c458657959eddfb977a7b8696ef8ec93740e04b2a6e6250d0e1baeb2e0667d2617fd286e5279e9ac15c541cf1ede29c27a2fab86e0ff5
   languageName: node
   linkType: hard
 
@@ -309,15 +310,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@imbricate/origin-simple-file-system@npm:1.0.0":
-  version: 1.0.0
-  resolution: "@imbricate/origin-simple-file-system@npm:1.0.0"
+"@imbricate/origin-simple-file-system@npm:1.0.1":
+  version: 1.0.1
+  resolution: "@imbricate/origin-simple-file-system@npm:1.0.1"
   dependencies:
     "@sudoo/asynchronous": "npm:^2.4.0"
     "@sudoo/io": "npm:^1.8.0"
   peerDependencies:
     "@imbricate/core": "*"
-  checksum: 10c0/f10f3b0c1f5a7c7742df2c96c9d1a8aac59b4f83ec8f8b41cd998acb615da7ff58312ab4989190c952ce7a509e47d43ede58254922d8633cda55ffceaa00fcfc
+  checksum: 10c0/d3a3625c65e19b248d856bf70afb0951965d6a3bab8727edb0b44d7c08aab48e8b377171ba72ef329ba591b60ed0b37c1280f11af31002bf29ecc3cb9a0ca8bd
   languageName: node
   linkType: hard
 
@@ -455,7 +456,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sudoo/marked-mixin-date@npm:^1.0.0":
+"@sudoo/marked-mixin-date@npm:1.0.0":
   version: 1.0.0
   resolution: "@sudoo/marked-mixin-date@npm:1.0.0"
   dependencies:
@@ -466,7 +467,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sudoo/marked-mixin-json@npm:^1.0.0":
+"@sudoo/marked-mixin-json@npm:1.0.0":
   version: 1.0.0
   resolution: "@sudoo/marked-mixin-json@npm:1.0.0"
   dependencies:
@@ -477,7 +478,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sudoo/marked-mixin-math@npm:^1.4.0":
+"@sudoo/marked-mixin-math@npm:1.4.0":
   version: 1.4.0
   resolution: "@sudoo/marked-mixin-math@npm:1.4.0"
   dependencies:
@@ -488,7 +489,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sudoo/marked-mixin-object@npm:^1.3.0":
+"@sudoo/marked-mixin-object@npm:1.3.0":
   version: 1.3.0
   resolution: "@sudoo/marked-mixin-object@npm:1.3.0"
   dependencies:
@@ -499,7 +500,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sudoo/marked-mixin-parse@npm:^1.0.0":
+"@sudoo/marked-mixin-parse@npm:1.0.0":
   version: 1.0.0
   resolution: "@sudoo/marked-mixin-parse@npm:1.0.0"
   dependencies:
@@ -2057,13 +2058,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "imbricate@workspace:."
   dependencies:
-    "@imbricate/core": "npm:1.29.0"
+    "@imbricate/core": "npm:1.30.0"
     "@imbricate/local-fundamental": "npm:1.16.0"
     "@imbricate/markdown-render": "npm:1.2.0"
-    "@imbricate/origin-file-system": "npm:1.22.0"
+    "@imbricate/origin-file-system": "npm:1.23.0"
     "@imbricate/origin-mongo": "npm:1.5.0"
-    "@imbricate/origin-simple-file-system": "npm:1.0.0"
+    "@imbricate/origin-simple-file-system": "npm:1.0.1"
     "@sudoo/io": "npm:^1.8.0"
+    "@sudoo/marked": "npm:^3.21.4"
     "@types/mocha": "npm:^10.0.6"
     "@types/node": "npm:^20.14.2"
     "@types/vscode": "npm:^1.76.0"
