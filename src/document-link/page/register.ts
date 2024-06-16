@@ -6,13 +6,13 @@
 
 import { resolveImbricateTempDirectory } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
-import { PageDocumentLinkProvider } from "./provider";
+import { EditingPageDocumentLinkProvider } from "./editing-provider";
 
 export const registerPageDocumentLinkProvider = (
     context: vscode.ExtensionContext,
 ): void => {
 
-    const provider = PageDocumentLinkProvider.create();
+    const editingProvider = EditingPageDocumentLinkProvider.create();
 
     const rootFolder = resolveImbricateTempDirectory();
     const rootUri = vscode.Uri.file(rootFolder);
@@ -27,7 +27,7 @@ export const registerPageDocumentLinkProvider = (
                 pattern: "**/*.md",
             },
         },
-        provider,
+        editingProvider,
     );
 
     context.subscriptions.push(editingDisposable);

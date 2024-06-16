@@ -6,20 +6,26 @@
 
 import * as vscode from "vscode";
 import { concatPageMarkdownUrl } from "../../virtual-document/page-markdown/concat";
+import { logVerbose } from "../../util/output-channel";
 
-export class PageDocumentLinkProvider implements vscode.DocumentLinkProvider {
+export class EditingPageDocumentLinkProvider implements vscode.DocumentLinkProvider {
 
-    public static create(): PageDocumentLinkProvider {
+    public static create(): EditingPageDocumentLinkProvider {
 
-        return new PageDocumentLinkProvider();
+        return new EditingPageDocumentLinkProvider();
     }
 
-    private constructor() { }
+    private constructor() {
+
+        logVerbose("Editing Page Document Link Provider Created");
+    }
 
     public provideDocumentLinks(
         document: vscode.TextDocument,
         _token: vscode.CancellationToken,
     ): vscode.ProviderResult<vscode.DocumentLink[]> {
+
+        console.log(document.uri.fsPath);
 
         const result: vscode.DocumentLink[] = [];
 
@@ -85,4 +91,11 @@ export class PageDocumentLinkProvider implements vscode.DocumentLinkProvider {
 
         return results;
     }
+
+    // private _buildTargetUri(
+    //     value: string,
+    // ): vscode.Uri {
+
+
+    // }
 }
