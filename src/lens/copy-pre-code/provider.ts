@@ -5,6 +5,7 @@
  */
 
 import * as vscode from "vscode";
+import { CONFIG_KEY, getConfiguration } from "../../configuration/get-config";
 
 export class CopyPreCodeProvider implements vscode.CodeLensProvider {
 
@@ -16,6 +17,11 @@ export class CopyPreCodeProvider implements vscode.CodeLensProvider {
     private constructor() { }
 
     public provideCodeLenses(document: vscode.TextDocument): vscode.CodeLens[] {
+
+        const enabled: boolean = getConfiguration(CONFIG_KEY.COPY_CODE_BLOCK_ENABLE);
+        if (!enabled) {
+            return [];
+        }
 
         const result: vscode.CodeLens[] = [];
 

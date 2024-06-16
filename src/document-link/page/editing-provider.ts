@@ -5,6 +5,7 @@
  */
 
 import * as vscode from "vscode";
+import { CONFIG_KEY, getConfiguration } from "../../configuration/get-config";
 import { logVerbose } from "../../util/output-channel";
 import { concatPageMarkdownUrl } from "../../virtual-document/page-markdown/concat";
 
@@ -24,6 +25,11 @@ export class EditingPageDocumentLinkProvider implements vscode.DocumentLinkProvi
         document: vscode.TextDocument,
         _token: vscode.CancellationToken,
     ): vscode.ProviderResult<vscode.DocumentLink[]> {
+
+        const enabled: boolean = getConfiguration(CONFIG_KEY.REDIRECT_INLINE_ENABLE);
+        if (!enabled) {
+            return [];
+        }
 
         const result: vscode.DocumentLink[] = [];
 
