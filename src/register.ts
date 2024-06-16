@@ -67,6 +67,7 @@ import { registerSourceControl } from "./source-control/register";
 import { registerEditingOriginalProvider } from "./virtual-document/editing-original/editing-original";
 import { registerPageMarkdownContentProvider } from "./virtual-document/page-markdown/page-markdown";
 import { registerScriptJavascriptContentProvider } from "./virtual-document/script-javascript/script-javascript";
+import { registerPageDocumentLinkProvider } from "./document-link/page/register";
 
 export const registerOperations = async (
     configuration: IImbricateConfiguration,
@@ -105,6 +106,8 @@ export const registerOperations = async (
     registerScriptJavascriptContentProvider(originManager, context);
 
     registerSourceControl(context);
+
+    registerPageDocumentLinkProvider(context);
 
     registerCodeLensProvider(context);
     registerPreCodeLensProvider(context);
