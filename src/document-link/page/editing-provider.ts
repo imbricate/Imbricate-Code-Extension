@@ -68,9 +68,28 @@ export class EditingPageDocumentLinkProvider implements vscode.DocumentLinkProvi
         text: string,
     ): vscode.DocumentLink[] {
 
-        const results: vscode.DocumentLink[] = [];
-
         const index: number = text.indexOf("_");
+
+        const codeIndex: number = text.indexOf("`");
+
+        if (codeIndex !== -1) {
+
+            if (codeIndex < index) {
+
+                const nextCodeIndex: number = text.indexOf("`", codeIndex + 1);
+
+                if (nextCodeIndex !== -1) {
+
+                    return this._parseText(
+                        lineNumber,
+                        startIndex + nextCodeIndex + 1,
+                        text.slice(nextCodeIndex + 1),
+                    );
+                }
+            }
+        }
+
+        const results: vscode.DocumentLink[] = [];
 
         if (index !== -1
             && text[index + 1] !== "_"
