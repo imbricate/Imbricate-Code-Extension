@@ -4,17 +4,23 @@
  * @description Recent
  */
 
+import { ImbricateOriginManager } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { CONFIG_KEY, getConfiguration } from "../configuration/get-config";
 import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
 import { PAGES_RECENTS_KEY, PagePersistanceData } from "../pages-tree-view/page-data";
 
 export const recordRecentPage = async (
+    originManager: ImbricateOriginManager,
     persistanceData: PagePersistanceData,
     pageDataProvider: PagesTreeViewDataProvider,
     context: vscode.ExtensionContext,
     refresh: boolean = true,
 ): Promise<void> => {
+
+    if (originManager.isDynamicOrigin(persistanceData.originName)) {
+        return;
+    }
 
     const currentRecents: PagePersistanceData[] | undefined =
         context.globalState.get(PAGES_RECENTS_KEY);

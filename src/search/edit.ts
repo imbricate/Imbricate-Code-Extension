@@ -79,6 +79,7 @@ export const searchItemEdit = async (
             };
 
             await recordRecentPage(
+                originManager,
                 persistanceData,
                 pagesDataProvider,
                 context,

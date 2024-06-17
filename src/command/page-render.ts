@@ -5,6 +5,7 @@
  */
 
 import { IImbricatePage } from "@imbricate/core";
+import { ImbricateOriginManager } from "@imbricate/local-fundamental";
 import { renderMarkdownToHtml } from "@imbricate/markdown-render";
 import * as vscode from "vscode";
 import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
@@ -15,6 +16,7 @@ import { recordRecentPage } from "../util/recent";
 import { showErrorMessage } from "../util/show-message";
 
 export const registerPageEditCommand = (
+    originManager: ImbricateOriginManager,
     pagesDataProvider: PagesTreeViewDataProvider,
     context: vscode.ExtensionContext,
 ): vscode.Disposable => {
@@ -45,6 +47,7 @@ export const registerPageEditCommand = (
         };
 
         await recordRecentPage(
+            originManager,
             persistanceData,
             pagesDataProvider,
             context,

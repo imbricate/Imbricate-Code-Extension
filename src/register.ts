@@ -217,6 +217,7 @@ export const registerOperations = async (
     context.subscriptions.push(pageCopyTraceDisposable);
 
     const pageCreateDisposable = registerPageCreateCommand(
+        originManager,
         editingsDataProvider,
         pagesDataProvider,
         context,
@@ -236,6 +237,7 @@ export const registerOperations = async (
     context.subscriptions.push(pageDeleteDisposable);
 
     const pageEditDisposable = registerPageEditCommand(
+        originManager,
         editingsDataProvider,
         pagesDataProvider,
         context,
@@ -243,9 +245,9 @@ export const registerOperations = async (
     context.subscriptions.push(pageEditDisposable);
 
     const pageEditEditorDisposable = registerPageEditEditorCommand(
+        originManager,
         editingsDataProvider,
         pagesDataProvider,
-        originManager,
         context,
     );
     context.subscriptions.push(pageEditEditorDisposable);
@@ -270,6 +272,7 @@ export const registerOperations = async (
     context.subscriptions.push(pageMoveDirectoryDisposable);
 
     const pagePreviewDisposable = registerPagePreviewCommand(
+        originManager,
         pagesDataProvider,
         context,
     );

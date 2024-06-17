@@ -5,7 +5,7 @@
  */
 
 import { IImbricatePage } from "@imbricate/core";
-import { ActiveEditing, createPageSavingTarget, establishImbricateSavingTarget } from "@imbricate/local-fundamental";
+import { ActiveEditing, ImbricateOriginManager, createPageSavingTarget, establishImbricateSavingTarget } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { EditingTreeViewDataProvider } from "../editing-tree-view/data-provider";
 import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
@@ -15,6 +15,7 @@ import { recordRecentPage } from "../util/recent";
 import { showErrorMessage } from "../util/show-message";
 
 export const registerPageEditCommand = (
+    originManager: ImbricateOriginManager,
     editingsDataProvider: EditingTreeViewDataProvider,
     pageDataProvider: PagesTreeViewDataProvider,
     context: vscode.ExtensionContext,
@@ -59,6 +60,7 @@ export const registerPageEditCommand = (
         };
 
         await recordRecentPage(
+            originManager,
             persistanceData,
             pageDataProvider,
             context,

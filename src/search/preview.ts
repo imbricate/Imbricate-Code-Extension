@@ -72,6 +72,7 @@ export const searchItemPreview = async (
             };
 
             await recordRecentPage(
+                originManager,
                 persistanceData,
                 pagesDataProvider,
                 context,

@@ -10,8 +10,10 @@ import { PagePersistanceData } from "../pages-tree-view/page-data";
 import { PagePageItem } from "../pages-tree-view/page-item";
 import { recordRecentPage } from "../util/recent";
 import { concatPageMarkdownUrl } from "../virtual-document/page-markdown/concat";
+import { ImbricateOriginManager } from "@imbricate/local-fundamental";
 
 export const registerPagePreviewCommand = (
+    originManager: ImbricateOriginManager,
     pageDataProvider: PagesTreeViewDataProvider,
     context: vscode.ExtensionContext,
 ): vscode.Disposable => {
@@ -39,6 +41,7 @@ export const registerPagePreviewCommand = (
         };
 
         await recordRecentPage(
+            originManager,
             persistanceData,
             pageDataProvider,
             context,

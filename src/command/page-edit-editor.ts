@@ -15,9 +15,9 @@ import { showErrorMessage } from "../util/show-message";
 import { dividePageMarkdownUrl } from "../virtual-document/page-markdown/concat";
 
 export const registerPageEditEditorCommand = (
+    originManager: ImbricateOriginManager,
     editingsDataProvider: EditingTreeViewDataProvider,
     pagesDataProvider: PagesTreeViewDataProvider,
-    originManager: ImbricateOriginManager,
     context: vscode.ExtensionContext,
 ): vscode.Disposable => {
 
@@ -88,6 +88,7 @@ export const registerPageEditEditorCommand = (
         };
 
         await recordRecentPage(
+            originManager,
             persistanceData,
             pagesDataProvider,
             context,
