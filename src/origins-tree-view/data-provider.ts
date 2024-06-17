@@ -7,6 +7,7 @@
 import { ImbricateOriginManager, ImbricateOriginManagerOriginResponse } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { logVerbose } from "../util/output-channel";
+import { OriginDynamicOriginItem } from "./dynamic-origin-item";
 import { OriginOriginItem } from "./origin-item";
 
 export class OriginsTreeViewDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
@@ -59,9 +60,17 @@ export class OriginsTreeViewDataProvider implements vscode.TreeDataProvider<vsco
                 vscode.commands.executeCommand("setContext", "imbricate.context.origins.loaded", true);
             }
 
-            const items: OriginOriginItem[] = this._originManager.origins.map((
+            const items: vscode.TreeItem[] = this._originManager.origins.map((
                 originResponse: ImbricateOriginManagerOriginResponse,
             ) => {
+
+                if (this._originManager.isDynamicOrigin(originResponse.originName)) {
+
+                    return OriginDynamicOriginItem.create(
+                        originResponse.originName,
+                        originResponse.origin,
+                    );
+                }
 
                 return OriginOriginItem.create(
                     originResponse.originName,

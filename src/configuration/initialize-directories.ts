@@ -47,7 +47,7 @@ export const initializeOriginManagerDirectories = (
                 collectionName: originName,
             });
 
-            originManager.putOrigin(originName, origin);
+            originManager.putOrigin(originName, origin, true);
         }
     }
 };

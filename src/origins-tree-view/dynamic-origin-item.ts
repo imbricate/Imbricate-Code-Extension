@@ -1,20 +1,20 @@
 /**
  * @author WMXPY
  * @namespace OriginsTreeView
- * @description Origin Item
+ * @description Dynamic Origin Item
  */
 
 import { IImbricateOrigin } from "@imbricate/core";
 import * as vscode from "vscode";
 
-export class OriginOriginItem extends vscode.TreeItem {
+export class OriginDynamicOriginItem extends vscode.TreeItem {
 
     public static create(
         originName: string,
         origin: IImbricateOrigin,
     ) {
 
-        return new OriginOriginItem(originName, origin);
+        return new OriginDynamicOriginItem(originName, origin);
     }
 
     private readonly _origin: IImbricateOrigin;
@@ -29,9 +29,9 @@ export class OriginOriginItem extends vscode.TreeItem {
             vscode.TreeItemCollapsibleState.None,
         );
 
-        this.contextValue = "origin-item";
+        this.contextValue = "dynamic-origin-item";
 
-        this.iconPath = new vscode.ThemeIcon("globe");
+        this.iconPath = new vscode.ThemeIcon("flame");
 
         this.tooltip = originName;
 
