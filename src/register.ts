@@ -253,6 +253,7 @@ export const registerOperations = async (
     context.subscriptions.push(pageEditEditorDisposable);
 
     const pageFavoriteDisposable = registerPageFavoriteCommand(
+        originManager,
         pagesDataProvider,
         context,
     );
