@@ -711,12 +711,12 @@
         },
         {
           "command": "imbricate.collection.search.include",
-          "when": "view == imbricate-pages && viewItem == page-collection-item-exclude",
+          "when": "view == imbricate-pages && viewItem =~ /^page-collection-item-exclude/",
           "group": "collection-context-4@1"
         },
         {
           "command": "imbricate.collection.search.exclude",
-          "when": "view == imbricate-pages && viewItem == page-collection-item-include",
+          "when": "view == imbricate-pages && viewItem =~ /^page-collection-item-include/",
           "group": "collection-context-4@1"
         },
         {

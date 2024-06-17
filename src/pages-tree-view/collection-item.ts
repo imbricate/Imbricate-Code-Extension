@@ -4,7 +4,7 @@
  * @description Collection Item
  */
 
-import { IImbricateCollection } from "@imbricate/core";
+import { IImbricateCollection, IMBRICATE_CAPABILITY_EFFECT, IMBRICATE_COLLECTION_CAPABILITY_KEY } from "@imbricate/core";
 import { ImbricateSearchPreference, IncludedSearchPreference } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 
@@ -39,7 +39,9 @@ export class PagesCollectionItem extends vscode.TreeItem {
             originName,
             collection,
             searchPreference,
-        );
+        ) + "&" + this._buildCapabilityValue(collection);
+
+        console.log(this.contextValue);
 
         this.iconPath = new vscode.ThemeIcon("root-folder");
 
@@ -82,5 +84,24 @@ export class PagesCollectionItem extends vscode.TreeItem {
             return "page-collection-item-include";
         }
         return "page-collection-item-exclude";
+    }
+
+    private _buildCapabilityValue(
+        collection: IImbricateCollection,
+    ): string {
+
+        const capabilities: IMBRICATE_COLLECTION_CAPABILITY_KEY[] =
+            Object.keys(collection.capabilities) as IMBRICATE_COLLECTION_CAPABILITY_KEY[];
+
+        return capabilities
+            .filter((capabilityKey: IMBRICATE_COLLECTION_CAPABILITY_KEY) => {
+
+                const capability = collection.capabilities[capabilityKey];
+                return capability.effect === IMBRICATE_CAPABILITY_EFFECT.ALLOW;
+            })
+            .map((capabilityKey: IMBRICATE_COLLECTION_CAPABILITY_KEY) => {
+                return `@${capabilityKey}`;
+            })
+            .join("");
     }
 }
