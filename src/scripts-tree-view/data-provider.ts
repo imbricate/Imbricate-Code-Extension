@@ -4,7 +4,7 @@
  * @description Data Provider
  */
 
-import { IImbricateOrigin, ImbricateScriptSnapshot } from "@imbricate/core";
+import { IImbricateOrigin, IMBRICATE_ORIGIN_CAPABILITY_KEY, ImbricateScriptSnapshot, validateImbricateOriginCapability } from "@imbricate/core";
 import { ImbricateOriginManager, ImbricateOriginManagerOriginResponse } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { logVerbose } from "../util/output-channel";
@@ -54,30 +54,48 @@ export class ScriptsTreeViewDataProvider implements vscode.TreeDataProvider<vsco
 
         if (typeof element === "undefined") {
 
-            const items: vscode.TreeItem[] = this._originManager.origins.map((
-                originConfig: ImbricateOriginManagerOriginResponse,
-            ) => {
+            const items: vscode.TreeItem[] = this._originManager
+                .origins
+                .filter((originConfig: ImbricateOriginManagerOriginResponse) => {
 
-                const origin: IImbricateOrigin | null =
-                    this._originManager.getOrigin(originConfig.originName);
+                    const origin: IImbricateOrigin | null =
+                        this._originManager.getOrigin(originConfig.originName);
 
-                if (!origin) {
-                    return new vscode.TreeItem("test");
-                }
+                    if (!origin) {
+                        return false;
+                    }
 
-                if (this._originManager.isDynamicOrigin(originConfig.originName)) {
+                    const hasScriptManagerCapability = validateImbricateOriginCapability(
+                        origin,
+                        IMBRICATE_ORIGIN_CAPABILITY_KEY.ORIGIN_SCRIPT_MANAGER,
+                    );
 
-                    return ScriptsDynamicOriginItem.withOrigin(
+                    return hasScriptManagerCapability;
+                })
+                .map((
+                    originConfig: ImbricateOriginManagerOriginResponse,
+                ) => {
+
+                    const origin: IImbricateOrigin | null =
+                        this._originManager.getOrigin(originConfig.originName);
+
+                    if (!origin) {
+                        return new vscode.TreeItem("Invalid Origin");
+                    }
+
+                    if (this._originManager.isDynamicOrigin(originConfig.originName)) {
+
+                        return ScriptsDynamicOriginItem.withOrigin(
+                            originConfig.originName,
+                            origin,
+                        );
+                    }
+
+                    return ScriptsOriginItem.withOrigin(
                         originConfig.originName,
                         origin,
                     );
-                }
-
-                return ScriptsOriginItem.withOrigin(
-                    originConfig.originName,
-                    origin,
-                );
-            });
+                });
 
             if (!this._loaded) {
 
