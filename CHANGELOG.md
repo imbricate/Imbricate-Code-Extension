@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.22.1
+
+- Stop create copy inline code handler within code block
+- Stop create redirect link handler within code block
+- Stop create redirect link handler within inline code snippet
+- Improve language for copy code block handler
+- Fix Known Issues
+
 ## 1.22.0
 
 - Add support for copy code snippet block in markdown editing and preview
