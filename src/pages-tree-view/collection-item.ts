@@ -41,8 +41,6 @@ export class PagesCollectionItem extends vscode.TreeItem {
             searchPreference,
         ) + "&" + this._buildCapabilityValue(collection);
 
-        console.log(this.contextValue);
-
         this.iconPath = new vscode.ThemeIcon("root-folder");
 
         this._originName = originName;
