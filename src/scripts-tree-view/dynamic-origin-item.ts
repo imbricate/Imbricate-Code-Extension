@@ -1,20 +1,20 @@
 /**
  * @author WMXPY
  * @namespace ScriptsTreeView
- * @description Origin Item
+ * @description Dynamic Origin Item
  */
 
 import { IImbricateOrigin } from "@imbricate/core";
 import * as vscode from "vscode";
 
-export class ScriptsOriginItem extends vscode.TreeItem {
+export class ScriptsDynamicOriginItem extends vscode.TreeItem {
 
     public static withOrigin(
         originName: string,
         origin: IImbricateOrigin,
     ) {
 
-        return new ScriptsOriginItem(originName, origin);
+        return new ScriptsDynamicOriginItem(originName, origin);
     }
 
     private readonly _originName: string;
@@ -27,9 +27,9 @@ export class ScriptsOriginItem extends vscode.TreeItem {
 
         super(originName, vscode.TreeItemCollapsibleState.Collapsed);
 
-        this.contextValue = "script-origin-item";
+        this.contextValue = "script-dynamic-origin-item";
 
-        this.iconPath = new vscode.ThemeIcon("globe");
+        this.iconPath = new vscode.ThemeIcon("flame");
 
         this._originName = originName;
         this._origin = origin;

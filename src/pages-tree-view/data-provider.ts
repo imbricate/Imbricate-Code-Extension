@@ -11,6 +11,7 @@ import { CONFIG_KEY, getConfiguration } from "../configuration/get-config";
 import { logVerbose } from "../util/output-channel";
 import { PagesCollectionItem } from "./collection-item";
 import { PageDirectoryItem, renderPageDirectoryItem } from "./directory-item";
+import { PagesDynamicOriginItem } from "./dynamic-origin-item";
 import { PagesFavoriteItem, renderPageFavoriteItem } from "./favorite-item";
 import { PagesOriginItem } from "./origin-item";
 import { PAGES_TREE_VIEW_MODE, PAGES_TREE_VIEW_MODE_KEY } from "./page-data";
@@ -69,7 +70,7 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
 
             const items: vscode.TreeItem[] = [];
 
-            const originItems: PagesOriginItem[] = this._originManager.origins.map((
+            const originItems: vscode.TreeItem[] = this._originManager.origins.map((
                 originConfig: ImbricateOriginManagerOriginResponse,
             ) => {
 
@@ -78,6 +79,14 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
 
                 if (!origin) {
                     return new vscode.TreeItem("ERROR!") as unknown as PagesOriginItem;
+                }
+
+                if (this._originManager.isDynamicOrigin(originConfig.originName)) {
+
+                    return PagesDynamicOriginItem.withOrigin(
+                        originConfig.originName,
+                        origin,
+                    );
                 }
 
                 return PagesOriginItem.withOrigin(
@@ -127,7 +136,9 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
             return await renderPageDirectoryItem(element);
         }
 
-        if (element instanceof PagesOriginItem) {
+        if (element instanceof PagesOriginItem
+            || element instanceof PagesDynamicOriginItem
+        ) {
 
             const collections = await element.origin
                 .getCollectionManager()

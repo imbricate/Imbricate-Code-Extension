@@ -8,6 +8,7 @@ import { IImbricateOrigin, ImbricateScriptSnapshot } from "@imbricate/core";
 import { ImbricateOriginManager, ImbricateOriginManagerOriginResponse } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { logVerbose } from "../util/output-channel";
+import { ScriptsDynamicOriginItem } from "./dynamic-origin-item";
 import { ScriptsOriginItem } from "./origin-item";
 import { ScriptScriptItem } from "./script-item";
 
@@ -64,6 +65,14 @@ export class ScriptsTreeViewDataProvider implements vscode.TreeDataProvider<vsco
                     return new vscode.TreeItem("test");
                 }
 
+                if (this._originManager.isDynamicOrigin(originConfig.originName)) {
+
+                    return ScriptsDynamicOriginItem.withOrigin(
+                        originConfig.originName,
+                        origin,
+                    );
+                }
+
                 return ScriptsOriginItem.withOrigin(
                     originConfig.originName,
                     origin,
@@ -81,7 +90,9 @@ export class ScriptsTreeViewDataProvider implements vscode.TreeDataProvider<vsco
             return Promise.resolve(items);
         }
 
-        if (element instanceof ScriptsOriginItem) {
+        if (element instanceof ScriptsOriginItem
+            || element instanceof ScriptsDynamicOriginItem
+        ) {
 
             const scripts: ImbricateScriptSnapshot[] =
                 await element.origin
