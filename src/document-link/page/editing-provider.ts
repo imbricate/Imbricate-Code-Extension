@@ -33,10 +33,28 @@ export class EditingPageDocumentLinkProvider implements vscode.DocumentLinkProvi
 
         const result: vscode.DocumentLink[] = [];
 
-        for (let i = 0; i < document.lineCount; i++) {
+        let startLine: number | null = null;
+
+        lines: for (let i = 0; i < document.lineCount; i++) {
 
             const line = document.lineAt(i);
             const lineText: string = line.text.trim();
+
+            if (startLine === null) {
+
+                if (lineText.startsWith("```")) {
+
+                    startLine = i;
+                    continue lines;
+                }
+            } else {
+
+                if (lineText === "```") {
+                    startLine = null;
+                } else {
+                    continue lines;
+                }
+            }
 
             result.push(...this._parseText(i, 0, lineText));
         }
