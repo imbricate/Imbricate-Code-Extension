@@ -1,5 +1,14 @@
 # Change Log
 
+## 1.22.0
+
+- Add support for copy code snippet block in markdown editing and preview
+- Add support for redirect link for imbricate page
+- Add dynamic origin support
+- Add local document folder as simple file system origin
+- Add toggle configuration for code block copying and redirect link
+- Fix Known Issues
+
 ## 1.21.0
 
 - Support toggle for page tree view between collection and origin
