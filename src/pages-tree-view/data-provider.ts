@@ -4,7 +4,7 @@
  * @description Data Provider
  */
 
-import { IImbricateCollection, IImbricateOrigin, ImbricatePageSnapshot } from "@imbricate/core";
+import { IImbricateCollection, IImbricateOrigin, IMBRICATE_ORIGIN_CAPABILITY_KEY, ImbricatePageSnapshot, validateImbricateOriginCapability } from "@imbricate/core";
 import { ImbricateOriginManager, ImbricateOriginManagerOriginResponse, ImbricateSearchPreference, readOrCreateSearchPreferenceConfiguration, resolveImbricateHomeDirectory } from "@imbricate/local-fundamental";
 import * as vscode from "vscode";
 import { CONFIG_KEY, getConfiguration } from "../configuration/get-config";
@@ -70,30 +70,50 @@ export class PagesTreeViewDataProvider implements vscode.TreeDataProvider<vscode
 
             const items: vscode.TreeItem[] = [];
 
-            const originItems: vscode.TreeItem[] = this._originManager.origins.map((
-                originConfig: ImbricateOriginManagerOriginResponse,
-            ) => {
+            const originItems: vscode.TreeItem[] = this._originManager
+                .origins
+                .filter((
+                    originConfig: ImbricateOriginManagerOriginResponse,
+                ) => {
 
-                const origin: IImbricateOrigin | null =
-                    this._originManager.getOrigin(originConfig.originName);
+                    const origin: IImbricateOrigin | null =
+                        this._originManager.getOrigin(originConfig.originName);
 
-                if (!origin) {
-                    return new vscode.TreeItem("ERROR!") as unknown as PagesOriginItem;
-                }
+                    if (!origin) {
+                        return false;
+                    }
 
-                if (this._originManager.isDynamicOrigin(originConfig.originName)) {
+                    const hasScriptManagerCapability = validateImbricateOriginCapability(
+                        origin,
+                        IMBRICATE_ORIGIN_CAPABILITY_KEY.ORIGIN_COLLECTION_MANAGER,
+                    );
 
-                    return PagesDynamicOriginItem.withOrigin(
+                    return hasScriptManagerCapability;
+                })
+                .map((
+                    originConfig: ImbricateOriginManagerOriginResponse,
+                ) => {
+
+                    const origin: IImbricateOrigin | null =
+                        this._originManager.getOrigin(originConfig.originName);
+
+                    if (!origin) {
+                        return new vscode.TreeItem("ERROR!") as unknown as PagesOriginItem;
+                    }
+
+                    if (this._originManager.isDynamicOrigin(originConfig.originName)) {
+
+                        return PagesDynamicOriginItem.withOrigin(
+                            originConfig.originName,
+                            origin,
+                        );
+                    }
+
+                    return PagesOriginItem.withOrigin(
                         originConfig.originName,
                         origin,
                     );
-                }
-
-                return PagesOriginItem.withOrigin(
-                    originConfig.originName,
-                    origin,
-                );
-            });
+                });
 
             if (originItems.length > 0) {
 
