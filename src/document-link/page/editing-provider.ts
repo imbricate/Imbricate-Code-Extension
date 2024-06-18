@@ -91,6 +91,10 @@ export class EditingPageDocumentLinkProvider implements vscode.DocumentLinkProvi
         const results: vscode.DocumentLink[] = [];
 
         if (linkIndex !== -1
+            && (
+                typeof text[linkIndex - 1] === "undefined"
+                || text[linkIndex - 1] === " "
+            )
             && text[linkIndex + 1] !== "_"
         ) {
 
