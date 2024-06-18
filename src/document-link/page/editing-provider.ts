@@ -68,13 +68,12 @@ export class EditingPageDocumentLinkProvider implements vscode.DocumentLinkProvi
         text: string,
     ): vscode.DocumentLink[] {
 
-        const index: number = text.indexOf("_");
-
+        const linkIndex: number = text.indexOf("_");
         const codeIndex: number = text.indexOf("`");
 
         if (codeIndex !== -1) {
 
-            if (codeIndex < index) {
+            if (codeIndex < linkIndex) {
 
                 const nextCodeIndex: number = text.indexOf("`", codeIndex + 1);
 
@@ -91,11 +90,11 @@ export class EditingPageDocumentLinkProvider implements vscode.DocumentLinkProvi
 
         const results: vscode.DocumentLink[] = [];
 
-        if (index !== -1
-            && text[index + 1] !== "_"
+        if (linkIndex !== -1
+            && text[linkIndex + 1] !== "_"
         ) {
 
-            const restOfText: string = text.slice(index + 1);
+            const restOfText: string = text.slice(linkIndex + 1);
 
             const nextIndex: number = restOfText.indexOf("_");
             if (nextIndex === -1) {
@@ -107,8 +106,8 @@ export class EditingPageDocumentLinkProvider implements vscode.DocumentLinkProvi
             }
 
             const range = new vscode.Range(
-                new vscode.Position(lineNumber, startIndex + index + 1),
-                new vscode.Position(lineNumber, startIndex + index + nextIndex + 1),
+                new vscode.Position(lineNumber, startIndex + linkIndex + 1),
+                new vscode.Position(lineNumber, startIndex + linkIndex + nextIndex + 1),
             );
 
             const fullText: string = restOfText.slice(0, nextIndex);
@@ -127,7 +126,7 @@ export class EditingPageDocumentLinkProvider implements vscode.DocumentLinkProvi
             results.push(
                 ...this._parseText(
                     lineNumber,
-                    startIndex + index + 1 + nextIndex + 1,
+                    startIndex + linkIndex + 1 + nextIndex + 1,
                     restOfRestOfText,
                 ),
             );
