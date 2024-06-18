@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.22.2
+
+- Fix document link overlay issue
+
 ## 1.22.1
 
 - Stop create copy inline code handler within code block
