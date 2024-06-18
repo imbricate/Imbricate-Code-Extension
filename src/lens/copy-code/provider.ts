@@ -25,24 +25,24 @@ export class CopyCodeProvider implements vscode.CodeLensProvider {
 
         const result: vscode.CodeLens[] = [];
 
-        let startLine: number | null = null;
+        let codeBlockStartLine: number | null = null;
 
         lines: for (let i = 0; i < document.lineCount; i++) {
 
             const line = document.lineAt(i);
             const lineText: string = line.text.trim();
 
-            if (startLine === null) {
+            if (codeBlockStartLine === null) {
 
                 if (lineText.startsWith("```")) {
 
-                    startLine = i;
+                    codeBlockStartLine = i;
                     continue lines;
                 }
             } else {
 
                 if (lineText === "```") {
-                    startLine = null;
+                    codeBlockStartLine = null;
                 } else {
                     continue lines;
                 }

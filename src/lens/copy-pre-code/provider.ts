@@ -25,18 +25,18 @@ export class CopyPreCodeProvider implements vscode.CodeLensProvider {
 
         const result: vscode.CodeLens[] = [];
 
-        let startLine: number | null = null;
+        let codeBlockStartLine: number | null = null;
 
         lines: for (let i = 0; i < document.lineCount; i++) {
 
             const line = document.lineAt(i);
             const lineText: string = line.text.trim();
 
-            if (startLine === null) {
+            if (codeBlockStartLine === null) {
 
                 if (lineText.startsWith("```")) {
 
-                    startLine = i;
+                    codeBlockStartLine = i;
                     continue lines;
                 }
                 continue lines;
@@ -44,20 +44,20 @@ export class CopyPreCodeProvider implements vscode.CodeLensProvider {
 
             if (lineText === "```") {
 
-                if (i === startLine + 1) {
-                    startLine = null;
+                if (i === codeBlockStartLine + 1) {
+                    codeBlockStartLine = null;
                     continue lines;
                 }
 
                 const range = new vscode.Range(
-                    new vscode.Position(startLine, 0),
+                    new vscode.Position(codeBlockStartLine, 0),
                     new vscode.Position(i, line.range.end.character),
                 );
 
                 const codeLens = new vscode.CodeLens(range);
                 result.push(codeLens);
 
-                startLine = null;
+                codeBlockStartLine = null;
                 continue lines;
             }
         }
