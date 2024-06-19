@@ -24,6 +24,7 @@ import { registerPageFavoriteClearCommand } from "./command/favorite-clear";
 import { registerHistoryResetCommand } from "./command/history-reset";
 import { registerOriginBinaryUploadCommand } from "./command/origin-binary-upload";
 import { registerOriginCreateCommand } from "./command/origin-create";
+import { registerPageCloneCommand } from "./command/page-clone";
 import { registerPageCopyIdentifierCommand } from "./command/page-copy-identifier";
 import { registerPageCopyReferenceCommand } from "./command/page-copy-reference";
 import { registerPageCopyTraceCommand } from "./command/page-copy-trace";
@@ -213,6 +214,11 @@ export const registerOperations = async (
         originManager,
     );
     context.subscriptions.push(originCreateDisposable);
+
+    const pageCloneDisposable = registerPageCloneCommand(
+        pagesDataProvider,
+    );
+    context.subscriptions.push(pageCloneDisposable);
 
     const pageCopyIdentifierDisposable = registerPageCopyIdentifierCommand();
     context.subscriptions.push(pageCopyIdentifierDisposable);
