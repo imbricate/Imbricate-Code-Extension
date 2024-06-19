@@ -60,6 +60,7 @@ import { registerScriptShowHistoryCommand } from "./command/script-show-history"
 import { registerSearchCommand } from "./command/search";
 import { registerTogglePageTreeViewModeCommand } from "./command/toggle-page-tree-view-mode";
 import { registerPageDocumentLinkProvider } from "./document-link/page/register";
+import { registerScriptDocumentLinkProvider } from "./document-link/script/register";
 import { EditingTreeViewDataProvider } from "./editing-tree-view/data-provider";
 import { registerEditingTreeView } from "./editing-tree-view/register";
 import { HistoryTreeViewDataProvider } from "./history-tree-view/data-provider";
@@ -116,6 +117,7 @@ export const registerOperations = async (
     registerSourceControl(context);
 
     registerPageDocumentLinkProvider(context);
+    registerScriptDocumentLinkProvider(context);
 
     registerCodeLensProvider(context);
     registerPreCodeLensProvider(context);
