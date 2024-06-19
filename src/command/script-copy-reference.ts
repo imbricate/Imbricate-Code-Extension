@@ -7,7 +7,7 @@
 import * as vscode from "vscode";
 import { ScriptScriptItem } from "../scripts-tree-view/script-item";
 
-export const registerScriptCopyTraceCommand = (): vscode.Disposable => {
+export const registerScriptCopyReferenceCommand = (): vscode.Disposable => {
 
     const disposable = vscode.commands.registerCommand(
         "imbricate.script.copy.reference", async (

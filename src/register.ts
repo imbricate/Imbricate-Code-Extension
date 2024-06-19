@@ -25,6 +25,7 @@ import { registerHistoryResetCommand } from "./command/history-reset";
 import { registerOriginBinaryUploadCommand } from "./command/origin-binary-upload";
 import { registerOriginCreateCommand } from "./command/origin-create";
 import { registerPageCopyIdentifierCommand } from "./command/page-copy-identifier";
+import { registerPageCopyReferenceCommand } from "./command/page-copy-reference";
 import { registerPageCopyTraceCommand } from "./command/page-copy-trace";
 import { registerPageCreateCommand } from "./command/page-create";
 import { registerPageCreateDirectoryCommand } from "./command/page-create-directory";
@@ -41,6 +42,9 @@ import { registerPageShowHistoryCommand } from "./command/page-show-history";
 import { registerPageUnfavoriteCommand } from "./command/page-unfavorite";
 import { registerPageRecentClearCommand } from "./command/recent-clear";
 import { registerPageRecentRemoveCommand } from "./command/recent-remove";
+import { registerScriptCopyIdentifierCommand } from "./command/script-copy-identifier";
+import { registerScriptCopyReferenceCommand } from "./command/script-copy-reference";
+import { registerScriptCopyTraceCommand } from "./command/script-copy-trace";
 import { registerScriptCreateCommand } from "./command/script-create";
 import { registerScriptDeleteCommand } from "./command/script-delete";
 import { registerScriptEditCommand } from "./command/script-edit";
@@ -213,6 +217,9 @@ export const registerOperations = async (
     const pageCopyIdentifierDisposable = registerPageCopyIdentifierCommand();
     context.subscriptions.push(pageCopyIdentifierDisposable);
 
+    const pageCopyReferenceDisposable = registerPageCopyReferenceCommand();
+    context.subscriptions.push(pageCopyReferenceDisposable);
+
     const pageCopyTraceDisposable = registerPageCopyTraceCommand();
     context.subscriptions.push(pageCopyTraceDisposable);
 
@@ -312,6 +319,15 @@ export const registerOperations = async (
         context,
     );
     context.subscriptions.push(recentRemoveDisposable);
+
+    const scriptCopyIdentifierDisposable = registerScriptCopyIdentifierCommand();
+    context.subscriptions.push(scriptCopyIdentifierDisposable);
+
+    const scriptCopyReferenceDisposable = registerScriptCopyReferenceCommand();
+    context.subscriptions.push(scriptCopyReferenceDisposable);
+
+    const scriptCopyTraceDisposable = registerScriptCopyTraceCommand();
+    context.subscriptions.push(scriptCopyTraceDisposable);
 
     const scriptCreateDisposable = registerScriptCreateCommand(
         editingsDataProvider,
