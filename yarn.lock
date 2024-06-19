@@ -2066,6 +2066,7 @@ __metadata:
     "@imbricate/origin-simple-file-system": "npm:1.0.1"
     "@sudoo/io": "npm:^1.8.0"
     "@sudoo/marked": "npm:^3.21.4"
+    "@sudoo/uuid": "npm:^1.1.0"
     "@types/mocha": "npm:^10.0.6"
     "@types/node": "npm:^20.14.6"
     "@types/vscode": "npm:^1.76.0"

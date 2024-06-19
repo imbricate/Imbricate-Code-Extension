@@ -49,7 +49,8 @@
     "@imbricate/origin-file-system": "^1.24.0",
     "@imbricate/origin-mongo": "1.5.0",
     "@imbricate/origin-simple-file-system": "1.0.1",
-    "@sudoo/io": "^1.8.0"
+    "@sudoo/io": "^1.8.0",
+    "@sudoo/uuid": "^1.1.0"
   },
   "devDependencies": {
     "@sudoo/marked": "^3.21.4",
@@ -280,6 +281,12 @@
       {
         "command": "imbricate.origin.create",
         "title": "Create Imbricate Origin",
+        "category": "Imbricate",
+        "icon": "$(add)"
+      },
+      {
+        "command": "imbricate.page.clone",
+        "title": "Clone Page...",
         "category": "Imbricate",
         "icon": "$(add)"
       },
@@ -538,6 +545,10 @@
           "when": "false"
         },
         {
+          "command": "imbricate.page.clone",
+          "when": "false"
+        },
+        {
           "command": "imbricate.page.copy.identifier",
           "when": "false"
         },
@@ -785,6 +796,11 @@
           "group": "collection-context-1@2"
         },
         {
+          "command": "imbricate.page.clone",
+          "when": "view == imbricate-pages && viewItem =~ /^page-item/",
+          "group": "page-context-3@1"
+        },
+        {
           "command": "imbricate.page.copy.identifier",
           "when": "view == imbricate-pages && viewItem =~ /^page-item/",
           "group": "page-context-1@1"
@@ -842,7 +858,7 @@
         {
           "submenu": "imbricate.page.move",
           "when": "view == imbricate-pages && viewItem == page-item",
-          "group": "page-context-3@1"
+          "group": "page-context-3@2"
         },
         {
           "command": "imbricate.page.show-history",

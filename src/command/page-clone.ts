@@ -10,6 +10,7 @@ import * as vscode from "vscode";
 import { PagesTreeViewDataProvider } from "../pages-tree-view/data-provider";
 import { PagePageItem } from "../pages-tree-view/page-item";
 import { showErrorMessage } from "../util/show-message";
+import { UUIDVersion1 } from "@sudoo/uuid";
 
 export const registerPageCloneCommand = (
     pagesDataProvider: PagesTreeViewDataProvider,
@@ -93,11 +94,13 @@ export const registerPageCloneCommand = (
 
         const currentDate: Date = new Date();
 
+        const pageIdentifier: string = UUIDVersion1.generateString();
+
         const attributes: ImbricatePageAttributes = await page.readAttributes();
         const metadata: ImbricatePageMetadata = {
             title: newPageTitle,
             directories: page.directories,
-            identifier: page.identifier,
+            identifier: pageIdentifier,
             createdAt: currentDate,
             updatedAt: currentDate,
             digest: page.digest,
