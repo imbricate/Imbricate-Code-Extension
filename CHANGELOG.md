@@ -1,8 +1,17 @@
 # Change Log
 
-## 1.23.0
+## 1.24.0
 
 - Using the latest file system origin to use encoded script identifier
+- Add clone function for page with deep clean check
+- Add reference link copy function for page
+- Add identifier copy function for script
+- Add reference link copy function for script
+- Add trace link copy function for script
+- Add script reference redirection function in markdown preview
+- Add script reference redirection function in page editing
+- Reorganize the context menu for page and script
+- Fix Known Issues
 
 ## 1.22.4
 
