@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.22.4
+
+- Add multi-form document link redirection building support
+- Fix document link starting digit issue
+
 ## 1.22.2
 
 - Fix document link overlay issue
