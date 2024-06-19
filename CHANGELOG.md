@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.23.0
+
+- Using the latest file system origin to use encoded script identifier
+
 ## 1.22.4
 
 - Add multi-form document link redirection building support
