@@ -109,13 +109,7 @@ export class EditingPageDocumentLinkProvider implements vscode.DocumentLinkProvi
             );
 
             const fullText: string = restOfText.slice(0, nextIndex);
-            const splitedText: string[] = fullText.split(":");
-
-            const uri = concatPageMarkdownUrl(
-                splitedText[0],
-                splitedText[1],
-                splitedText[2],
-            );
+            const uri = this._buildLinkUri(fullText);
 
             const documentLink = new vscode.DocumentLink(range, uri);
             results.push(documentLink);
@@ -131,5 +125,25 @@ export class EditingPageDocumentLinkProvider implements vscode.DocumentLinkProvi
         }
 
         return results;
+    }
+
+    private _buildLinkUri(
+        fullText: string,
+    ): vscode.Uri {
+
+        const splitedText: string[] = fullText.split(":");
+
+        let component1: string = splitedText[0];
+        if (component1.startsWith("#")) {
+            component1 = component1.slice(1);
+        }
+        const component2: string = splitedText[1];
+        const component3: string = splitedText[2];
+
+        return concatPageMarkdownUrl(
+            component1,
+            component2,
+            component3,
+        );
     }
 }
