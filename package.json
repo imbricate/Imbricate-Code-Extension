@@ -290,6 +290,12 @@
         "icon": "$(chrome-restore)"
       },
       {
+        "command": "imbricate.page.copy.reference",
+        "title": "Copy Reference",
+        "category": "Imbricate",
+        "icon": "$(chrome-restore)"
+      },
+      {
         "command": "imbricate.page.copy.trace",
         "title": "Copy Trace",
         "category": "Imbricate",
@@ -386,6 +392,24 @@
         "title": "Remove from Recent",
         "category": "Imbricate",
         "icon": "$(close)"
+      },
+      {
+        "command": "imbricate.script.copy.identifier",
+        "title": "Copy Identifier",
+        "category": "Imbricate",
+        "icon": "$(chrome-restore)"
+      },
+      {
+        "command": "imbricate.script.copy.reference",
+        "title": "Copy Reference",
+        "category": "Imbricate",
+        "icon": "$(chrome-restore)"
+      },
+      {
+        "command": "imbricate.script.copy.trace",
+        "title": "Copy Trace",
+        "category": "Imbricate",
+        "icon": "$(chrome-restore)"
       },
       {
         "command": "imbricate.script.create",
@@ -518,6 +542,10 @@
           "when": "false"
         },
         {
+          "command": "imbricate.page.copy.reference",
+          "when": "false"
+        },
+        {
           "command": "imbricate.page.copy.trace",
           "when": "false"
         },
@@ -567,6 +595,18 @@
         },
         {
           "command": "imbricate.page.recent.remove",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.script.copy.identifier",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.script.copy.reference",
+          "when": "false"
+        },
+        {
+          "command": "imbricate.script.copy.trace",
           "when": "false"
         },
         {
