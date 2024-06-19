@@ -247,7 +247,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@imbricate/core@npm:^1.31.0":
+"@imbricate/core@npm:1.31.0":
   version: 1.31.0
   resolution: "@imbricate/core@npm:1.31.0"
   dependencies:
@@ -285,7 +285,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@imbricate/origin-file-system@npm:^1.24.0":
+"@imbricate/origin-file-system@npm:1.24.0":
   version: 1.24.0
   resolution: "@imbricate/origin-file-system@npm:1.24.0"
   dependencies:
@@ -2058,10 +2058,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "imbricate@workspace:."
   dependencies:
-    "@imbricate/core": "npm:^1.31.0"
+    "@imbricate/core": "npm:1.31.0"
     "@imbricate/local-fundamental": "npm:1.17.0"
     "@imbricate/markdown-render": "npm:1.2.0"
-    "@imbricate/origin-file-system": "npm:^1.24.0"
+    "@imbricate/origin-file-system": "npm:1.24.0"
     "@imbricate/origin-mongo": "npm:1.5.0"
     "@imbricate/origin-simple-file-system": "npm:1.0.1"
     "@sudoo/io": "npm:^1.8.0"
