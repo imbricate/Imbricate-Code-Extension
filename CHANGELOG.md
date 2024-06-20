@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.24.1
+
+- Fix copying trimmed text from space leading lines
+- Fix redirecting page link through space leading lines
+- Fix redirecting page link through space leading lines
+
 ## 1.24.0
 
 - Using the latest file system origin to use encoded script identifier
