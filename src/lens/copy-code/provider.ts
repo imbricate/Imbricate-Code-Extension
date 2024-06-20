@@ -30,7 +30,7 @@ export class CopyCodeProvider implements vscode.CodeLensProvider {
         lines: for (let i = 0; i < document.lineCount; i++) {
 
             const line = document.lineAt(i);
-            const lineText: string = line.text.trim();
+            const lineText: string = line.text;
 
             if (codeBlockStartLine === null) {
 

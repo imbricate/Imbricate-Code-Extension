@@ -18,6 +18,8 @@ export const registerDocumentCopyCodeBlockCommand = (): vscode.Disposable => {
             return;
         }
 
+        console.log(range);
+
         const text: string = editor.document.getText(range);
 
         const result: string[] = [];

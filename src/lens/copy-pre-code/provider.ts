@@ -30,11 +30,13 @@ export class CopyPreCodeProvider implements vscode.CodeLensProvider {
         lines: for (let i = 0; i < document.lineCount; i++) {
 
             const line = document.lineAt(i);
-            const lineText: string = line.text.trim();
+            const lineText: string = line.text;
+
+            const trimmedText: string = lineText.trim();
 
             if (codeBlockStartLine === null) {
 
-                if (lineText.startsWith("```")) {
+                if (trimmedText.startsWith("```")) {
 
                     codeBlockStartLine = i;
                     continue lines;
@@ -42,7 +44,7 @@ export class CopyPreCodeProvider implements vscode.CodeLensProvider {
                 continue lines;
             }
 
-            if (lineText === "```") {
+            if (trimmedText === "```") {
 
                 if (i === codeBlockStartLine + 1) {
                     codeBlockStartLine = null;
