@@ -32,16 +32,18 @@ export class CopyCodeProvider implements vscode.CodeLensProvider {
             const line = document.lineAt(i);
             const lineText: string = line.text;
 
+            const trimmedText: string = lineText.trim();
+
             if (codeBlockStartLine === null) {
 
-                if (lineText.startsWith("```")) {
+                if (trimmedText.startsWith("```")) {
 
                     codeBlockStartLine = i;
                     continue lines;
                 }
             } else {
 
-                if (lineText === "```") {
+                if (trimmedText === "```") {
                     codeBlockStartLine = null;
                 } else {
                     continue lines;
