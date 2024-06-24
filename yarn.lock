@@ -560,13 +560,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/mocha@npm:^10.0.7":
-  version: 10.0.7
-  resolution: "@types/mocha@npm:10.0.7"
-  checksum: 10c0/48a2df4dd02b6e66a11129dca6a23cf0cc3995faf8525286eb851043685bd8b7444780f4bb29a1c42df7559ed63294e5308bfce3a6b862ad2e0359cb21c21329
-  languageName: node
-  linkType: hard
-
 "@types/node@npm:^20.14.8":
   version: 20.14.8
   resolution: "@types/node@npm:20.14.8"
@@ -2074,7 +2067,6 @@ __metadata:
     "@sudoo/io": "npm:^1.8.0"
     "@sudoo/marked": "npm:^3.21.4"
     "@sudoo/uuid": "npm:^1.1.0"
-    "@types/mocha": "npm:^10.0.7"
     "@types/node": "npm:^20.14.8"
     "@types/vscode": "npm:^1.76.0"
     "@typescript-eslint/eslint-plugin": "npm:^7.13.1"
