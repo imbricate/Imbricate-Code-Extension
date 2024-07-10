@@ -10,3 +10,4 @@ updates:
       - dependency-name: "eslint"
         versions: ["9.x"]
       - dependency-name: "@types/vscode"
+      - dependency-name: "@imbricate/*"
