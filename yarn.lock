@@ -724,9 +724,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vscode/test-cli@npm:^0.0.9":
-  version: 0.0.9
-  resolution: "@vscode/test-cli@npm:0.0.9"
+"@vscode/test-cli@npm:^0.0.10":
+  version: 0.0.10
+  resolution: "@vscode/test-cli@npm:0.0.10"
   dependencies:
     "@types/mocha": "npm:^10.0.2"
     c8: "npm:^9.1.0"
@@ -739,7 +739,7 @@ __metadata:
     yargs: "npm:^17.7.2"
   bin:
     vscode-test: out/bin.mjs
-  checksum: 10c0/6407bf60a96c199483112a206425c1dafbd2b243f05a038f9b2cc69fd404bd39a6ce23f52d829f6ccb89adac92bed147360dc6b0196cf1f07252e4393e12fa5d
+  checksum: 10c0/ed13fd0ff6d681cb8d85c9d2616de8966822ac5644cfc784fed3c0e0b1179fc9822770dd9ca18adb05474ef77e6c79662458e8a7dae927fff0eaf5e75d99ce80
   languageName: node
   linkType: hard
 
@@ -2081,7 +2081,7 @@ __metadata:
     "@types/vscode": "npm:^1.76.0"
     "@typescript-eslint/eslint-plugin": "npm:^7.16.0"
     "@typescript-eslint/parser": "npm:^7.16.0"
-    "@vscode/test-cli": "npm:^0.0.9"
+    "@vscode/test-cli": "npm:^0.0.10"
     "@vscode/test-electron": "npm:^2.4.0"
     esbuild: "npm:^0.23.0"
     eslint: "npm:^8.57.0"
