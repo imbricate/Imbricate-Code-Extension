@@ -567,12 +567,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.14.9":
-  version: 20.14.9
-  resolution: "@types/node@npm:20.14.9"
+"@types/node@npm:^20.14.10":
+  version: 20.14.10
+  resolution: "@types/node@npm:20.14.10"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 10c0/911ffa444dc032897f4a23ed580c67903bd38ea1c5ec99b1d00fa10b83537a3adddef8e1f29710cbdd8e556a61407ed008e06537d834e48caf449ce59f87d387
+  checksum: 10c0/0b06cff14365c2d0085dc16cc8cbea5c40ec09cfc1fea966be9eeecf35562760bfde8f88e86de6edfaf394501236e229d9c1084fad04fb4dec472ae245d8ae69
   languageName: node
   linkType: hard
 
@@ -724,9 +724,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vscode/test-cli@npm:^0.0.9":
-  version: 0.0.9
-  resolution: "@vscode/test-cli@npm:0.0.9"
+"@vscode/test-cli@npm:^0.0.10":
+  version: 0.0.10
+  resolution: "@vscode/test-cli@npm:0.0.10"
   dependencies:
     "@types/mocha": "npm:^10.0.2"
     c8: "npm:^9.1.0"
@@ -739,20 +739,20 @@ __metadata:
     yargs: "npm:^17.7.2"
   bin:
     vscode-test: out/bin.mjs
-  checksum: 10c0/6407bf60a96c199483112a206425c1dafbd2b243f05a038f9b2cc69fd404bd39a6ce23f52d829f6ccb89adac92bed147360dc6b0196cf1f07252e4393e12fa5d
+  checksum: 10c0/ed13fd0ff6d681cb8d85c9d2616de8966822ac5644cfc784fed3c0e0b1179fc9822770dd9ca18adb05474ef77e6c79662458e8a7dae927fff0eaf5e75d99ce80
   languageName: node
   linkType: hard
 
-"@vscode/test-electron@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "@vscode/test-electron@npm:2.4.0"
+"@vscode/test-electron@npm:^2.4.1":
+  version: 2.4.1
+  resolution: "@vscode/test-electron@npm:2.4.1"
   dependencies:
     http-proxy-agent: "npm:^7.0.2"
-    https-proxy-agent: "npm:^7.0.4"
+    https-proxy-agent: "npm:^7.0.5"
     jszip: "npm:^3.10.1"
     ora: "npm:^7.0.1"
     semver: "npm:^7.6.2"
-  checksum: 10c0/689e56b2a24ac67da033ea8c11468b1db14b1ec7ff82e9cf1c39295b6bcb2fe29b0880c1c66ebb2f7e8c6e644158c3d713737c9c41c35ae7f944bdc291abe5a5
+  checksum: 10c0/c06fcb259237ec3860df01595d03fbd6387444ee984bb61d7f88501f36f68cb92821d7db219d4c0dcebfee631cf67174cf291597259bb776cb3b3e3b6a3fc275
   languageName: node
   linkType: hard
 
@@ -2022,13 +2022,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"https-proxy-agent@npm:^7.0.1, https-proxy-agent@npm:^7.0.4":
+"https-proxy-agent@npm:^7.0.1":
   version: 7.0.4
   resolution: "https-proxy-agent@npm:7.0.4"
   dependencies:
     agent-base: "npm:^7.0.2"
     debug: "npm:4"
   checksum: 10c0/bc4f7c38da32a5fc622450b6cb49a24ff596f9bd48dcedb52d2da3fa1c1a80e100fb506bd59b326c012f21c863c69b275c23de1a01d0b84db396822fdf25e52b
+  languageName: node
+  linkType: hard
+
+"https-proxy-agent@npm:^7.0.5":
+  version: 7.0.5
+  resolution: "https-proxy-agent@npm:7.0.5"
+  dependencies:
+    agent-base: "npm:^7.0.2"
+    debug: "npm:4"
+  checksum: 10c0/2490e3acec397abeb88807db52cac59102d5ed758feee6df6112ab3ccd8325e8a1ce8bce6f4b66e5470eca102d31e425ace904242e4fa28dbe0c59c4bafa7b2c
   languageName: node
   linkType: hard
 
@@ -2077,12 +2087,12 @@ __metadata:
     "@sudoo/io": "npm:^1.8.0"
     "@sudoo/marked": "npm:^3.21.4"
     "@sudoo/uuid": "npm:^1.1.0"
-    "@types/node": "npm:^20.14.9"
+    "@types/node": "npm:^20.14.10"
     "@types/vscode": "npm:^1.76.0"
     "@typescript-eslint/eslint-plugin": "npm:^7.16.0"
     "@typescript-eslint/parser": "npm:^7.16.0"
-    "@vscode/test-cli": "npm:^0.0.9"
-    "@vscode/test-electron": "npm:^2.4.0"
+    "@vscode/test-cli": "npm:^0.0.10"
+    "@vscode/test-electron": "npm:^2.4.1"
     esbuild: "npm:^0.23.0"
     eslint: "npm:^8.57.0"
     typescript: "npm:^5.5.3"
