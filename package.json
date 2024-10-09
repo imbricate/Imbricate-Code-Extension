@@ -62,7 +62,7 @@
     "@vscode/test-electron": "^2.4.1",
     "esbuild": "^0.23.0",
     "eslint": "^8.57.0",
-    "typescript": "^5.5.3"
+    "typescript": "^5.6.3"
   },
   "contributes": {
     "configuration": {
